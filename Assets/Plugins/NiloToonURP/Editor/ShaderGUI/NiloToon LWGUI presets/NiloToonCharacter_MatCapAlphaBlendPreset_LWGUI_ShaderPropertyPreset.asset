@@ -1,0 +1,139 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28fbcbca3fb14507af6ed5c104c40b84, type: 3}
+  m_Name: NiloToonCharacter_MatCapAlphaBlendPreset_LWGUI_ShaderPropertyPreset
+  m_EditorClassIdentifier: 
+  presets:
+  - presetName: (None)
+    propertyValues: []
+    enabledKeywords: []
+    disabledKeywords: []
+    renderQueue: -1
+  - presetName: Metal1
+    propertyValues:
+    - propertyName: _MatCapAlphaBlendMap
+      propertyType: 4
+      floatValue: 0
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 2800000, guid: 1312730955529604db9331925645da8e, type: 3}
+    - propertyName: _MatCapAlphaBlendUvScale
+      propertyType: 3
+      floatValue: 1
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    enabledKeywords: []
+    disabledKeywords: []
+    renderQueue: -1
+  - presetName: Metal2
+    propertyValues:
+    - propertyName: _MatCapAlphaBlendMap
+      propertyType: 4
+      floatValue: 0
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 2800000, guid: 23aa0f9b8fdea03429b1847874d75eb9, type: 3}
+    - propertyName: _MatCapAlphaBlendUvScale
+      propertyType: 3
+      floatValue: 1
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    enabledKeywords: []
+    disabledKeywords: []
+    renderQueue: -1
+  - presetName: Metal3Gold
+    propertyValues:
+    - propertyName: _MatCapAlphaBlendMap
+      propertyType: 4
+      floatValue: 0
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 2800000, guid: ebd3d0bad3a3a4446b034973763a8a09, type: 3}
+    - propertyName: _MatCapAlphaBlendUvScale
+      propertyType: 3
+      floatValue: 1
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    enabledKeywords: []
+    disabledKeywords: []
+    renderQueue: -1
+  - presetName: Metal4Gold
+    propertyValues:
+    - propertyName: _MatCapAlphaBlendMap
+      propertyType: 4
+      floatValue: 0
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 2800000, guid: a92c6a9380a51c843b70ec15df9d831e, type: 3}
+    - propertyName: _MatCapAlphaBlendUvScale
+      propertyType: 3
+      floatValue: 1
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    enabledKeywords: []
+    disabledKeywords: []
+    renderQueue: -1
+  - presetName: Glossy01
+    propertyValues:
+    - propertyName: _MatCapAlphaBlendMap
+      propertyType: 4
+      floatValue: 0
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 2800000, guid: 222a81aa69e4db943af2f3c9f8bb2851, type: 3}
+    - propertyName: _MatCapAlphaBlendUvScale
+      propertyType: 3
+      floatValue: 1
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    enabledKeywords: []
+    disabledKeywords: []
+    renderQueue: -1
+  - presetName: StockingBlack
+    propertyValues:
+    - propertyName: _MatCapAlphaBlendMap
+      propertyType: 4
+      floatValue: 0
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 2800000, guid: cce4a4526c73aa24198ee9c3b39092e6, type: 3}
+    - propertyName: _MatCapAlphaBlendUvScale
+      propertyType: 3
+      floatValue: 1
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    enabledKeywords: []
+    disabledKeywords: []
+    renderQueue: -1
+  - presetName: BlackSmoothSpecular01
+    propertyValues:
+    - propertyName: _MatCapAlphaBlendMap
+      propertyType: 4
+      floatValue: 0
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 2800000, guid: 16ed4056d7dcd804a812c96b7ffd83b5, type: 3}
+    - propertyName: _MatCapAlphaBlendUvScale
+      propertyType: 3
+      floatValue: 1
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    enabledKeywords: []
+    disabledKeywords: []
+    renderQueue: -1

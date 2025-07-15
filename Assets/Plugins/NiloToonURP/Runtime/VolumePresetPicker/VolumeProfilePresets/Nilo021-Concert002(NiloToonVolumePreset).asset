@@ -1,0 +1,683 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7922335348250376900
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccf1aba9553839d41ae37dd52e9ebcce, type: 3}
+  m_Name: MotionBlur
+  m_EditorClassIdentifier: 
+  active: 0
+  mode:
+    m_OverrideState: 0
+    m_Value: 0
+  quality:
+    m_OverrideState: 1
+    m_Value: 2
+  intensity:
+    m_OverrideState: 1
+    m_Value: 0.1
+  clamp:
+    m_OverrideState: 0
+    m_Value: 0.05
+--- !u!114 &-7813600774485381003
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 899c54efeace73346a0a16faa3afe726, type: 3}
+  m_Name: Vignette
+  m_EditorClassIdentifier: 
+  active: 0
+  color:
+    m_OverrideState: 1
+    m_Value: {r: 0, g: 0, b: 0, a: 1}
+  center:
+    m_OverrideState: 0
+    m_Value: {x: 0.5, y: 0.5}
+  intensity:
+    m_OverrideState: 0
+    m_Value: 0.1
+  smoothness:
+    m_OverrideState: 0
+    m_Value: 0.2
+  rounded:
+    m_OverrideState: 0
+    m_Value: 0
+--- !u!114 &-7433399900223881734
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d89c46e6b4f031541986f8d6bdbad145, type: 3}
+  m_Name: NiloToonCinematicRimLightVolume
+  m_EditorClassIdentifier: 
+  active: 1
+  strengthRimMask2D:
+    m_OverrideState: 1
+    m_Value: 0.5
+  strengthRimMask3D_ClassicStyle:
+    m_OverrideState: 1
+    m_Value: 1
+  strengthRimMask3D_DynmaicStyle:
+    m_OverrideState: 0
+    m_Value: 1
+  sharpnessRimMask3D_DynamicStyle:
+    m_OverrideState: 0
+    m_Value: 0.375
+  strengthRimMask3D_StableStyle:
+    m_OverrideState: 0
+    m_Value: 1
+  sharpnessRimMask3D_StableStyle:
+    m_OverrideState: 0
+    m_Value: 0.5
+  lightIntensityMultiplier:
+    m_OverrideState: 1
+    m_Value: 0.025
+  tintBaseMap:
+    m_OverrideState: 1
+    m_Value: 0
+  enableStyleSafeGuard:
+    m_OverrideState: 0
+    m_Value: 1
+--- !u!114 &-7374397290137879869
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39dc1fe45bfcc1e4eaa9ae19ecefd49c, type: 3}
+  m_Name: NiloToonShadowControlVolume
+  m_EditorClassIdentifier: 
+  active: 1
+  characterOverallShadowTintColor:
+    m_OverrideState: 1
+    m_Value: {r: 0.8, g: 0.9882353, b: 1, a: 1}
+  characterOverallShadowStrength:
+    m_OverrideState: 0
+    m_Value: 0.5
+  enableCharAverageShadow:
+    m_OverrideState: 1
+    m_Value: 0
+  charAverageShadowStrength:
+    m_OverrideState: 0
+    m_Value: 1
+  enableCharSelfShadow:
+    m_OverrideState: 0
+    m_Value: 1
+  charSelfShadowStrength:
+    m_OverrideState: 0
+    m_Value: 1
+  useMainLightAsCastShadowDirection:
+    m_OverrideState: 0
+    m_Value: 0
+  shadowAngle:
+    m_OverrideState: 0
+    m_Value: 15
+  shadowLRAngle:
+    m_OverrideState: 0
+    m_Value: 5
+  shadowRange:
+    m_OverrideState: 0
+    m_Value: 10
+  shadowMapSize:
+    m_OverrideState: 0
+    m_Value: 8192
+  depthBias:
+    m_OverrideState: 0
+    m_Value: 0.25
+  normalBias:
+    m_OverrideState: 0
+    m_Value: 1
+  receiveURPShadow:
+    m_OverrideState: 1
+    m_Value: 0
+  URPShadowIntensity:
+    m_OverrideState: 0
+    m_Value: 1
+  URPShadowAsDirectLightMultiplier:
+    m_OverrideState: 0
+    m_Value: 1
+  URPShadowAsDirectLightTintColor:
+    m_OverrideState: 0
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
+  URPShadowAsDirectLightTintIgnoreMaterialURPUsageSetting:
+    m_OverrideState: 0
+    m_Value: 1
+  URPShadowblurriness:
+    m_OverrideState: 0
+    m_Value: 1
+--- !u!114 &-6480714321677472310
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c01700fd266d6914ababb731e09af2eb, type: 3}
+  m_Name: DepthOfField
+  m_EditorClassIdentifier: 
+  active: 0
+  mode:
+    m_OverrideState: 1
+    m_Value: 2
+  gaussianStart:
+    m_OverrideState: 0
+    m_Value: 10
+  gaussianEnd:
+    m_OverrideState: 0
+    m_Value: 30
+  gaussianMaxRadius:
+    m_OverrideState: 0
+    m_Value: 1
+  highQualitySampling:
+    m_OverrideState: 0
+    m_Value: 0
+  focusDistance:
+    m_OverrideState: 1
+    m_Value: 5.9
+  aperture:
+    m_OverrideState: 1
+    m_Value: 32
+  focalLength:
+    m_OverrideState: 1
+    m_Value: 250
+  bladeCount:
+    m_OverrideState: 0
+    m_Value: 5
+  bladeCurvature:
+    m_OverrideState: 0
+    m_Value: 1
+  bladeRotation:
+    m_OverrideState: 0
+    m_Value: 0
+--- !u!114 &-5756256075654368242
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a104dcd31bca784aaed640904c00a0b, type: 3}
+  m_Name: NiloToonCharRenderingControlVolume
+  m_EditorClassIdentifier: 
+  active: 1
+  charBaseColorMultiply:
+    m_OverrideState: 1
+    m_Value: 1.125
+  charBaseColorTintColor:
+    m_OverrideState: 0
+    m_Value: {r: 1, g: 0.95, b: 0.95, a: 1}
+  charMulColorIntensity:
+    m_OverrideState: 1
+    m_Value: 0.75
+  charMulColor:
+    m_OverrideState: 0
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
+  charLerpColorUsage:
+    m_OverrideState: 0
+    m_Value: 0.025
+  charLerpColor:
+    m_OverrideState: 0
+    m_Value: {r: 0.116970696, g: 0.1811643, b: 0.25415218, a: 1}
+  charOcclusionUsage:
+    m_OverrideState: 0
+    m_Value: 1
+  charIndirectLightMultiplier:
+    m_OverrideState: 1
+    m_Value: 0
+  charIndirectLightMinColor:
+    m_OverrideState: 1
+    m_Value: {r: 0.008, g: 0.008, b: 0.02, a: 0}
+  charIndirectLightMaxColor:
+    m_OverrideState: 0
+    m_Value: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  mainDirectionalLightIntensityMultiplier:
+    m_OverrideState: 0
+    m_Value: 1
+  mainDirectionalLightIntensityMultiplierColor:
+    m_OverrideState: 0
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
+  addMainLightColor:
+    m_OverrideState: 0
+    m_Value: {r: 0, g: 0, b: 0, a: 1}
+  mainDirectionalLightMaxContribution:
+    m_OverrideState: 1
+    m_Value: 0.635
+  mainDirectionalLightMaxContributionColor:
+    m_OverrideState: 0
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
+  overrideLightDirectionIntensity:
+    m_OverrideState: 1
+    m_Value: 1
+  overridedLightUpDownAngle:
+    m_OverrideState: 1
+    m_Value: -58
+  overridedLightLRAngle:
+    m_OverrideState: 1
+    m_Value: 10
+  lightColorOverrideStrength:
+    m_OverrideState: 0
+    m_Value: 0.614
+  overridedLightColor:
+    m_OverrideState: 0
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
+  desaturateLightColor:
+    m_OverrideState: 1
+    m_Value: 0.5
+  additionalLightIntensityMultiplier:
+    m_OverrideState: 0
+    m_Value: 0
+  additionalLightIntensityMultiplierColor:
+    m_OverrideState: 0
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
+  additionalLightIntensityMultiplierForFaceArea:
+    m_OverrideState: 1
+    m_Value: 0
+  additionalLightIntensityMultiplierColorForFaceArea:
+    m_OverrideState: 0
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
+  additionalLightIntensityMultiplierForOutlineArea:
+    m_OverrideState: 0
+    m_Value: 1
+  additionalLightIntensityMultiplierColorForOutlineArea:
+    m_OverrideState: 0
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
+  additionalLightApplyRimMask:
+    m_OverrideState: 0
+    m_Value: 0
+  additionalLightRimMaskPower:
+    m_OverrideState: 0
+    m_Value: 1
+  additionalLightRimMaskSoftness:
+    m_OverrideState: 0
+    m_Value: 1
+  additionalLightMaxContribution:
+    m_OverrideState: 0
+    m_Value: 1
+  additionalLightMaxContributionColor:
+    m_OverrideState: 0
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
+  specularIntensityMultiplier:
+    m_OverrideState: 0
+    m_Value: 1
+  specularTintColor:
+    m_OverrideState: 0
+    m_Value: {r: 1, g: 1, b: 1, a: 0}
+  specularInShadowMinIntensity:
+    m_OverrideState: 0
+    m_Value: 0.25
+  specularReactToLightDirectionChange:
+    m_OverrideState: 0
+    m_Value: 1
+  depthTextureRimLightAndShadowWidthMultiplier:
+    m_OverrideState: 0
+    m_Value: 1
+  charRimLightMultiplier:
+    m_OverrideState: 1
+    m_Value: 7
+  charRimLightTintColor:
+    m_OverrideState: 0
+    m_Value: {r: 1, g: 1, b: 1, a: 0}
+  charRimLightMultiplierForOutlineArea:
+    m_OverrideState: 0
+    m_Value: 0
+  charRimLightTintColorForOutlineArea:
+    m_OverrideState: 0
+    m_Value: {r: 1, g: 1, b: 1, a: 0}
+  depthTexRimLightDepthDiffThresholdOffset:
+    m_OverrideState: 1
+    m_Value: 0.1
+  charRimLightCameraDistanceFadeoutStartDistance:
+    m_OverrideState: 0
+    m_Value: 1000
+  charRimLightCameraDistanceFadeoutEndDistance:
+    m_OverrideState: 0
+    m_Value: 2000
+  characterOverallShadowStrength:
+    m_OverrideState: 0
+    m_Value: 1
+  characterOverallShadowTintColor:
+    m_OverrideState: 1
+    m_Value: {r: 0.9526316, g: 0.8, b: 1, a: 0}
+  charOutlineWidthMultiplier:
+    m_OverrideState: 1
+    m_Value: 1
+  charOutlineWidthExtraMultiplierForXR:
+    m_OverrideState: 0
+    m_Value: 0.5
+  charOutlineWidthAutoAdjustToCameraDistanceAndFOV:
+    m_OverrideState: 0
+    m_Value: 1
+  charOutlineMulColor:
+    m_OverrideState: 0
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &-5517428856906210331
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 190e72967b306f4498b2f326170fd5a2, type: 3}
+  m_Name: NiloToonEnvironmentControlVolume
+  m_EditorClassIdentifier: 
+  active: 1
+  GlobalIlluminationTintColor:
+    m_OverrideState: 1
+    m_Value: {r: 0.0009765625, g: 0.0009765625, b: 0.0009765625, a: 1}
+  GlobalIlluminationAddColor:
+    m_OverrideState: 1
+    m_Value: {r: 0.020483544, g: 0.06852937, b: 0.19117974, a: 1}
+  GlobalIlluminationOverrideColor:
+    m_OverrideState: 0
+    m_Value: {r: 0.97234017, g: 0.80889904, b: 0.80263937, a: 0}
+  GlobalAlbedoOverrideColor:
+    m_OverrideState: 1
+    m_Value: {r: 0, g: 0, b: 0, a: 0.105882354}
+  GlobalSurfaceColorResultOverrideColor:
+    m_OverrideState: 0
+    m_Value: {r: 1, g: 0.8254717, b: 0.8254717, a: 0.08627451}
+  GlobalShadowBoaderTintColorOverrideColor:
+    m_OverrideState: 0
+    m_Value: {r: 1, g: 0.37647063, b: 0, a: 1}
+--- !u!114 &-4448332639259402599
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5aa15fc7246432d4fb73e65893caaa4b, type: 3}
+  m_Name: NiloToonAnimePostProcessVolume
+  m_EditorClassIdentifier: 
+  active: 0
+  intensity:
+    m_OverrideState: 1
+    m_Value: 0.625
+  rotation:
+    m_OverrideState: 0
+    m_Value: 0
+  topLightEffectDrawHeight:
+    m_OverrideState: 1
+    m_Value: 0.35
+  topLightEffectIntensity:
+    m_OverrideState: 1
+    m_Value: 0.25
+  topLightMultiplyLightColor:
+    m_OverrideState: 0
+    m_Value: 1
+  topLightSunTintColor:
+    m_OverrideState: 0
+    m_Value: {r: 0.3, g: 0.225, b: 0.1125, a: 1}
+  topLightDesaturate:
+    m_OverrideState: 1
+    m_Value: 1
+  topLightTintColor:
+    m_OverrideState: 0
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
+  topLightExtraRotation:
+    m_OverrideState: 0
+    m_Value: 0
+  bottomDarkenEffectDrawHeight:
+    m_OverrideState: 0
+    m_Value: 0.5
+  bottomDarkenEffectIntensity:
+    m_OverrideState: 1
+    m_Value: 0.35
+  bottomDarkenExtraRotation:
+    m_OverrideState: 0
+    m_Value: 0
+  drawBeforePostProcess:
+    m_OverrideState: 0
+    m_Value: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7fd9488000d3734a9e00ee676215985, type: 3}
+  m_Name: Nilo021-Concert002(NiloToonVolumePreset)
+  m_EditorClassIdentifier: 
+  components:
+  - {fileID: 3402487581922871444}
+  - {fileID: -4448332639259402599}
+  - {fileID: -5756256075654368242}
+  - {fileID: 99349373329142824}
+  - {fileID: -5517428856906210331}
+  - {fileID: -7374397290137879869}
+  - {fileID: -6480714321677472310}
+  - {fileID: -7922335348250376900}
+  - {fileID: -7813600774485381003}
+  - {fileID: 6747790534553481016}
+  - {fileID: -7433399900223881734}
+  - {fileID: 3003303285957774759}
+--- !u!114 &99349373329142824
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eecc32444ea4503479fa0394f277db7d, type: 3}
+  m_Name: NiloToonScreenSpaceOutlineControlVolume
+  m_EditorClassIdentifier: 
+  active: 1
+  intensity:
+    m_OverrideState: 1
+    m_Value: 1
+  intensityForCharacter:
+    m_OverrideState: 0
+    m_Value: 1
+  intensityForEnvironment:
+    m_OverrideState: 0
+    m_Value: 1
+  widthMultiplier:
+    m_OverrideState: 0
+    m_Value: 1
+  widthMultiplierForCharacter:
+    m_OverrideState: 0
+    m_Value: 1
+  widthMultiplierForEnvironment:
+    m_OverrideState: 0
+    m_Value: 1
+  extraWidthMultiplierForXR:
+    m_OverrideState: 0
+    m_Value: 0.2
+  normalsSensitivityOffset:
+    m_OverrideState: 0
+    m_Value: 0
+  normalsSensitivityOffsetForCharacter:
+    m_OverrideState: 0
+    m_Value: 0
+  normalsSensitivityOffsetForEnvironment:
+    m_OverrideState: 0
+    m_Value: 0
+  depthSensitivityOffset:
+    m_OverrideState: 0
+    m_Value: -0.5
+  depthSensitivityOffsetForCharacter:
+    m_OverrideState: 0
+    m_Value: 0
+  depthSensitivityOffsetForEnvironment:
+    m_OverrideState: 0
+    m_Value: 0
+  depthSensitivityDistanceFadeoutStrength:
+    m_OverrideState: 0
+    m_Value: 1
+  depthSensitivityDistanceFadeoutStrengthForCharacter:
+    m_OverrideState: 0
+    m_Value: 1
+  depthSensitivityDistanceFadeoutStrengthForEnvironment:
+    m_OverrideState: 0
+    m_Value: 1
+  outlineTintColor:
+    m_OverrideState: 0
+    m_Value: {r: 1, g: 0.4117647, b: 0.4117647, a: 1}
+  outlineTintColorForChar:
+    m_OverrideState: 0
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
+  outlineTintColorForEnvi:
+    m_OverrideState: 0
+    m_Value: {r: 0.12, g: 0.12, b: 0.12, a: 1}
+--- !u!114 &3003303285957774759
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b2db86121404754db890f4c8dfe81b2, type: 3}
+  m_Name: Bloom
+  m_EditorClassIdentifier: 
+  active: 1
+  threshold:
+    m_OverrideState: 1
+    m_Value: 0.7
+  intensity:
+    m_OverrideState: 1
+    m_Value: 1.5
+  scatter:
+    m_OverrideState: 0
+    m_Value: 0.7
+  clamp:
+    m_OverrideState: 0
+    m_Value: 65472
+  tint:
+    m_OverrideState: 0
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
+  highQualityFiltering:
+    m_OverrideState: 0
+    m_Value: 0
+  skipIterations:
+    m_OverrideState: 0
+    m_Value: 1
+  dirtTexture:
+    m_OverrideState: 0
+    m_Value: {fileID: 0}
+    dimension: 1
+  dirtIntensity:
+    m_OverrideState: 0
+    m_Value: 0
+--- !u!114 &3402487581922871444
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a10bd7999fb5fe43ab7b08bda3fe53f, type: 3}
+  m_Name: NiloToonBloomVolume
+  m_EditorClassIdentifier: 
+  active: 1
+  threshold:
+    m_OverrideState: 1
+    m_Value: 99
+  intensity:
+    m_OverrideState: 1
+    m_Value: 5
+  scatter:
+    m_OverrideState: 1
+    m_Value: 0.769
+  tint:
+    m_OverrideState: 0
+    m_Value: {r: 0.6084906, g: 0.863412, b: 1, a: 1}
+  clamp:
+    m_OverrideState: 1
+    m_Value: 0.8
+  highQualityFiltering:
+    m_OverrideState: 1
+    m_Value: 1
+  skipIterations:
+    m_OverrideState: 0
+    m_Value: 1
+  dirtTexture:
+    m_OverrideState: 0
+    m_Value: {fileID: 0}
+    dimension: 1
+  dirtIntensity:
+    m_OverrideState: 0
+    m_Value: 0
+  characterBaseColorBrightness:
+    m_OverrideState: 0
+    m_Value: 1
+  characterBrightness:
+    m_OverrideState: 0
+    m_Value: 1
+  characterPreTonemapBrightness:
+    m_OverrideState: 0
+    m_Value: 1
+  characterAreaBloomEmitMultiplier:
+    m_OverrideState: 0
+    m_Value: 1
+  characterAreaOverridedThreshold:
+    m_OverrideState: 1
+    m_Value: 0.8
+  characterAreaOverridedIntensity:
+    m_OverrideState: 0
+    m_Value: 0
+  HueOffset:
+    m_OverrideState: 0
+    m_Value: 0
+  SaturationBoost:
+    m_OverrideState: 0
+    m_Value: 0
+  ValueMultiply:
+    m_OverrideState: 0
+    m_Value: 1
+  ApplyHSVToCharAreaOnly:
+    m_OverrideState: 1
+    m_Value: 1
+  renderTextureOverridedToFixedHeight:
+    m_OverrideState: 1
+    m_Value: 1080
+--- !u!114 &6747790534553481016
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81180773991d8724ab7f2d216912b564, type: 3}
+  m_Name: ChromaticAberration
+  m_EditorClassIdentifier: 
+  active: 1
+  intensity:
+    m_OverrideState: 1
+    m_Value: 0.05

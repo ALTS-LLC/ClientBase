@@ -1,0 +1,323 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28fbcbca3fb14507af6ed5c104c40b84, type: 3}
+  m_Name: NiloToonCharacter_SkinFaceShadowColor_LWGUI_ShaderPropertyPreset
+  m_EditorClassIdentifier: 
+  presets:
+  - presetName: Default
+    propertyValues:
+    - propertyName: _SkinShadowTintColor
+      propertyType: 0
+      floatValue: 0
+      colorValue: {r: 1, g: 0.8, b: 0.8, a: 1}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    - propertyName: _FaceShadowTintColor
+      propertyType: 0
+      floatValue: 0
+      colorValue: {r: 1, g: 0.9, b: 0.9, a: 1}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+  - presetName: NoShadow
+    propertyValues:
+    - propertyName: _SkinShadowTintColor
+      propertyType: 0
+      floatValue: 0
+      colorValue: {r: 1, g: 1, b: 1, a: 1}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    - propertyName: _FaceShadowTintColor
+      propertyType: 0
+      floatValue: 0
+      colorValue: {r: 1, g: 1, b: 1, a: 1}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+  - presetName: Red(100%)
+    propertyValues:
+    - propertyName: _SkinShadowTintColor
+      propertyType: 0
+      floatValue: 0
+      colorValue: {r: 1, g: 0.8, b: 0.8, a: 1}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    - propertyName: _FaceShadowTintColor
+      propertyType: 0
+      floatValue: 0
+      colorValue: {r: 1, g: 0.85, b: 0.85, a: 1}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+  - presetName: Red(75%)
+    propertyValues:
+    - propertyName: _SkinShadowTintColor
+      propertyType: 0
+      floatValue: 0
+      colorValue: {r: 1, g: 0.85, b: 0.85, a: 1}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    - propertyName: _FaceShadowTintColor
+      propertyType: 0
+      floatValue: 0
+      colorValue: {r: 1, g: 0.8875, b: 0.8875, a: 1}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+  - presetName: Red(50%)
+    propertyValues:
+    - propertyName: _SkinShadowTintColor
+      propertyType: 0
+      floatValue: 0
+      colorValue: {r: 1, g: 0.9, b: 0.9, a: 1}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    - propertyName: _FaceShadowTintColor
+      propertyType: 0
+      floatValue: 0
+      colorValue: {r: 1, g: 0.925, b: 0.925, a: 1}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+  - presetName: Red(25%)
+    propertyValues:
+    - propertyName: _SkinShadowTintColor
+      propertyType: 0
+      floatValue: 0
+      colorValue: {r: 1, g: 0.95, b: 0.95, a: 1}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    - propertyName: _FaceShadowTintColor
+      propertyType: 0
+      floatValue: 0
+      colorValue: {r: 1, g: 0.9625, b: 0.9625, a: 1}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+  - presetName: Orange(100%)
+    propertyValues:
+    - propertyName: _SkinShadowTintColor
+      propertyType: 0
+      floatValue: 0
+      colorValue: {r: 1, g: 0.8333334, b: 0.8, a: 1}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    - propertyName: _FaceShadowTintColor
+      propertyType: 0
+      floatValue: 0
+      colorValue: {r: 1, g: 0.875817, b: 0.8509804, a: 1}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+  - presetName: Orange(75%)
+    propertyValues:
+    - propertyName: _SkinShadowTintColor
+      propertyType: 0
+      floatValue: 0
+      colorValue: {r: 1, g: 0.875817, b: 0.8509804, a: 1}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    - propertyName: _FaceShadowTintColor
+      propertyType: 0
+      floatValue: 0
+      colorValue: {r: 1, g: 0.9052632, b: 0.8875, a: 1}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+  - presetName: Orange(50%)
+    propertyValues:
+    - propertyName: _SkinShadowTintColor
+      propertyType: 0
+      floatValue: 0
+      colorValue: {r: 1, g: 0.91842103, b: 0.9, a: 1}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    - propertyName: _FaceShadowTintColor
+      propertyType: 0
+      floatValue: 0
+      colorValue: {r: 1, g: 0.93790853, b: 0.9254902, a: 1}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+  - presetName: Orange(25%)
+    propertyValues:
+    - propertyName: _SkinShadowTintColor
+      propertyType: 0
+      floatValue: 0
+      colorValue: {r: 1, g: 0.9575164, b: 0.9490196, a: 1}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    - propertyName: _FaceShadowTintColor
+      propertyType: 0
+      floatValue: 0
+      colorValue: {r: 1, g: 0.96732026, b: 0.9607843, a: 1}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+  - presetName: Purple(100%)
+    propertyValues:
+    - propertyName: _SkinShadowTintColor
+      propertyType: 0
+      floatValue: 0
+      colorValue: {r: 1, g: 0.8, b: 0.83333343, a: 1}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    - propertyName: _FaceShadowTintColor
+      propertyType: 0
+      floatValue: 0
+      colorValue: {r: 1, g: 0.8509804, b: 0.87581706, a: 1}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+  - presetName: Purple(75%)
+    propertyValues:
+    - propertyName: _SkinShadowTintColor
+      propertyType: 0
+      floatValue: 0
+      colorValue: {r: 1, g: 0.85, b: 0.87500006, a: 1}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    - propertyName: _FaceShadowTintColor
+      propertyType: 0
+      floatValue: 0
+      colorValue: {r: 1, g: 0.8875, b: 0.90625006, a: 1}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+  - presetName: Purple(50%)
+    propertyValues:
+    - propertyName: _SkinShadowTintColor
+      propertyType: 0
+      floatValue: 0
+      colorValue: {r: 1, g: 0.9, b: 0.9166667, a: 1}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    - propertyName: _FaceShadowTintColor
+      propertyType: 0
+      floatValue: 0
+      colorValue: {r: 1, g: 0.925, b: 0.93793106, a: 1}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+  - presetName: Purple(25%)
+    propertyValues:
+    - propertyName: _SkinShadowTintColor
+      propertyType: 0
+      floatValue: 0
+      colorValue: {r: 1, g: 0.95, b: 0.958, a: 1}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    - propertyName: _FaceShadowTintColor
+      propertyType: 0
+      floatValue: 0
+      colorValue: {r: 1, g: 0.96, b: 0.9666667, a: 1}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+  - presetName: OrangeHeavy(100%)
+    propertyValues:
+    - propertyName: _SkinShadowTintColor
+      propertyType: 0
+      floatValue: 0
+      colorValue: {r: 1, g: 0.8666667, b: 0.8, a: 1}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    - propertyName: _FaceShadowTintColor
+      propertyType: 0
+      floatValue: 0
+      colorValue: {r: 1, g: 0.9006536, b: 0.8509804, a: 1}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+  - presetName: OrangeHeavy(75%)
+    propertyValues:
+    - propertyName: _SkinShadowTintColor
+      propertyType: 0
+      floatValue: 0
+      colorValue: {r: 1, g: 0.9, b: 0.85, a: 1}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    - propertyName: _FaceShadowTintColor
+      propertyType: 0
+      floatValue: 0
+      colorValue: {r: 1, g: 0.9259868, b: 0.8875, a: 1}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+  - presetName: OrangeHeavy(50%)
+    propertyValues:
+    - propertyName: _SkinShadowTintColor
+      propertyType: 0
+      floatValue: 0
+      colorValue: {r: 1, g: 0.93421054, b: 0.9, a: 1}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    - propertyName: _FaceShadowTintColor
+      propertyType: 0
+      floatValue: 0
+      colorValue: {r: 1, g: 0.95086205, b: 0.925, a: 1}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+  - presetName: OrangeHeavy(25%)
+    propertyValues:
+    - propertyName: _SkinShadowTintColor
+      propertyType: 0
+      floatValue: 0
+      colorValue: {r: 1, g: 0.96666664, b: 0.95, a: 1}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    - propertyName: _FaceShadowTintColor
+      propertyType: 0
+      floatValue: 0
+      colorValue: {r: 1, g: 0.97333336, b: 0.96, a: 1}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+  - presetName: PurpleHeavy(100%)
+    propertyValues:
+    - propertyName: _SkinShadowTintColor
+      propertyType: 0
+      floatValue: 0
+      colorValue: {r: 1, g: 0.8, b: 0.86666673, a: 1}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    - propertyName: _FaceShadowTintColor
+      propertyType: 0
+      floatValue: 0
+      colorValue: {r: 1, g: 0.8509804, b: 0.9006536, a: 1}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+  - presetName: PurpleHeavy(75%)
+    propertyValues:
+    - propertyName: _SkinShadowTintColor
+      propertyType: 0
+      floatValue: 0
+      colorValue: {r: 1, g: 0.85, b: 0.90000004, a: 1}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    - propertyName: _FaceShadowTintColor
+      propertyType: 0
+      floatValue: 0
+      colorValue: {r: 1, g: 0.8875, b: 0.9259869, a: 1}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+  - presetName: PurpleHeavy(50%)
+    propertyValues:
+    - propertyName: _SkinShadowTintColor
+      propertyType: 0
+      floatValue: 0
+      colorValue: {r: 1, g: 0.9, b: 0.93333334, a: 1}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    - propertyName: _FaceShadowTintColor
+      propertyType: 0
+      floatValue: 0
+      colorValue: {r: 1, g: 0.92, b: 0.94666666, a: 1}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+  - presetName: PurpleHeavy(25%)
+    propertyValues:
+    - propertyName: _SkinShadowTintColor
+      propertyType: 0
+      floatValue: 0
+      colorValue: {r: 1, g: 0.95, b: 0.9666667, a: 1}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    - propertyName: _FaceShadowTintColor
+      propertyType: 0
+      floatValue: 0
+      colorValue: {r: 1, g: 0.96, b: 0.97333336, a: 1}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
