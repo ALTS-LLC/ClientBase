@@ -45,10 +45,24 @@ public class SettingPanel : UIBase, IUseIinterface
 	private void Start()
 	{
 		Register();
+		bool once = false;
+		int index = 0;
 		foreach (var item in ManagerHub.Instance.NetworkManager.LocalIPAddressList)
 		{
+			if (!once)
+			{
+                _ipDropDown.options.Add(new TMP_Dropdown.OptionData { text = "127.0.0.1" });
+            }
+
 			_ipDropDown.options.Add(new TMP_Dropdown.OptionData { text = item });
+
+			if (ManagerHub.Instance.DataManager.Config.LocalIP == item)
+			{
+				index = _ipDropDown.options.Count - 1;
+			}
 		}
+		_ipDropDown.value = index;
+
 		_sendPortField.text = ManagerHub.Instance.DataManager.Config.SendlPort;
 		_sendIPField.text = ManagerHub.Instance.DataManager.Config.MultiCastIP;
 	}

@@ -134,18 +134,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ManagerHub
       objectReference: {fileID: 0}
-    - target: {fileID: 2001995269103051692, guid: 7140e631032ce8a4f8773dcb0903c0c5, type: 3}
-      propertyPath: _motionClientDirector
-      value: 
-      objectReference: {fileID: -7106756990065523548, guid: 36ed07d76c2b11b43a3920b4b1568122, type: 3}
-    - target: {fileID: 2001995269103051692, guid: 7140e631032ce8a4f8773dcb0903c0c5, type: 3}
-      propertyPath: _selectedBehaviorType
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3646549309778433482, guid: 7140e631032ce8a4f8773dcb0903c0c5, type: 3}
-      propertyPath: _motionClientCanvas
-      value: 
-      objectReference: {fileID: 5086155317916146847, guid: 94d552c22ac629d44a14bc4537e6a00c, type: 3}
     - target: {fileID: 6660871965413717803, guid: 7140e631032ce8a4f8773dcb0903c0c5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -187,8 +175,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 1776689796009635898, guid: 7140e631032ce8a4f8773dcb0903c0c5, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7140e631032ce8a4f8773dcb0903c0c5, type: 3}

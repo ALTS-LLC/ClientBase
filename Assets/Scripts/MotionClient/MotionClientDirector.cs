@@ -1,20 +1,27 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityVicon;
+using static OptitrackStreamingClient;
 
 public class MotionClientDirector : DirectorBase
 {
 	[SerializeField]
 	private ViconDataStreamClient _viconData = null;
-	public ViconDataStreamClient ViconDataStreamClient => _viconData;
+	public ViconDataStreamClient ViconDataStreamClient { get; private set; } = null;
 
 	[SerializeField]
 	private OptitrackStreamingClient _optitrackStreamingClient = null;
-	public OptitrackStreamingClient OptitrackStreamingClient => _optitrackStreamingClient;
+	public OptitrackStreamingClient OptitrackStreamingClient { get; private set; } = null;
+
+    [SerializeField]
+	private GameObject _motionClientAsset = null;
 
 	[SerializeField]
-	private GameObject _motionClientAsset = null;
+	private SubjectScript_for12 _viconActor = null;
+	private SubjectScript_for12 _referenceActor = null;
 
 	private MotionSender _motionSender = null;
 	public MotionSender MotionSender
@@ -22,16 +29,27 @@ public class MotionClientDirector : DirectorBase
 		get { return _motionSender; }
 		set
 		{
-			_motionSender = value;
+            _motionSender = value;
 
-			 _optitrackSkeletonAnimator =  _motionSender.gameObject.AddComponent<OptitrackSkeletonAnimator>();
-			_optitrackSkeletonAnimator.StreamingClient = _optitrackStreamingClient;
-			_optitrackSkeletonAnimator.DestinationAvatar = _motionSender.Animator.avatar;
-			_optitrackSkeletonAnimator.SkeletonAssetName = ManagerHub.Instance.DataManager.Config.TagName;
+            if (ManagerHub.Instance.DataManager.Config.EquipmentType == "Vicon 1.12")
+            {
+                CurrentCaptureType = MotionCaptureType.Vicon1_12;
 
-			_subjectScript_For12 = _motionSender.gameObject.AddComponent<SubjectScript_for12>();
-			_subjectScript_For12.Client = _viconData;
-			_subjectScript_For12.SubjectName = ManagerHub.Instance.DataManager.Config.TagName;
+				_referenceActor = Instantiate(_viconActor).GetComponent<SubjectScript_for12>();
+                _referenceActor.Client = ViconDataStreamClient;
+                _referenceActor.SubjectName = ManagerHub.Instance.DataManager.Config.TagName;
+				var boneTracer =_motionSender.gameObject.AddComponent<BoneTracer>();
+				boneTracer.TargetAnimator = _referenceActor.gameObject.GetComponent<Animator>();
+            }
+            if (ManagerHub.Instance.DataManager.Config.EquipmentType == "OptiTrack")
+            {
+                CurrentCaptureType = MotionCaptureType.OptiTrack;
+
+                _optitrackSkeletonAnimator = _motionSender.gameObject.AddComponent<OptitrackSkeletonAnimator>();
+                _optitrackSkeletonAnimator.StreamingClient = _optitrackStreamingClient;
+                _optitrackSkeletonAnimator.DestinationAvatar = _motionSender.Animator.avatar;
+                _optitrackSkeletonAnimator.SkeletonAssetName = ManagerHub.Instance.DataManager.Config.TagName;
+            }
 		}
 	}
 
@@ -51,7 +69,7 @@ public class MotionClientDirector : DirectorBase
 			_optitrackSkeletonAnimator.SkeletonAssetName = value;
 		}
 	}
-	private MotionCaptureType _currentCaptureType = MotionCaptureType.OptiTrack;
+	private MotionCaptureType _currentCaptureType = MotionCaptureType.None;
 	public MotionCaptureType CurrentCaptureType
 	{
 		get
@@ -65,10 +83,52 @@ public class MotionClientDirector : DirectorBase
 				switch (value)
 				{
 					case MotionCaptureType.OptiTrack:
-						 
-						break;
+						if (OptitrackStreamingClient != null)
+						{
+							Destroy(OptitrackStreamingClient.gameObject);
+						}
+
+                        OptitrackStreamingClient = Instantiate(_optitrackStreamingClient).gameObject.GetComponent<OptitrackStreamingClient>();
+
+
+                        foreach (object item in Enum.GetValues(typeof(OptitrackStreamingClient.ClientConnectionType)))
+                        {
+                            if (item.ToString() == ManagerHub.Instance.DataManager.Config.EquipmentType)
+                            {
+								OptitrackStreamingClient.ConnectionType = (ClientConnectionType)item;
+                            }
+                        }
+						OptitrackStreamingClient.LocalAddress = ManagerHub.Instance.DataManager.Config.LocalAddress;
+						OptitrackStreamingClient.ServerAddress = ManagerHub.Instance.DataManager.Config.ServerAddress;
+						OptitrackStreamingClient.ServerCommandPort = (ushort)ManagerHub.Instance.DataManager.Config.ServerCommandPort;
+						OptitrackStreamingClient.ServerDataPort = (ushort)ManagerHub.Instance.DataManager.Config.ServerDataPort;
+						OptitrackStreamingClient.DrawMarkers = ManagerHub.Instance.DataManager.Config.DrawMarkers;
+                        foreach (object item in Enum.GetValues(typeof(OptitrackBoneNameConvention)))
+                        {
+                            if (item.ToString() == ManagerHub.Instance.DataManager.Config.BoneNamingConvention)
+                            {
+								OptitrackStreamingClient.BoneNamingConvention = (OptitrackBoneNameConvention)item;
+                            }
+                        }
+
+                        break;
 					case MotionCaptureType.Vicon1_12:
-						break;
+						if (ViconDataStreamClient != null)
+						{
+							Destroy(ViconDataStreamClient.gameObject);
+						}
+
+						ViconDataStreamClient = Instantiate(_viconData).gameObject.GetComponent<ViconDataStreamClient>();
+
+                        ViconDataStreamClient.HostName = ManagerHub.Instance.DataManager.Config.HostName;
+                        ViconDataStreamClient.Port = ManagerHub.Instance.DataManager.Config.Port.ToString();
+                        ViconDataStreamClient.SubjectFilter = ManagerHub.Instance.DataManager.Config.SubjectFilter;
+                        ViconDataStreamClient.UsePreFetch = ManagerHub.Instance.DataManager.Config.UsePreFetch;
+                        ViconDataStreamClient.IsRetimed = ManagerHub.Instance.DataManager.Config.IsRetimed;
+						ViconDataStreamClient.Offset = ManagerHub.Instance.DataManager.Config.Offset;
+                        ViconDataStreamClient.Log = ManagerHub.Instance.DataManager.Config.Log;
+                        ViconDataStreamClient.ConfigureWireless = ManagerHub.Instance.DataManager.Config.ConfigureWireless;
+                        break;
 					default:
 						break;
 				}
@@ -78,6 +138,7 @@ public class MotionClientDirector : DirectorBase
 	}
 	public enum MotionCaptureType
 	{ 
+		None,
 		OptiTrack,
 		Vicon1_12,
 	}
