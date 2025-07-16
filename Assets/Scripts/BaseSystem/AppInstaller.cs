@@ -20,9 +20,8 @@ public class AppInstaller : MonoInstaller
                          case BehaviorType.MotionClient:
                              Instantiate(GetBehaviorDirector<MotionClientDirector>()).transform.parent = gameObject.transform;
                              return context.Container.Instantiate<MotionClientBehavior>();
-                         case BehaviorType.VirtualCameraClient:
-                             return context.Container.Instantiate<VirtualCameraClientBehavior>();
                          case BehaviorType.PropClient:
+                             Instantiate(GetBehaviorDirector<PropClientDirector>()).transform.parent = gameObject.transform;
                              return context.Container.Instantiate<PropClientBehavior>();
                          default:
                              return null;
@@ -55,5 +54,4 @@ public enum BehaviorType
 {
     MotionClient,
     PropClient,
-    VirtualCameraClient
 }

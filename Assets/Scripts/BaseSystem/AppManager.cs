@@ -22,6 +22,19 @@ public class AppManager : ManagerBase
 		}
 	}
 
+	private PropClientDirector _propClientDirector = null;
+	public PropClientDirector PropClientDirector
+	{
+        get { return _propClientDirector; }
+        set
+        {
+            if (value is DirectorBase && value is PropClientDirector)
+            {
+                _propClientDirector = value;
+            }
+        }
+    }
+
 	private void Awake()
 	{
 		RegisterManager();		

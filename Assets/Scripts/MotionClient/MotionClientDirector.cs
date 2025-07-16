@@ -146,11 +146,16 @@ public class MotionClientDirector : DirectorBase
 	private void Start()
 	{
 		RegisterDirector();
-		Instantiate(_motionClientAsset);
-	}
+		InstanceDirectorAsset();
+    }
 
 	protected override void RegisterDirector()
 	{
 		ManagerHub.Instance.AppManager.MotionClientDirector = this;
 	}
+
+    protected override void InstanceDirectorAsset()
+    {
+        Instantiate(_motionClientAsset);
+    }
 }

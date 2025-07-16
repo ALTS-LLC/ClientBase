@@ -5,4 +5,5 @@ using UnityEngine;
 public abstract class DirectorBase : MonoBehaviour
 {
     protected abstract void RegisterDirector();
+    protected abstract void InstanceDirectorAsset();
 }
