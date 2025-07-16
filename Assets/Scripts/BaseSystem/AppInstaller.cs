@@ -8,6 +8,9 @@ public class AppInstaller : MonoInstaller
 	[SerializeField]
 	private BehaviorType _selectedBehaviorType = BehaviorType.MotionClient;
 
+    [SerializeField]
+    private List<DirectorBase> _directors = new List<DirectorBase>();
+
     public override void InstallBindings()
     {
         Container.Bind<IBehavior>()
@@ -15,16 +18,30 @@ public class AppInstaller : MonoInstaller
                      switch (_selectedBehaviorType) 
                      {
                          case BehaviorType.MotionClient:
+                             Instantiate(GetBehaviorDirector<MotionClientDirector>()).transform.parent = gameObject.transform;
                              return context.Container.Instantiate<MotionClientBehavior>();
                          case BehaviorType.VirtualCameraClient:
                              return context.Container.Instantiate<VirtualCameraClientBehavior>();
                          case BehaviorType.PropClient:
                              return context.Container.Instantiate<PropClientBehavior>();
                          default:
-                             return context.Container.Instantiate<MotionClientBehavior>();
+                             return null;
                      }
                  })
                  .AsSingle();
+    }
+    
+    private T GetBehaviorDirector<T>()
+    {
+        T returnval = default;
+        foreach (var director in _directors)
+        {
+            if (director.TryGetComponent<T>(out T directorType))
+            {
+                returnval = directorType;
+            }
+        }
+        return returnval;
     }
 }
 
