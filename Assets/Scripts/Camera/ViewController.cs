@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ViewController : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class ViewController : MonoBehaviour
 {
 	[Header("ÉJÉÅÉâà⁄ìÆê›íË")]
 	public float lookSpeed = 2.0f;
@@ -23,17 +23,6 @@ public class ViewController : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
 	[SerializeField]
 	private EventSystem _eventSystem = null;
-	private Camera _thisCamera = null;
-
-	public void OnPointerEnter(PointerEventData eventData)
-	{
-		Debug.Log("a");
-	}
-
-	public void OnPointerExit(PointerEventData eventData)
-	{
-		Debug.Log("b");
-	}
 
 	void Start()
 	{
@@ -42,13 +31,17 @@ public class ViewController : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 		rotationX = currentEuler.x;
 
 		_isLeftFirstInputAfterClick = true;
-		_thisCamera = gameObject.GetComponent<Camera>();
 	}
 
 	void Update()
 	{
+		if (EventSystem.current.IsPointerOverGameObject())
+		{
+			return;
+		}
 
-		if (Input.GetMouseButton(0))
+
+			if (Input.GetMouseButton(0))
 		{
 			if (_isLeftFirstInputAfterClick)
 			{
