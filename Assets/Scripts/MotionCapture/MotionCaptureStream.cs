@@ -15,6 +15,8 @@ public class MotionCaptureStream : MonoBehaviour
 	private static OptitrackStreamingClient _refOptitrackStreamingClient = null;
 	public static OptitrackStreamingClient OptitrackStreamingClient { get; private set; } = null;
 
+	public static Transform TargetModel = null;
+
 	private static MotionCaptureType _currentCaptureType = MotionCaptureType.None;
 	public static MotionCaptureType CurrentCaptureType
 	{
@@ -98,9 +100,11 @@ public class MotionCaptureStream : MonoBehaviour
     private void OnApplicationQuit()
     {
 		_currentCaptureType = MotionCaptureType.None;
+		TargetModel = null;
     }
     private void OnDestroy()
     {
         _currentCaptureType = MotionCaptureType.None;
-    }
+		TargetModel = null;
+	}
 }

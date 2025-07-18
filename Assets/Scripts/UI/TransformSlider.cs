@@ -11,6 +11,8 @@ public class TransformSlider : MonoBehaviour
 	[SerializeField]
 	private float _sliderSensitivity = 10;
 
+	private Transform _targrtObj = null;
+
 	[SerializeField, Header("キャラクター移動用スライダー")]
 	private Slider _posXSlider = null;
 	[SerializeField]
@@ -53,12 +55,16 @@ public class TransformSlider : MonoBehaviour
 
 	private void Update()
 	{
-		
+		if (_targrtObj == null)
+		{
+			_targrtObj = MotionCaptureStream.TargetModel;
+		}
+
 		try
 		{			
 			if (_posXField.isFocused || _posYField.isFocused || _posZField.isFocused)
 			{
-				ManagerHub.Instance.AppManager.MotionClientDirector.MotionSender.gameObject.transform.position = new Vector3(
+				_targrtObj.position = new Vector3(
 																														float.Parse(_posXField.text),
 																														float.Parse(_posYField.text),
 																														float.Parse(_posZField.text)
@@ -66,14 +72,14 @@ public class TransformSlider : MonoBehaviour
 			}
 			else
 			{
-				_posXField.text = ManagerHub.Instance.AppManager.MotionClientDirector.MotionSender.gameObject.transform.position.x.ToString();
-				_posYField.text = ManagerHub.Instance.AppManager.MotionClientDirector.MotionSender.gameObject.transform.position.y.ToString();
-				_posZField.text = ManagerHub.Instance.AppManager.MotionClientDirector.MotionSender.gameObject.transform.position.z.ToString();
+				_posXField.text = _targrtObj.position.x.ToString();
+				_posYField.text = _targrtObj.position.y.ToString();
+				_posZField.text = _targrtObj.position.z.ToString();
 			}
 
 			if (_rotXField.isFocused || _rotYField.isFocused || _rotZField.isFocused)
 			{
-				ManagerHub.Instance.AppManager.MotionClientDirector.MotionSender.gameObject.transform.localEulerAngles = new Vector3(
+				_targrtObj.localEulerAngles = new Vector3(
 																													float.Parse(_rotXField.text),
 																													float.Parse(_rotYField.text),
 																													float.Parse(_rotZField.text)
@@ -81,14 +87,14 @@ public class TransformSlider : MonoBehaviour
 			}
 			else
 			{
-				_rotXField.text = ManagerHub.Instance.AppManager.MotionClientDirector.MotionSender.gameObject.transform.localEulerAngles.x.ToString();
-				_rotYField.text = ManagerHub.Instance.AppManager.MotionClientDirector.MotionSender.gameObject.transform.localEulerAngles.y.ToString();
-				_rotZField.text = ManagerHub.Instance.AppManager.MotionClientDirector.MotionSender.gameObject.transform.localEulerAngles.z.ToString();
+				_rotXField.text = _targrtObj.localEulerAngles.x.ToString();
+				_rotYField.text = _targrtObj.localEulerAngles.y.ToString();
+				_rotZField.text = _targrtObj.localEulerAngles.z.ToString();
 			}
 
 			if (_sizeField.isFocused)
 			{
-				ManagerHub.Instance.AppManager.MotionClientDirector.MotionSender.gameObject.transform.localScale = new Vector3(
+				_targrtObj.localScale = new Vector3(
 																															float.Parse(_sizeField.text),
 																															float.Parse(_sizeField.text),
 																															float.Parse(_sizeField.text)
@@ -96,7 +102,7 @@ public class TransformSlider : MonoBehaviour
 			}
 			else
 			{
-				_sizeField.text = ManagerHub.Instance.AppManager.MotionClientDirector.MotionSender.gameObject.transform.localScale.x.ToString();
+				_sizeField.text = _targrtObj.localScale.x.ToString();
 			}
 		}
 		catch
@@ -108,38 +114,35 @@ public class TransformSlider : MonoBehaviour
 
 	private void SliderMove()
 	{
-		if (ManagerHub.Instance.AppManager.MotionClientDirector.MotionSender != null)
+		if (_isPosXSliderEdit)
 		{
-			if (_isPosXSliderEdit)
-			{
-				 ManagerHub.Instance.AppManager.MotionClientDirector.MotionSender.gameObject.transform.position += new Vector3(-_posXSlider.value * _sliderSensitivity*Time.deltaTime, 0, 0);
-			}
-			if (_isPosYSliderEdit)
-			{
-				 ManagerHub.Instance.AppManager.MotionClientDirector.MotionSender.gameObject.transform.position += new Vector3(0, _posYSlider.value * _sliderSensitivity * Time.deltaTime, 0);
-			}
-			if (_isPosZSliderEdit)
-			{
-				 ManagerHub.Instance.AppManager.MotionClientDirector.MotionSender.gameObject.transform.position += new Vector3(0, 0, _posZSlider.value * _sliderSensitivity * Time.deltaTime);
-			}
+			_targrtObj.position += new Vector3(-_posXSlider.value * _sliderSensitivity * Time.deltaTime, 0, 0);
+		}
+		if (_isPosYSliderEdit)
+		{
+			_targrtObj.position += new Vector3(0, _posYSlider.value * _sliderSensitivity * Time.deltaTime, 0);
+		}
+		if (_isPosZSliderEdit)
+		{
+			_targrtObj.position += new Vector3(0, 0, _posZSlider.value * _sliderSensitivity * Time.deltaTime);
+		}
 
-			if (_isRotXSliderEdit)
-			{
-				 ManagerHub.Instance.AppManager.MotionClientDirector.MotionSender.gameObject.transform.localEulerAngles += new Vector3(_rotXSlider.value * _sliderSensitivity * Time.deltaTime, 0, 0);
-			}
-			if (_isRotYSliderEdit)
-			{
-				 ManagerHub.Instance.AppManager.MotionClientDirector.MotionSender.gameObject.transform.localEulerAngles += new Vector3(0, _rotYSlider.value * _sliderSensitivity * Time.deltaTime, 0);
-			}
-			if (_isRotZSliderEdit)
-			{
-				 ManagerHub.Instance.AppManager.MotionClientDirector.MotionSender.gameObject.transform.localEulerAngles += new Vector3(0, 0, _rotZSlider.value * _sliderSensitivity * Time.deltaTime);
-			}
+		if (_isRotXSliderEdit)
+		{
+			_targrtObj.localEulerAngles += new Vector3(_rotXSlider.value * _sliderSensitivity * Time.deltaTime, 0, 0);
+		}
+		if (_isRotYSliderEdit)
+		{
+			_targrtObj.localEulerAngles += new Vector3(0, _rotYSlider.value * _sliderSensitivity * Time.deltaTime, 0);
+		}
+		if (_isRotZSliderEdit)
+		{
+			_targrtObj.localEulerAngles += new Vector3(0, 0, _rotZSlider.value * _sliderSensitivity * Time.deltaTime);
+		}
 
-			if (_isSizeSliderEdit)
-			{
-				 ManagerHub.Instance.AppManager.MotionClientDirector.MotionSender.gameObject.transform.localScale += new Vector3(_sizeSlider.value * _sliderSensitivity * Time.deltaTime, _sizeSlider.value * _sliderSensitivity * Time.deltaTime, _sizeSlider.value * _sliderSensitivity * Time.deltaTime);
-			}
+		if (_isSizeSliderEdit)
+		{
+			_targrtObj.localScale += new Vector3(_sizeSlider.value * _sliderSensitivity * Time.deltaTime, _sizeSlider.value * _sliderSensitivity * Time.deltaTime, _sizeSlider.value * _sliderSensitivity * Time.deltaTime);
 		}
 	}
 
