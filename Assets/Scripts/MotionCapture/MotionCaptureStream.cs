@@ -91,7 +91,16 @@ public class MotionCaptureStream : MonoBehaviour
 
 	private void Awake()
 	{
-		_refViconData = _viconData;
+        _refViconData = _viconData;
 		_refOptitrackStreamingClient = _optitrackStreamingClient;
 	}
+
+    private void OnApplicationQuit()
+    {
+		_currentCaptureType = MotionCaptureType.None;
+    }
+    private void OnDestroy()
+    {
+        _currentCaptureType = MotionCaptureType.None;
+    }
 }

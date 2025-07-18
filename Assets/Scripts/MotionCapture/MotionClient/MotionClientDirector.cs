@@ -57,8 +57,14 @@ public class MotionClientDirector : DirectorBase
 		get { return _tagName; }
 		set
 		{
-			_subjectScript_For12.SubjectName = value;
-			_optitrackSkeletonAnimator.SkeletonAssetName = value;
+			if (_tagName != value && _referenceActor != null)
+			{
+                _referenceActor.SubjectName = value;
+            }
+			if (_tagName != value && _optitrackSkeletonAnimator != null)
+			{
+                _optitrackSkeletonAnimator.SkeletonAssetName = value;
+            }			
 		}
 	}
 	
