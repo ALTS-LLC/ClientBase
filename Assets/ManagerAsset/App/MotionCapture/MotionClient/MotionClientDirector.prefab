@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1772594291684340348}
   - component: {fileID: -7106756990065523548}
+  - component: {fileID: 7785860186860637326}
   m_Layer: 0
   m_Name: MotionClientDirector
   m_TagString: Untagged
@@ -44,7 +45,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16cdf9b32ed4c8f4da779408200add03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _viconData: {fileID: 2656589452834305458, guid: 8a8ec53f7adee8f4b88eec597321851d, type: 3}
-  _optitrackStreamingClient: {fileID: 8234569122068684909, guid: ad4075edf2474c04690aacfcff636076, type: 3}
   _motionClientAsset: {fileID: 2215843856964529481, guid: a08e7600b20561d439a9bee96cd10117, type: 3}
   _viconActor: {fileID: 3566797816319421032, guid: 709f343f466583142b5066b2ba9861fe, type: 3}
+--- !u!114 &7785860186860637326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3527633709262212226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51e7d8dd7a7e0ca4ca0eda11a94a24d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _viconData: {fileID: 2656589452834305458, guid: 8a8ec53f7adee8f4b88eec597321851d, type: 3}
+  _optitrackStreamingClient: {fileID: 8234569122068684909, guid: ad4075edf2474c04690aacfcff636076, type: 3}

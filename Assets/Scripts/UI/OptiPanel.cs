@@ -60,24 +60,24 @@ public class OptiPanel : UIBase, IUseIinterface
 		{
 			if (value == 0)
 			{
-				ManagerHub.Instance.AppManager.MotionClientDirector.OptitrackStreamingClient.ConnectionType = OptitrackStreamingClient.ClientConnectionType.Multicast;
+				MotionCaptureStream.OptitrackStreamingClient.ConnectionType = OptitrackStreamingClient.ClientConnectionType.Multicast;
 			}
 			if (value == 1)
 			{
-				ManagerHub.Instance.AppManager.MotionClientDirector.OptitrackStreamingClient.ConnectionType = OptitrackStreamingClient.ClientConnectionType.Unicast;
+				MotionCaptureStream.OptitrackStreamingClient.ConnectionType = OptitrackStreamingClient.ClientConnectionType.Unicast;
 			}
 			ManagerHub.Instance.DataManager.Config.ConnectionType = _connectionTypeDropdown.options[_connectionTypeDropdown.value].text;
 		});
 
 		_localAddressField.onEndEdit.AddListener(delegate
 		{
-			ManagerHub.Instance.AppManager.MotionClientDirector.OptitrackStreamingClient.LocalAddress = _localAddressField.text;
+			MotionCaptureStream.OptitrackStreamingClient.LocalAddress = _localAddressField.text;
 			ManagerHub.Instance.DataManager.Config.LocalAddress = _localAddressField.text;
 		});
 
 		_serverAddressField.onEndEdit.AddListener(delegate
 		{
-			ManagerHub.Instance.AppManager.MotionClientDirector.OptitrackStreamingClient.ServerAddress = _serverAddressField.text;
+			MotionCaptureStream.OptitrackStreamingClient.ServerAddress = _serverAddressField.text;
 			ManagerHub.Instance.DataManager.Config.ServerAddress = _serverAddressField.text;
 		});
 
@@ -85,7 +85,7 @@ public class OptiPanel : UIBase, IUseIinterface
 		{
 			try
 			{
-				ManagerHub.Instance.AppManager.MotionClientDirector.OptitrackStreamingClient.ServerCommandPort = ushort.Parse(_serverCommandPortField.text);
+				MotionCaptureStream.OptitrackStreamingClient.ServerCommandPort = ushort.Parse(_serverCommandPortField.text);
 				ManagerHub.Instance.DataManager.Config.ServerCommandPort = ushort.Parse(_serverCommandPortField.text);
 			}
 			catch { }
@@ -95,7 +95,7 @@ public class OptiPanel : UIBase, IUseIinterface
 		{
 			try
 			{
-				ManagerHub.Instance.AppManager.MotionClientDirector.OptitrackStreamingClient.ServerDataPort = ushort.Parse(_serverDataPortField.text);
+				MotionCaptureStream.OptitrackStreamingClient.ServerDataPort = ushort.Parse(_serverDataPortField.text);
 				ManagerHub.Instance.DataManager.Config.ServerCommandPort = ushort.Parse(_serverDataPortField.text);
 			}
 			catch { }
@@ -103,7 +103,7 @@ public class OptiPanel : UIBase, IUseIinterface
 
 		_drawMakerToggle.onValueChanged.AddListener((value) =>
 		{
-			ManagerHub.Instance.AppManager.MotionClientDirector.OptitrackStreamingClient.DrawMarkers = value;
+			MotionCaptureStream.OptitrackStreamingClient.DrawMarkers = value;
 			ManagerHub.Instance.DataManager.Config.DrawMarkers = _drawMakerToggle.isOn;
 		});
 
@@ -121,15 +121,15 @@ public class OptiPanel : UIBase, IUseIinterface
 		{
 			if (value == 0)
 			{
-				ManagerHub.Instance.AppManager.MotionClientDirector.OptitrackStreamingClient.BoneNamingConvention = OptitrackBoneNameConvention.Motive;
+				MotionCaptureStream.OptitrackStreamingClient.BoneNamingConvention = OptitrackBoneNameConvention.Motive;
 			}
 			if (value == 1)
 			{
-				ManagerHub.Instance.AppManager.MotionClientDirector.OptitrackStreamingClient.BoneNamingConvention = OptitrackBoneNameConvention.FBX;
+				MotionCaptureStream.OptitrackStreamingClient.BoneNamingConvention = OptitrackBoneNameConvention.FBX;
 			}
 			if (value == 2)
 			{
-				ManagerHub.Instance.AppManager.MotionClientDirector.OptitrackStreamingClient.BoneNamingConvention = OptitrackBoneNameConvention.BVH;
+				MotionCaptureStream.OptitrackStreamingClient.BoneNamingConvention = OptitrackBoneNameConvention.BVH;
 			}
 			ManagerHub.Instance.DataManager.Config.BoneNamingConvention = _boneNamingConventionDropdown.options[_boneNamingConventionDropdown.value].text;
 		});

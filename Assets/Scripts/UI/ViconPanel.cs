@@ -59,7 +59,7 @@ public class ViconPanel : UIBase, IUseIinterface
             try
             {
                 ManagerHub.Instance.DataManager.Config.HostName = _hostNameField.text;
-                ManagerHub.Instance.AppManager.MotionClientDirector.ViconDataStreamClient.HostName = _hostNameField.text;
+                MotionCaptureStream.ViconDataStreamClient.HostName = _hostNameField.text;
             }
             catch { }
         });
@@ -69,7 +69,7 @@ public class ViconPanel : UIBase, IUseIinterface
             try
             {
                 ManagerHub.Instance.DataManager.Config.Port = int.Parse(_portField.text);
-                ManagerHub.Instance.AppManager.MotionClientDirector.ViconDataStreamClient.Port = _portField.text;
+                MotionCaptureStream.ViconDataStreamClient.Port = _portField.text;
             }
             catch { }
         });
@@ -79,7 +79,7 @@ public class ViconPanel : UIBase, IUseIinterface
             try
             {
                 ManagerHub.Instance.DataManager.Config.SubjectFilter = _subjectFilterField.text;
-                ManagerHub.Instance.AppManager.MotionClientDirector.ViconDataStreamClient.SubjectFilter = _subjectFilterField.text;
+                MotionCaptureStream.ViconDataStreamClient.SubjectFilter = _subjectFilterField.text;
             }
             catch { }
         });
@@ -87,13 +87,13 @@ public class ViconPanel : UIBase, IUseIinterface
         _usePreFetchToggle.onValueChanged.AddListener((value) =>
         {
             ManagerHub.Instance.DataManager.Config.UsePreFetch = _usePreFetchToggle.isOn;
-            ManagerHub.Instance.AppManager.MotionClientDirector.ViconDataStreamClient.ConfigureWireless = _usePreFetchToggle.isOn;
+            MotionCaptureStream.ViconDataStreamClient.ConfigureWireless = _usePreFetchToggle.isOn;
         });
 
         _isRetimedToggle.onValueChanged.AddListener((value) =>
         {
             ManagerHub.Instance.DataManager.Config.IsRetimed = _isRetimedToggle.isOn;
-            ManagerHub.Instance.AppManager.MotionClientDirector.ViconDataStreamClient.IsRetimed = _isRetimedToggle.isOn;
+            MotionCaptureStream.ViconDataStreamClient.IsRetimed = _isRetimedToggle.isOn;
         });
 
         _offsetField.onEndEdit.AddListener(delegate
@@ -101,7 +101,7 @@ public class ViconPanel : UIBase, IUseIinterface
             try
             {
                 ManagerHub.Instance.DataManager.Config.Offset = float.Parse(_offsetField.text);
-                ManagerHub.Instance.AppManager.MotionClientDirector.ViconDataStreamClient.Offset = float.Parse(_offsetField.text);
+                MotionCaptureStream.ViconDataStreamClient.Offset = float.Parse(_offsetField.text);
             }
             catch { }
         });
@@ -109,18 +109,18 @@ public class ViconPanel : UIBase, IUseIinterface
         _logToggle.onValueChanged.AddListener((value) =>
         {
             ManagerHub.Instance.DataManager.Config.Log = _logToggle.isOn;
-            ManagerHub.Instance.AppManager.MotionClientDirector.ViconDataStreamClient.Log = _logToggle.isOn;
+            MotionCaptureStream.ViconDataStreamClient.Log = _logToggle.isOn;
         });
 
         _configureWirelessToggle.onValueChanged.AddListener((value) =>
         {
             ManagerHub.Instance.DataManager.Config.ConfigureWireless = _configureWirelessToggle.isOn;
-            ManagerHub.Instance.AppManager.MotionClientDirector.ViconDataStreamClient.ConfigureWireless = _configureWirelessToggle.isOn;
+            MotionCaptureStream.ViconDataStreamClient.ConfigureWireless = _configureWirelessToggle.isOn;
         });
     }
 
     public void Register()
-    {
+    {        
         _ui_ID = ManagerHub.Instance.UIManager.IssueID(this);
     }
 }

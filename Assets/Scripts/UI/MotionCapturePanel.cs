@@ -26,13 +26,13 @@ public class MotionCapturePanel : UIBase, IUseIinterface
 			{
 				_optiPanel.gameObject.SetActive(true);
 				_viconPanel.gameObject.SetActive(false);
-				ManagerHub.Instance.AppManager.MotionClientDirector.CurrentCaptureType = MotionClientDirector.MotionCaptureType.OptiTrack;
+				MotionCaptureStream.CurrentCaptureType = MotionCaptureStream.MotionCaptureType.OptiTrack;
 			}
 			if (value == 1)
 			{
 				_optiPanel.gameObject.SetActive(false);
 				_viconPanel.gameObject.SetActive(true);
-				ManagerHub.Instance.AppManager.MotionClientDirector.CurrentCaptureType = MotionClientDirector.MotionCaptureType.Vicon1_12;
+				MotionCaptureStream.CurrentCaptureType = MotionCaptureStream.MotionCaptureType.Vicon1_12;
 			}
 		});
 
