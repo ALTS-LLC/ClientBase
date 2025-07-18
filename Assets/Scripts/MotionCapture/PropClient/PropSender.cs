@@ -20,7 +20,9 @@ public class PropSender : MonoBehaviour
 
 		_udpClient = new UdpClient(localEndPoint);
 		_multicastEndpoint = new IPEndPoint(multicastAddress, int.Parse(ManagerHub.Instance.DataManager.Config.SendlPort));
-		MotionCaptureStream.TargetModel = gameObject.transform;
+
+        ManagerHub.Instance.AppManager.PropClientDirector.PropSender = this;
+        MotionCaptureStream.TargetModel = gameObject.transform;
 	}
 
 

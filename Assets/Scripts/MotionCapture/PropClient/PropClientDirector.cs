@@ -18,7 +18,6 @@ public class PropClientDirector : DirectorBase
         set
 		{
             _propSender = value;
-
             if (ManagerHub.Instance.DataManager.Config.EquipmentType == "Vicon 1.12")
 			{
                 MotionCaptureStream.CurrentCaptureType = MotionCaptureStream.MotionCaptureType.Vicon1_12;
