@@ -22,8 +22,8 @@ public class MotionClientDirector : DirectorBase
 		set
 		{
             _motionSender = value;
-
-            if (ManagerHub.Instance.DataManager.Config.EquipmentType == "Vicon 1.12")
+			
+            if (MotionCaptureStream.CurrentCaptureType == MotionCaptureStream.MotionCaptureType.Vicon1_12)
             {
                 MotionCaptureStream.CurrentCaptureType = MotionCaptureStream.MotionCaptureType.Vicon1_12;
 
@@ -33,7 +33,7 @@ public class MotionClientDirector : DirectorBase
 				var boneTracer =_motionSender.gameObject.AddComponent<BoneTracer>();
 				boneTracer.TargetAnimator = _referenceActor.gameObject.GetComponent<Animator>();
             }
-            if (ManagerHub.Instance.DataManager.Config.EquipmentType == "OptiTrack")
+            if (MotionCaptureStream.CurrentCaptureType == MotionCaptureStream.MotionCaptureType.OptiTrack)
             {
 				MotionCaptureStream.CurrentCaptureType = MotionCaptureStream.MotionCaptureType.OptiTrack;
 
