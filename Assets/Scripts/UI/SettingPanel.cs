@@ -38,7 +38,7 @@ public class SettingPanel : UIBase, IUseIinterface
 		});
 		_reconnectButton.onClick.AddListener(() => 
 		{
-			SceneManager.LoadScene("ClientMain");
+			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 		});
 	}
 
