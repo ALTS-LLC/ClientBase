@@ -44,6 +44,8 @@ public class PropClientBuild : EditorWindow, IBuildable
 
 			ClientBuild.AddSceneToBuildSettings(scenePath);
 			ClientBuild.Build(BuildPath + Prop.name + "PropClient.exe");
+
+			EditorSceneManager.OpenScene(_clientScenePath, OpenSceneMode.Single);
 		}
 	}
 }

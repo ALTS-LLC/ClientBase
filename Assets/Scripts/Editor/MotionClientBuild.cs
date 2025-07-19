@@ -44,6 +44,8 @@ public class MotionClientBuild : EditorWindow, IBuildable
 
 			ClientBuild.AddSceneToBuildSettings(scenePath);
 			ClientBuild.Build(BuildPath + Actor.name + "MotionClient.exe");
+
+			EditorSceneManager.OpenScene(_clientScenePath, OpenSceneMode.Single);
 		}
 	}
 }
