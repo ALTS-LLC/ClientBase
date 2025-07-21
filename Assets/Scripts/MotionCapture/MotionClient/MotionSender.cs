@@ -7,13 +7,6 @@ using System.Threading;
 using UnityEngine;
 public class MotionSender : MonoBehaviour
 {
-    [SerializeField]
-    private float _fixMuscle = 1f;
-    [SerializeField]
-    private float _fixHipPos = 1f;
-    [SerializeField]
-    private Transform _adjustT = null;
-    public Transform AdjustT => _adjustT;
     private IPEndPoint _multicastEndpoint;
     private UdpClient _udpClient;
     public UdpClient UdpClient => _udpClient;
@@ -71,10 +64,10 @@ public class MotionSender : MonoBehaviour
         foreach (float item in humanPose.muscles)
         {
 
-            str += (item * _fixMuscle).ToString() + "=";
+            str += (item).ToString() + "=";
         }
 
-        str += (_hip.position.x * _fixMuscle).ToString() + "=" + (_hip.position.y * _fixHipPos).ToString() + "=" + (_hip.position.z * _fixMuscle).ToString() + "=" +
+        str += (_hip.position.x).ToString() + "=" + (_hip.position.y + gameObject.transform.position.y).ToString() + "=" + (_hip.position.z).ToString() + "=" +
                     _hip.transform.rotation.x.ToString() + "=" + _hip.transform.rotation.y.ToString() + "=" + _hip.transform.rotation.z.ToString() + "=" + _hip.transform.rotation.w.ToString() + "=" +
                    gameObject.transform.localScale.x;
         return str;

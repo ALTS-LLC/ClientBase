@@ -8,15 +8,16 @@ public class ModelGroundingAdjuster : MonoBehaviour
 		if (Input.GetKeyDown(KeyCode.A))
 		{
 			float lowestVertexYWorld = GetLowestVertexYCoordinate(gameObject);
-			 _yOffsetToGround = -lowestVertexYWorld;		
-		}
+			 _yOffsetToGround = -lowestVertexYWorld;
+            gameObject.transform.position = new Vector3()
+            {
+                x = gameObject.transform.position.x,
+                y = gameObject.transform.position.y + _yOffsetToGround,
+                z = gameObject.transform.position.z
+            };
+        }
 
-		gameObject.transform.position = new Vector3()
-		{
-			x = gameObject.transform.position.x,
-			y = gameObject.transform.position.y + _yOffsetToGround,
-			z = gameObject.transform.position.z
-		};
+
 	}
 
 	public float GetLowestVertexYCoordinate(GameObject targetGameObject)
