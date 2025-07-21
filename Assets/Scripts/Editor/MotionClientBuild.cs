@@ -39,6 +39,7 @@ public class MotionClientBuild : EditorWindow, IBuildable
 			EditorSceneManager.OpenScene(scenePath, OpenSceneMode.Single);
 
 			var actor =Instantiate(Actor).gameObject.AddComponent<MotionSender>();
+			actor.gameObject.AddComponent<ModelGroundingAdjuster>();
 			Undo.RegisterCreatedObjectUndo(actor.gameObject,"CreateActor");
 			EditorSceneManager.SaveOpenScenes();
 
