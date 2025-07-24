@@ -1,0 +1,225 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6587033622969201992
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d89c46e6b4f031541986f8d6bdbad145, type: 3}
+  m_Name: NiloToonCinematicRimLightVolume
+  m_EditorClassIdentifier: 
+  active: 1
+  strengthRimMask2D:
+    m_OverrideState: 1
+    m_Value: 0
+  strengthRimMask3D_ClassicStyle:
+    m_OverrideState: 1
+    m_Value: 0
+  strengthRimMask3D_DynmaicStyle:
+    m_OverrideState: 1
+    m_Value: 0
+  sharpnessRimMask3D_DynamicStyle:
+    m_OverrideState: 0
+    m_Value: 0.375
+  strengthRimMask3D_StableStyle:
+    m_OverrideState: 1
+    m_Value: 1
+  sharpnessRimMask3D_StableStyle:
+    m_OverrideState: 0
+    m_Value: 0.5
+  lightIntensityMultiplier:
+    m_OverrideState: 1
+    m_Value: 1
+  tintBaseMap:
+    m_OverrideState: 0
+    m_Value: 1
+--- !u!114 &-2064549268636696170
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39dc1fe45bfcc1e4eaa9ae19ecefd49c, type: 3}
+  m_Name: NiloToonShadowControlVolume
+  m_EditorClassIdentifier: 
+  active: 1
+  characterOverallShadowTintColor:
+    m_OverrideState: 1
+    m_Value: {r: 0.90156865, g: 0.90156865, b: 0.9490196, a: 1}
+  characterOverallShadowStrength:
+    m_OverrideState: 0
+    m_Value: 1
+  enableCharAverageShadow:
+    m_OverrideState: 0
+    m_Value: 1
+  charAverageShadowStrength:
+    m_OverrideState: 0
+    m_Value: 1
+  enableCharSelfShadow:
+    m_OverrideState: 0
+    m_Value: 1
+  charSelfShadowStrength:
+    m_OverrideState: 0
+    m_Value: 1
+  useMainLightAsCastShadowDirection:
+    m_OverrideState: 0
+    m_Value: 1
+  shadowAngle:
+    m_OverrideState: 0
+    m_Value: 30
+  shadowLRAngle:
+    m_OverrideState: 0
+    m_Value: 0
+  shadowRange:
+    m_OverrideState: 0
+    m_Value: 10
+  shadowMapSize:
+    m_OverrideState: 0
+    m_Value: 4096
+  depthBias:
+    m_OverrideState: 0
+    m_Value: 1
+  normalBias:
+    m_OverrideState: 0
+    m_Value: 1
+  receiveURPShadow:
+    m_OverrideState: 0
+    m_Value: 0
+  URPShadowIntensity:
+    m_OverrideState: 0
+    m_Value: 1
+  URPShadowAsDirectLightMultiplier:
+    m_OverrideState: 0
+    m_Value: 1
+  URPShadowAsDirectLightTintColor:
+    m_OverrideState: 0
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
+  URPShadowAsDirectLightTintIgnoreMaterialURPUsageSetting:
+    m_OverrideState: 0
+    m_Value: 1
+  URPShadowblurriness:
+    m_OverrideState: 0
+    m_Value: 1
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7fd9488000d3734a9e00ee676215985, type: 3}
+  m_Name: Nilo025-DarkBlueBGHighSaturate(NiloToonVolumePreset)
+  m_EditorClassIdentifier: 
+  components:
+  - {fileID: 6627091099711105615}
+  - {fileID: -2064549268636696170}
+  - {fileID: -6587033622969201992}
+  - {fileID: 8730577104219419984}
+--- !u!114 &6627091099711105615
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a10bd7999fb5fe43ab7b08bda3fe53f, type: 3}
+  m_Name: NiloToonBloomVolume
+  m_EditorClassIdentifier: 
+  active: 1
+  threshold:
+    m_OverrideState: 1
+    m_Value: 10
+  intensity:
+    m_OverrideState: 1
+    m_Value: 1.2
+  scatter:
+    m_OverrideState: 1
+    m_Value: 0.5
+  tint:
+    m_OverrideState: 0
+    m_Value: {r: 0.98039216, g: 0.89460784, b: 0.88235295, a: 1}
+  clamp:
+    m_OverrideState: 0
+    m_Value: 65472
+  highQualityFiltering:
+    m_OverrideState: 0
+    m_Value: 0
+  skipIterations:
+    m_OverrideState: 0
+    m_Value: 1
+  dirtTexture:
+    m_OverrideState: 0
+    m_Value: {fileID: 0}
+    dimension: 1
+  dirtIntensity:
+    m_OverrideState: 0
+    m_Value: 0
+  characterBaseColorBrightness:
+    m_OverrideState: 1
+    m_Value: 0.7
+  characterBrightness:
+    m_OverrideState: 0
+    m_Value: 1
+  characterAreaBloomEmitMultiplier:
+    m_OverrideState: 0
+    m_Value: 1
+  characterAreaOverridedThreshold:
+    m_OverrideState: 1
+    m_Value: 0.5
+  characterAreaOverridedIntensity:
+    m_OverrideState: 0
+    m_Value: 0.88
+  HueOffset:
+    m_OverrideState: 0
+    m_Value: 0
+  SaturationBoost:
+    m_OverrideState: 1
+    m_Value: 0.75
+  ValueMultiply:
+    m_OverrideState: 0
+    m_Value: 1
+  ApplyHSVToCharAreaOnly:
+    m_OverrideState: 1
+    m_Value: 1
+  renderTextureOverridedToFixedHeight:
+    m_OverrideState: 1
+    m_Value: 1080
+--- !u!114 &8730577104219419984
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66f335fb1ffd8684294ad653bf1c7564, type: 3}
+  m_Name: ColorAdjustments
+  m_EditorClassIdentifier: 
+  active: 1
+  postExposure:
+    m_OverrideState: 0
+    m_Value: 0
+  contrast:
+    m_OverrideState: 1
+    m_Value: 5
+  colorFilter:
+    m_OverrideState: 0
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
+  hueShift:
+    m_OverrideState: 0
+    m_Value: 0
+  saturation:
+    m_OverrideState: 1
+    m_Value: 15

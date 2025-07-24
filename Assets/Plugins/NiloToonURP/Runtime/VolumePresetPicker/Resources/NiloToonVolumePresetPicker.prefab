@@ -1,0 +1,99 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &9098138945383061779
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6931231178884021731}
+  - component: {fileID: 6301315034095580063}
+  - component: {fileID: 6422227655040825148}
+  m_Layer: 0
+  m_Name: NiloToonVolumePresetPicker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6931231178884021731
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9098138945383061779}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.18968704, y: 1.0789928, z: -1.1046194}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6301315034095580063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9098138945383061779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f7fe2c72deb7804ca7b2bd27c32d8ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _currentIndex: 0
+  weight: 1
+  mode: 0
+  priority: -1
+  volumeProfiles:
+  - {fileID: 11400000, guid: 13202bd1d1cfcfc4980fb00e3554a579, type: 2}
+  - {fileID: 11400000, guid: 47f7155b129e0ef4e90dadbb8505f5d2, type: 2}
+  - {fileID: 11400000, guid: 70439c2854db95b4f8c713254399bc39, type: 2}
+  - {fileID: 11400000, guid: ceae6c2fe2c17c3479e852a047b0ae71, type: 2}
+  - {fileID: 11400000, guid: 9b7fbdfbc63da5d47bb1413c78c1d21a, type: 2}
+  - {fileID: 11400000, guid: 83aeefa9b76f3cd49b4bcb1e2c6864d2, type: 2}
+  - {fileID: 11400000, guid: 7445abf769f05094db0f8297ad7c633f, type: 2}
+  - {fileID: 11400000, guid: 5ce875741bc2ec74cb077e85ce57d413, type: 2}
+  - {fileID: 11400000, guid: 25651e4fe64b43f4c926864c44fc823f, type: 2}
+  - {fileID: 11400000, guid: 0c8913852b44b8c4c84730cf681a83f5, type: 2}
+  - {fileID: 11400000, guid: ea2b9210351786f4c83674cd7580b546, type: 2}
+  - {fileID: 11400000, guid: ba5f40d8f6a45be4bb45f3193505360f, type: 2}
+  - {fileID: 11400000, guid: 9903d8574aa0f054185d949d70fdcfee, type: 2}
+  - {fileID: 11400000, guid: e5e755e426bef7d48ae9af18ecf417b3, type: 2}
+  - {fileID: 11400000, guid: ef67fd3868896a242812f5ff4f770e62, type: 2}
+  - {fileID: 11400000, guid: 462aa4f2bca6e904ea1149b469c85761, type: 2}
+  - {fileID: 11400000, guid: a762f6b0ee3b7a341aa099df751f101b, type: 2}
+  - {fileID: 11400000, guid: 0d43c66bfdc1e044cbd6a237f54035da, type: 2}
+  - {fileID: 11400000, guid: 0e56b7768516c454eb72fb7e143dee6b, type: 2}
+  - {fileID: 11400000, guid: 8aba1e7116de3314eaf38341a2ee4c05, type: 2}
+  - {fileID: 11400000, guid: 51f27a13714c7184a9a16b4a2aac73be, type: 2}
+  - {fileID: 11400000, guid: 0e45c5145854412439d65afbd8ce8029, type: 2}
+  - {fileID: 11400000, guid: 10980a900920cb246a5ae189e61af08b, type: 2}
+  - {fileID: 11400000, guid: 178158c1c89cb274ea2d24a590bb5065, type: 2}
+  - {fileID: 11400000, guid: f3bb048530c21be45907f5f6688f66ae, type: 2}
+  - {fileID: 11400000, guid: 00a72784d58663241970618216c8a25c, type: 2}
+  - {fileID: 11400000, guid: 98cc637f51759c540b6e1e1f249611d3, type: 2}
+  - {fileID: 11400000, guid: f84a01495ca546b4c8277c9397fb3316, type: 2}
+  - {fileID: 11400000, guid: 0a8abf785a8669f43b4939ff42b5e414, type: 2}
+  - {fileID: 11400000, guid: b4c7a59ba8c260e4b9f9ca91fe46b9f1, type: 2}
+--- !u!114 &6422227655040825148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9098138945383061779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsGlobal: 1
+  priority: -1
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: 13202bd1d1cfcfc4980fb00e3554a579, type: 2}

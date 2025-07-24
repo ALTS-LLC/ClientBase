@@ -1,0 +1,196 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28fbcbca3fb14507af6ed5c104c40b84, type: 3}
+  m_Name: NiloToonCharacter_ZOffsetPreset_LWGUI_ShaderPropertyPreset
+  m_EditorClassIdentifier: 
+  presets:
+  - presetName: (No Preset)
+    propertyValues: []
+    enabledKeywords: []
+    disabledKeywords: []
+    renderQueue: -1
+  - presetName: Push towards camera (1cm)
+    propertyValues:
+    - propertyName: _ZOffset
+      propertyType: 3
+      floatValue: -0.01
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    enabledKeywords: []
+    disabledKeywords: []
+    renderQueue: -1
+  - presetName: Push towards camera (2cm)
+    propertyValues:
+    - propertyName: _ZOffset
+      propertyType: 3
+      floatValue: -0.02
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    enabledKeywords: []
+    disabledKeywords: []
+    renderQueue: -1
+  - presetName: Push towards camera (3cm)
+    propertyValues:
+    - propertyName: _ZOffset
+      propertyType: 3
+      floatValue: -0.03
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    enabledKeywords: []
+    disabledKeywords: []
+    renderQueue: -1
+  - presetName: Push towards camera (4cm)
+    propertyValues:
+    - propertyName: _ZOffset
+      propertyType: 3
+      floatValue: -0.04
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    enabledKeywords: []
+    disabledKeywords: []
+    renderQueue: -1
+  - presetName: Push towards camera (5cm)
+    propertyValues:
+    - propertyName: _ZOffset
+      propertyType: 3
+      floatValue: -0.05
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    enabledKeywords: []
+    disabledKeywords: []
+    renderQueue: -1
+  - presetName: Push towards camera (6cm)
+    propertyValues:
+    - propertyName: _ZOffset
+      propertyType: 3
+      floatValue: -0.06
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    enabledKeywords: []
+    disabledKeywords: []
+    renderQueue: -1
+  - presetName: Push towards camera (7cm)
+    propertyValues:
+    - propertyName: _ZOffset
+      propertyType: 3
+      floatValue: -0.07
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    enabledKeywords: []
+    disabledKeywords: []
+    renderQueue: -1
+  - presetName: Push towards camera (8cm)
+    propertyValues:
+    - propertyName: _ZOffset
+      propertyType: 3
+      floatValue: -0.08
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    enabledKeywords: []
+    disabledKeywords: []
+    renderQueue: -1
+  - presetName: Push towards camera (9cm)
+    propertyValues:
+    - propertyName: _ZOffset
+      propertyType: 3
+      floatValue: -0.09
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    enabledKeywords: []
+    disabledKeywords: []
+    renderQueue: -1
+  - presetName: Push towards camera (10cm)
+    propertyValues:
+    - propertyName: _ZOffset
+      propertyType: 3
+      floatValue: -0.1
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    enabledKeywords: []
+    disabledKeywords: []
+    renderQueue: -1
+  - presetName: Push towards camera (11cm)
+    propertyValues:
+    - propertyName: _ZOffset
+      propertyType: 3
+      floatValue: -0.11
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    enabledKeywords: []
+    disabledKeywords: []
+    renderQueue: -1
+  - presetName: Push towards camera (13cm)
+    propertyValues:
+    - propertyName: _ZOffset
+      propertyType: 3
+      floatValue: -0.13
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    enabledKeywords: []
+    disabledKeywords: []
+    renderQueue: -1
+  - presetName: Push towards camera (16cm)
+    propertyValues:
+    - propertyName: _ZOffset
+      propertyType: 3
+      floatValue: -0.16
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    enabledKeywords: []
+    disabledKeywords: []
+    renderQueue: -1
+  - presetName: Push towards camera (20cm)
+    propertyValues:
+    - propertyName: _ZOffset
+      propertyType: 3
+      floatValue: -0.2
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    enabledKeywords: []
+    disabledKeywords: []
+    renderQueue: -1
+  - presetName: Push towards camera (25cm)
+    propertyValues:
+    - propertyName: _ZOffset
+      propertyType: 3
+      floatValue: -0.25
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    enabledKeywords: []
+    disabledKeywords: []
+    renderQueue: -1
+  - presetName: Push towards camera (31cm)
+    propertyValues:
+    - propertyName: _ZOffset
+      propertyType: 3
+      floatValue: -0.31
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    enabledKeywords: []
+    disabledKeywords: []
+    renderQueue: -1

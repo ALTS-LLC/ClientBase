@@ -1,0 +1,297 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28fbcbca3fb14507af6ed5c104c40b84, type: 3}
+  m_Name: NiloToonCharacter_MatCapAdditivePreset_LWGUI_ShaderPropertyPreset
+  m_EditorClassIdentifier: 
+  presets:
+  - presetName: (None)
+    propertyValues: []
+    enabledKeywords: []
+    disabledKeywords: []
+    renderQueue: -1
+  - presetName: Rim
+    propertyValues:
+    - propertyName: _MatCapAdditiveMap
+      propertyType: 4
+      floatValue: 0
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 2800000, guid: 6fb1633902b561046bd6b453be19d3d4, type: 3}
+    - propertyName: _MatCapAdditiveUvScale
+      propertyType: 3
+      floatValue: 1
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    - propertyName: _MatCapAdditiveExtractBrightArea
+      propertyType: 3
+      floatValue: 1
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    enabledKeywords: []
+    disabledKeywords: []
+    renderQueue: -1
+  - presetName: RimSoft
+    propertyValues:
+    - propertyName: _MatCapAdditiveMap
+      propertyType: 4
+      floatValue: 0
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 2800000, guid: 6c56dbbd85e89c3409f7d4d9e868fd03, type: 3}
+    - propertyName: _MatCapAdditiveUvScale
+      propertyType: 3
+      floatValue: 1
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    - propertyName: _MatCapAdditiveExtractBrightArea
+      propertyType: 3
+      floatValue: 1
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    enabledKeywords: []
+    disabledKeywords: []
+    renderQueue: -1
+  - presetName: Glossy01
+    propertyValues:
+    - propertyName: _MatCapAdditiveMap
+      propertyType: 4
+      floatValue: 0
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 2800000, guid: 222a81aa69e4db943af2f3c9f8bb2851, type: 3}
+    - propertyName: _MatCapAdditiveUvScale
+      propertyType: 3
+      floatValue: 1
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    - propertyName: _MatCapAdditiveExtractBrightArea
+      propertyType: 3
+      floatValue: 0
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    enabledKeywords: []
+    disabledKeywords: []
+    renderQueue: -1
+  - presetName: Glossy01(HighLight only - 1)
+    propertyValues:
+    - propertyName: _MatCapAdditiveMap
+      propertyType: 4
+      floatValue: 0
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 2800000, guid: 222a81aa69e4db943af2f3c9f8bb2851, type: 3}
+    - propertyName: _MatCapAdditiveUvScale
+      propertyType: 3
+      floatValue: 1
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    - propertyName: _MatCapAdditiveExtractBrightArea
+      propertyType: 3
+      floatValue: 1
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    enabledKeywords: []
+    disabledKeywords: []
+    renderQueue: -1
+  - presetName: Glossy01(HighLight only - 2)
+    propertyValues:
+    - propertyName: _MatCapAdditiveMap
+      propertyType: 4
+      floatValue: 0
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 2800000, guid: 222a81aa69e4db943af2f3c9f8bb2851, type: 3}
+    - propertyName: _MatCapAdditiveUvScale
+      propertyType: 3
+      floatValue: 1
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    - propertyName: _MatCapAdditiveExtractBrightArea
+      propertyType: 3
+      floatValue: 2
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    enabledKeywords: []
+    disabledKeywords: []
+    renderQueue: -1
+  - presetName: Glossy01(HighLight only - 3)
+    propertyValues:
+    - propertyName: _MatCapAdditiveMap
+      propertyType: 4
+      floatValue: 0
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 2800000, guid: 222a81aa69e4db943af2f3c9f8bb2851, type: 3}
+    - propertyName: _MatCapAdditiveUvScale
+      propertyType: 3
+      floatValue: 1
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    - propertyName: _MatCapAdditiveExtractBrightArea
+      propertyType: 3
+      floatValue: 3
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    enabledKeywords: []
+    disabledKeywords: []
+    renderQueue: -1
+  - presetName: BlackSmoothSpecular01
+    propertyValues:
+    - propertyName: _MatCapAdditiveMap
+      propertyType: 4
+      floatValue: 0
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 2800000, guid: 16ed4056d7dcd804a812c96b7ffd83b5, type: 3}
+    - propertyName: _MatCapAdditiveUvScale
+      propertyType: 3
+      floatValue: 1
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    - propertyName: _MatCapAdditiveExtractBrightArea
+      propertyType: 3
+      floatValue: 0
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    enabledKeywords: []
+    disabledKeywords: []
+    renderQueue: -1
+  - presetName: Rainbow
+    propertyValues:
+    - propertyName: _MatCapAdditiveMap
+      propertyType: 4
+      floatValue: 0
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 2800000, guid: e3e710d0df43e6e4aba1b11e50ffb72c, type: 3}
+    - propertyName: _MatCapAdditiveUvScale
+      propertyType: 3
+      floatValue: 1
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    - propertyName: _MatCapAdditiveExtractBrightArea
+      propertyType: 3
+      floatValue: 0
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    - propertyName: _MatCapAdditiveIntensity
+      propertyType: 3
+      floatValue: 0.25
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    enabledKeywords: []
+    disabledKeywords: []
+    renderQueue: -1
+  - presetName: TwoLights(Soft)
+    propertyValues:
+    - propertyName: _MatCapAdditiveMap
+      propertyType: 4
+      floatValue: 0
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 2800000, guid: 149918de7435b174ba49e352b476b24a, type: 3}
+    - propertyName: _MatCapAdditiveUvScale
+      propertyType: 3
+      floatValue: 1
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    - propertyName: _MatCapAdditiveExtractBrightArea
+      propertyType: 3
+      floatValue: 0
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    - propertyName: _MatCapAdditiveIntensity
+      propertyType: 3
+      floatValue: 0.375
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    enabledKeywords: []
+    disabledKeywords: []
+    renderQueue: -1
+  - presetName: TwoLights(HighLight only)
+    propertyValues:
+    - propertyName: _MatCapAdditiveMap
+      propertyType: 4
+      floatValue: 0
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 2800000, guid: 149918de7435b174ba49e352b476b24a, type: 3}
+    - propertyName: _MatCapAdditiveUvScale
+      propertyType: 3
+      floatValue: 1
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    - propertyName: _MatCapAdditiveExtractBrightArea
+      propertyType: 3
+      floatValue: 1
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    - propertyName: _MatCapAdditiveIntensity
+      propertyType: 3
+      floatValue: 1
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    enabledKeywords: []
+    disabledKeywords: []
+    renderQueue: -1
+  - presetName: RimHard(LightFromTop)
+    propertyValues:
+    - propertyName: _MatCapAdditiveMap
+      propertyType: 4
+      floatValue: 0
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 2800000, guid: fc7cd5560458f944baff8815e36c178e, type: 3}
+    - propertyName: _MatCapAdditiveUvScale
+      propertyType: 3
+      floatValue: 1
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    - propertyName: _MatCapAdditiveExtractBrightArea
+      propertyType: 3
+      floatValue: 1
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    - propertyName: _MatCapAdditiveIntensity
+      propertyType: 3
+      floatValue: 0.5
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 0}
+    enabledKeywords: []
+    disabledKeywords: []
+    renderQueue: -1
