@@ -67,7 +67,7 @@ public class MotionSender : MonoBehaviour
             str += (item).ToString() + "=";
         }
 
-        str += (_hip.position.x).ToString() + "=" + (_hip.position.y + gameObject.transform.position.y).ToString() + "=" + (_hip.position.z).ToString() + "=" +
+        str += (_hip.position.x).ToString() + "=" + (_hip.position.y).ToString() + "=" + (_hip.position.z).ToString() + "=" +
                     _hip.transform.rotation.x.ToString() + "=" + _hip.transform.rotation.y.ToString() + "=" + _hip.transform.rotation.z.ToString() + "=" + _hip.transform.rotation.w.ToString() + "=" +
                    gameObject.transform.localScale.x;
         return str;
