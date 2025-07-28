@@ -15,7 +15,8 @@ public class ClientBuild : EditorWindow
 	private static PropClientBuild _propClientBuild= null;
 
 	private static int _optionsIndex = 0;
-	public static BehaviorType CurrentBehaviorType = BehaviorType.MotionClient;
+	private static BehaviorType _currentBehaviorType = BehaviorType.MotionClient;
+	private static BehaviorType? _lastBehaviorType = BehaviorType.MotionClient;
 
 	[MenuItem("Assets/Alts_Tool/CharacterSetup")]
 	private static void CreateWindow()
@@ -27,7 +28,7 @@ public class ClientBuild : EditorWindow
 	{
 		SelectBehaviorType();
 
-		switch (CurrentBehaviorType)
+		switch (_currentBehaviorType)
 		{
 			case BehaviorType.MotionClient:
 				if (_motionClientBuild == null)
@@ -67,7 +68,7 @@ public class ClientBuild : EditorWindow
 			clientOptionPair.Add(i, (BehaviorType)Enum.GetValues(typeof(BehaviorType)).GetValue(i));
 		}
 		_optionsIndex = EditorGUILayout.Popup(label: new UnityEngine.GUIContent("Popup"), selectedIndex: _optionsIndex, displayedOptions: clientOptions.ToArray());
-		CurrentBehaviorType = clientOptionPair[_optionsIndex];
+		_currentBehaviorType = clientOptionPair[_optionsIndex];
 	}
 
 	public static void Build(string buildPath)

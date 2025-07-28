@@ -20,15 +20,20 @@ public class PropClientBuild : EditorWindow, IBuildable
 		Prop = EditorGUILayout.ObjectField(Prop, typeof(UnityEngine.Object), true) as GameObject;
 
 		EditorGUILayout.BeginHorizontal();
-		BuildPath = EditorGUILayout.TextField(BuildPath);
-		if (GUILayout.Button("Load"))
+
+		EditorGUILayout.TextField(BuildPath);
+		if (GUILayout.Button("Select"))
 		{
-			BuildPath = PlayerPrefs.GetString("PropClientPath");
-			EditorGUILayout.TextField(BuildPath);
+			BuildPath = EditorUtility.OpenFolderPanel("Select Folder", "", "");
 		}
+
 		EditorGUILayout.EndHorizontal();
 
-		if (GUILayout.Button("Build"))
+		GUIStyle buttonStyle = new GUIStyle(GUI.skin.button);
+		buttonStyle.fixedHeight = 30;
+		buttonStyle.fontSize = 12;
+
+		if (GUILayout.Button("Build",buttonStyle))
 		{
 			string path = AssetDatabase.GetAssetPath(Prop);
 
