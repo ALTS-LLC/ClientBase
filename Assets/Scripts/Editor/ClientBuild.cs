@@ -83,18 +83,7 @@ public class ClientBuild : EditorWindow
 		buildPlayerOptions.target = BuildTarget.StandaloneWindows64;
 		buildPlayerOptions.options = BuildOptions.None;
 
-		Debug.Log("ビルドを開始します...");
-		Debug.Log(buildPath);
 		BuildReport report = BuildPipeline.BuildPlayer(buildPlayerOptions);
-
-		if (report.summary.result == BuildResult.Succeeded)
-		{
-			Debug.Log($"ビルド成功! パス: {report.summary.outputPath}");
-		}
-		else if (report.summary.result == BuildResult.Failed)
-		{
-			Debug.LogError($"ビルド失敗! エラー数: {report.summary.totalErrors}");
-		}
 	}
 
 	private static GameObject SelectionObj()

@@ -518,7 +518,7 @@ public class lilToonSetting : ScriptableObject
 
         if(!string.IsNullOrEmpty(reportTitle))
         {
-            Debug.Log(reportTitle + Environment.NewLine + shaderSettingString);
+            //Debug.Log(reportTitle + Environment.NewLine + shaderSettingString);
         }
     }
 
