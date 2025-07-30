@@ -18,7 +18,7 @@ public class ClientBuild : EditorWindow
 	private static BehaviorType _currentBehaviorType = BehaviorType.MotionClient;
 	private static BehaviorType? _lastBehaviorType = BehaviorType.MotionClient;
 
-	[MenuItem("Assets/Alts_Tool/CharacterSetup")]
+	[MenuItem("Assets/Alts_Tool/ClientBuild")]
 	private static void CreateWindow()
 	{
 		GetWindow<ClientBuild>("ClientBuild");
