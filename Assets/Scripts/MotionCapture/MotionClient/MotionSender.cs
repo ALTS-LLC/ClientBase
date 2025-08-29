@@ -20,7 +20,13 @@ public class MotionSender : MonoBehaviour
 
     private void Start()
     {
-        _animator = gameObject.GetComponent<Animator>();
+        foreach (var item in gameObject.GetComponentsInChildren<Transform>())
+        {
+            if (item.gameObject.TryGetComponent<Animator>(out Animator animator))
+            {
+                _animator = animator;
+            }
+        }
         _targetHundler = new HumanPoseHandler(_animator.avatar, _animator.transform);
         _hip = _animator.GetBoneTransform(HumanBodyBones.Hips);
         ManagerHub.Instance.AppManager.MotionClientDirector.MotionSender = this;
