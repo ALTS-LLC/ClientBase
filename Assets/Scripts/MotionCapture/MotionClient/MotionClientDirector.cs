@@ -13,7 +13,9 @@ public class MotionClientDirector : DirectorBase
 
 	[SerializeField]
 	private SubjectScript_for12 _viconActor = null;
+
 	private SubjectScript_for12 _referenceActor = null;
+	private OptitrackSkeletonAnimator _optitrackSkeletonAnimator = null;
 
 	private MotionSender _motionSender = null;
 	public MotionSender MotionSender
@@ -35,9 +37,9 @@ public class MotionClientDirector : DirectorBase
             }
             if (ManagerHub.Instance.DataManager.Config.EquipmentType == "OptiTrack")
             {
+				return;
 				MotionCaptureStream.CurrentCaptureType = MotionCaptureStream.MotionCaptureType.OptiTrack;
 
-                _optitrackSkeletonAnimator = _motionSender.gameObject.AddComponent<OptitrackSkeletonAnimator>();
                 _optitrackSkeletonAnimator.StreamingClient = MotionCaptureStream.OptitrackStreamingClient;
                 _optitrackSkeletonAnimator.DestinationAvatar = _motionSender.Animator.avatar;
                 _optitrackSkeletonAnimator.SkeletonAssetName = ManagerHub.Instance.DataManager.Config.TagName;
@@ -45,11 +47,6 @@ public class MotionClientDirector : DirectorBase
 		}
 	}
 
-	private SubjectScript_for12 _subjectScript_For12 = null;
-	public SubjectScript_for12 SubjectScript_For12 => _subjectScript_For12;
-
-	private OptitrackSkeletonAnimator _optitrackSkeletonAnimator = null;
-	public OptitrackSkeletonAnimator OptitrackSkeletonAnimator => _optitrackSkeletonAnimator;
 
 	private string _tagName = null;
 	public string TagName
@@ -67,8 +64,12 @@ public class MotionClientDirector : DirectorBase
             }			
 		}
 	}
-	
-	private void Start()
+    private void Awake()
+    {
+		_optitrackSkeletonAnimator = GameObject.FindAnyObjectByType<OptitrackSkeletonAnimator>();
+    }
+
+    private void Start()
 	{
 		RegisterDirector();
 		InstanceDirectorAsset();

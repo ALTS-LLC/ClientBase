@@ -5,8 +5,7 @@ using Zenject;
 
 public class AppInstaller : MonoInstaller
 {
-	[SerializeField]
-	private BehaviorType _selectedBehaviorType = BehaviorType.MotionClient;
+	public BehaviorType SelectedBehaviorType = BehaviorType.MotionClient;
 
     [SerializeField]
     private List<DirectorBase> _directors = new List<DirectorBase>();
@@ -15,7 +14,7 @@ public class AppInstaller : MonoInstaller
     {
         Container.Bind<IBehavior>()
                  .FromMethod(context => {
-                     switch (_selectedBehaviorType) 
+                     switch (SelectedBehaviorType) 
                      {
                          case BehaviorType.MotionClient:
                              Instantiate(GetBehaviorDirector<MotionClientDirector>()).transform.parent = gameObject.transform;

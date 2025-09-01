@@ -4,6 +4,10 @@ using UnityEngine;
 using System.IO;
 using UnityEditor.SceneManagement;
 using System.Linq;
+using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
+
+
 #if UNITY_EDITOR
 using UnityEditor;
 
@@ -12,6 +16,7 @@ public class MotionClientBuild : EditorWindow, IBuildable
     public static GameObject Actor = null;
     private string BuildPath = "";
     private readonly string _clientScenePath = "Assets/Scenes/ClientMain.unity";
+    private readonly string _clientSceneName = "ClientMain";
 
     // UI用の変数
     private Vector2 scrollPosition = Vector2.zero;
@@ -174,6 +179,16 @@ public class MotionClientBuild : EditorWindow, IBuildable
     {
         try
         {
+            if (SceneManager.GetActiveScene().name != _clientSceneName)
+            {
+                EditorSceneManager.OpenScene(_clientScenePath, OpenSceneMode.Single);
+            }
+
+            var app = GameObject.Find("AppInstaller").GetComponent<AppInstaller>();
+            app.SelectedBehaviorType = BehaviorType.MotionClient;
+            Undo.RegisterCreatedObjectUndo(app.gameObject, "ChangeBehaviorType");
+            EditorSceneManager.SaveScene(SceneManager.GetActiveScene());
+
             EditorUtility.DisplayProgressBar("Building Motion Client", "Preparing build...", 0f);
 
             string path = AssetDatabase.GetAssetPath(Actor);
@@ -190,7 +205,25 @@ public class MotionClientBuild : EditorWindow, IBuildable
             EditorUtility.DisplayProgressBar("Building Motion Client", "Setting up actor...", 0.6f);
             EditorSceneManager.OpenScene(scenePath, OpenSceneMode.Single);
 
+            //ここ
+            var opti = PrefabUtility.LoadPrefabContents(Application.dataPath + "/ManagerAsset/App/MotionCapture/MotionClient/Client - OptiTrack.prefab");
+            var vicon = PrefabUtility.LoadPrefabContents(Application.dataPath + "/ManagerAsset/App/MotionCapture/MotionClient/ViconDataStreamPrefab.prefab");
+            var optitrackStreamingClient = Instantiate(opti).GetComponent<OptitrackStreamingClient>();
+            Instantiate(vicon);
+
             var actor = Instantiate(Actor).gameObject.AddComponent<MotionSender>();
+            var optitrackSA= actor.AddComponent<OptitrackSkeletonAnimator>();
+            optitrackSA.StreamingClient = optitrackStreamingClient;
+            foreach (var item in actor.gameObject.GetComponentsInChildren<Transform>())
+            {
+                if (item.gameObject.TryGetComponent<Animator>(out Animator animator))
+                {
+                    optitrackSA.DestinationAvatar = animator.avatar;
+                }
+            }
+            optitrackSA.SkeletonAssetName = ManagerHub.Instance.DataManager.Config.TagName;
+
+
             actor.gameObject.AddComponent<ModelGroundingAdjuster>();
             Undo.RegisterCreatedObjectUndo(actor.gameObject, "CreateActor");
 

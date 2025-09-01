@@ -26,7 +26,9 @@ public class ClientBuild : EditorWindow
 
 	private void OnGUI()
 	{
+		EditorGUILayout.Space(30);
 		SelectBehaviorType();
+		EditorGUILayout.Space(30);
 
 		switch (_currentBehaviorType)
 		{
@@ -67,7 +69,7 @@ public class ClientBuild : EditorWindow
 			clientOptions.Add(new UnityEngine.GUIContent(Enum.GetValues(typeof(BehaviorType)).GetValue(i).ToString()));
 			clientOptionPair.Add(i, (BehaviorType)Enum.GetValues(typeof(BehaviorType)).GetValue(i));
 		}
-		_optionsIndex = EditorGUILayout.Popup(label: new UnityEngine.GUIContent("Popup"), selectedIndex: _optionsIndex, displayedOptions: clientOptions.ToArray());
+		_optionsIndex = EditorGUILayout.Popup(label: new UnityEngine.GUIContent("Client Type"), selectedIndex: _optionsIndex, displayedOptions: clientOptions.ToArray());
 		_currentBehaviorType = clientOptionPair[_optionsIndex];
 	}
 
