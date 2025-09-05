@@ -10,107 +10,123 @@ using static OptitrackStreamingClient;
 public class MotionClientDirector : DirectorBase
 {
     [SerializeField]
-	private GameObject _motionClientAsset = null;
+    private GameObject _motionClientAsset = null;
 
-	[SerializeField]
-	private SubjectScript_for12 _viconActor = null;
+    [SerializeField]
+    private SubjectScript_for12 _viconActor = null;
 
-	private SubjectScript_for12 _referenceActor = null;
-	private OptitrackSkeletonAnimator _optitrackSkeletonAnimator = null;
+    private SubjectScript_for12 _referenceActor = null;
+    private OptitrackSkeletonAnimator _optitrackSkeletonAnimator = null;
 
-	private MotionSender _motionSender = null;
-	public MotionSender MotionSender
-	{
-		get { return _motionSender; }
-		set
-		{
-            _motionSender = value;
 
-            if (ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.CaputureSystemType == "Vicon 1.12")
+    private string _tagName = null;
+    public string TagName
+    {
+        get { return _tagName; }
+        set
+        {
+            if (_tagName != value && _referenceActor != null)
             {
-                MotionCaptureStream.CurrentCaptureType = CaptureSystemType.Vicon1_12;
-
-				_referenceActor = Instantiate(_viconActor).GetComponent<SubjectScript_for12>();
-                _referenceActor.Client = MotionCaptureStream.ViconDataStreamClient;
-                _referenceActor.SubjectName = ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.TagName;
-				var boneTracer =_motionSender.gameObject.AddComponent<BoneTracer>();
-				boneTracer.TargetAnimator = _referenceActor.gameObject.GetComponent<Animator>();
-            }
-            if (ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.CaputureSystemType== "OptiTrack")
-            {
-				return;
-				MotionCaptureStream.CurrentCaptureType = CaptureSystemType.OptiTrack;
-
-                _optitrackSkeletonAnimator.StreamingClient = MotionCaptureStream.OptitrackStreamingClient;
-                _optitrackSkeletonAnimator.DestinationAvatar = _motionSender.Animator.avatar;
-                _optitrackSkeletonAnimator.SkeletonAssetName = ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.TagName;
-            }
-		}
-	}
-
-
-	private string _tagName = null;
-	public string TagName
-	{
-		get { return _tagName; }
-		set
-		{
-			if (_tagName != value && _referenceActor != null)
-			{
                 _referenceActor.SubjectName = value;
             }
-			if (_tagName != value && _optitrackSkeletonAnimator != null)
-			{
+            if (_tagName != value && _optitrackSkeletonAnimator != null)
+            {
                 _optitrackSkeletonAnimator.SkeletonAssetName = value;
-            }			
-		}
-	}
+            }
+        }
+    }
 
-	private CaptureSystemType _motionCaptureType = CaptureSystemType.None;
-	public CaptureSystemType MotionCaptureType => _motionCaptureType;
-	private CaptureType _captureType = CaptureType.Motion;
-	public CaptureType  CaptureType => _captureType;
+    private CaptureSystemType _captureSystemType = CaptureSystemType.OptiTrack;
+    public CaptureSystemType CaptureSystemType => _captureSystemType;
+    private CaptureType _captureType = CaptureType.Motion;
+    public CaptureType CaptureType => _captureType;
 
 
 
     private void Awake()
     {
-		_optitrackSkeletonAnimator = GameObject.FindAnyObjectByType<OptitrackSkeletonAnimator>();
+        foreach (object item in Enum.GetValues(typeof(CaptureSystemType)))
+        {
+            if (item.ToString() == ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.CaputureSystemType)
+            {
+                _captureSystemType = (CaptureSystemType)item;
+            }
+        }
+
+        foreach (object item in Enum.GetValues(typeof(CaptureType)))
+        {
+            if (item.ToString() == ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.CaputureType)
+            {
+                _captureType = (CaptureType)item;
+            }
+        }
+
+        switch (_captureSystemType)
+        {
+            case CaptureSystemType.OptiTrack:
+                switch (_captureType)
+                {
+                    case CaptureType.Motion:
+                        _optitrackSkeletonAnimator = GameObject.FindAnyObjectByType<OptitrackSkeletonAnimator>();
+                        _optitrackSkeletonAnimator.SkeletonAssetName = ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.TagName;
+                        break;
+                    case CaptureType.Prop:
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case CaptureSystemType.Vicon1_12:
+                switch (_captureType)
+                {
+                    case CaptureType.Motion:
+                        _referenceActor = GameObject.FindAnyObjectByType<SubjectScript_for12>();
+                        _referenceActor.SubjectName = ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.TagName;
+                        break;
+                    case CaptureType.Prop:
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            default:
+                break;
+        }
+
     }
 
     private void Start()
-	{
-		RegisterDirector();
-		InstanceDirectorAsset();
+    {
+        RegisterDirector();
+        InstanceDirectorAsset();
     }
 
-	protected override void RegisterDirector()
-	{
-		ManagerHub.Instance.AppManager.MotionClientDirector = this;
-	}
+    protected override void RegisterDirector()
+    {
+        ManagerHub.Instance.AppManager.MotionClientDirector = this;
+    }
 
     protected override void InstanceDirectorAsset()
     {
         Instantiate(_motionClientAsset);
     }
 
-	public void Initialize()
-	{
+    public void Initialize()
+    {
 
-	}
+    }
 }
 
 namespace Evila_MotionCapture
 {
     public enum CaptureSystemType
     {
-        None,
         OptiTrack,
         Vicon1_12
     }
     public enum CaptureType
     {
-		Motion,
-		Prop
+        Motion,
+        Prop
     }
 }

@@ -8,6 +8,8 @@ using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
 using Evila_MotionCapture;
 using System;
+using UnityVicon;
+
 
 
 
@@ -340,12 +342,11 @@ public class MotionClientBuild : EditorWindow, IBuildable
 
         switch (captureSystemType)
         {
-            case CaptureSystemType.None:
-                break;
             case CaptureSystemType.OptiTrack:
                 SettingOptiCaptureType(captureType);
                 break;
             case CaptureSystemType.Vicon1_12:
+                SettingViconCaptureType(captureType);
                 break;
             default:
                 break;
@@ -391,9 +392,17 @@ public class MotionClientBuild : EditorWindow, IBuildable
             case CaptureType.Motion:
 
                 var vicon = PrefabUtility.LoadPrefabContents(Application.dataPath + "/ManagerAsset/App/MotionCapture/MotionClient/ViconDataStreamPrefab.prefab");
-
+                var viconDataStreamClient = Instantiate(vicon).GetComponent<ViconDataStreamClient>();
 
                 var actor = Instantiate(Actor).gameObject.AddComponent<MotionSender>();
+                var viconActor = PrefabUtility.LoadPrefabContents(Application.dataPath + "/ManagerAsset/App/MotionCapture/MotionClient/ViconActor.prefab");
+
+                var referenceActor = Instantiate(viconActor).GetComponent<SubjectScript_for12>();
+                referenceActor.Client = MotionCaptureStream.ViconDataStreamClient;
+                referenceActor.SubjectName = ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.TagName;
+                var boneTracer = actor.gameObject.AddComponent<BoneTracer>();
+                boneTracer.TargetAnimator = referenceActor.gameObject.GetComponent<Animator>();
+
 
                 actor.gameObject.AddComponent<ModelGroundingAdjuster>();
                 Undo.RegisterCreatedObjectUndo(actor.gameObject, "CreateActor");

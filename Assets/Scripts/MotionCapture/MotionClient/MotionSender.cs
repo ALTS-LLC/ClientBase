@@ -29,7 +29,6 @@ public class MotionSender : MonoBehaviour
         }
         _targetHundler = new HumanPoseHandler(_animator.avatar, _animator.transform);
         _hip = _animator.GetBoneTransform(HumanBodyBones.Hips);
-        ManagerHub.Instance.AppManager.MotionClientDirector.MotionSender = this;
         MotionCaptureStream.TargetModel = gameObject.transform;
     }
 

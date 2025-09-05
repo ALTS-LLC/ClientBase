@@ -22,7 +22,7 @@ public class PropClientDirector : DirectorBase
             _propSender = value;
             if (ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.CaputureSystemType == "Vicon 1.12")
 			{
-                MotionCaptureStream.CurrentCaptureType = CaptureSystemType.Vicon1_12;
+                //MotionCaptureStream.CurrentCaptureType = CaptureSystemType.Vicon1_12;
 
                 _rbScript = _propSender.gameObject.AddComponent<RBScript_for12>();
                 _rbScript.Client = MotionCaptureStream.ViconDataStreamClient;
@@ -30,7 +30,7 @@ public class PropClientDirector : DirectorBase
             }
             if (ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.CaputureSystemType== "OptiTrack")
 			{
-                MotionCaptureStream.CurrentCaptureType = CaptureSystemType.OptiTrack;
+                //MotionCaptureStream.CurrentCaptureType = CaptureSystemType.OptiTrack;
 
                 _optitrackRigidBody = _propSender.gameObject.AddComponent<OptitrackRigidBody>();
                 _optitrackRigidBody.StreamingClient = MotionCaptureStream.OptitrackStreamingClient;
