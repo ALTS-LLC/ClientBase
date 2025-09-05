@@ -6,6 +6,9 @@ using UnityEditor.SceneManagement;
 using System.Linq;
 using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
+using Evila_MotionCapture;
+using System;
+
 
 
 #if UNITY_EDITOR
@@ -15,6 +18,16 @@ public class MotionClientBuild : EditorWindow, IBuildable
 {
     public static GameObject Actor = null;
     private string BuildPath = "";
+
+    private CaptureSystemType _captureSystemType = CaptureSystemType.OptiTrack;
+    private List<GUIContent> _captureSystemContent = new();
+    private int _captureSystemTypeIndex = 0;
+
+
+    private CaptureType _captureType = CaptureType.Motion;
+    private List<GUIContent> _captureTypeContent = new();
+    private int _captureTypeIndex = 0;
+
     private readonly string _clientScenePath = "Assets/Scenes/ClientMain.unity";
     private readonly string _clientSceneName = "ClientMain";
 
@@ -35,6 +48,30 @@ public class MotionClientBuild : EditorWindow, IBuildable
         EditorGUILayout.LabelField("Motion Client Builder", headerStyle);
         EditorGUILayout.Space(10);
 
+        if (_captureSystemContent.Count == 0)
+        {
+            foreach (var item in Enum.GetValues(typeof(CaptureSystemType)))
+            {
+                _captureSystemContent.Add(new GUIContent(item.ToString()));
+            }
+        }
+        _captureSystemTypeIndex = EditorGUILayout.Popup(label: new GUIContent("使用するモーションキャプチャー機材"), selectedIndex: _captureSystemTypeIndex, displayedOptions: _captureSystemContent.ToArray());
+
+        if (_captureTypeContent.Count == 0)
+        {
+            foreach (var item in Enum.GetValues(typeof(CaptureType)))
+            {
+                _captureTypeContent.Add(new GUIContent(item.ToString()));
+            }
+        }
+        _captureTypeIndex = EditorGUILayout.Popup(label: new GUIContent("Capture Type"), selectedIndex: _captureTypeIndex, displayedOptions: _captureTypeContent.ToArray());
+
+
+        if (GUILayout.Button("aaa"))
+        {
+            SetUPCaptureSystem();
+        }
+
         // Actor選択セクション
         DrawActorSection();
 
@@ -49,6 +86,8 @@ public class MotionClientBuild : EditorWindow, IBuildable
         DrawBuildSection();
 
         EditorGUILayout.EndScrollView();
+
+
     }
 
     private void DrawActorSection()
@@ -96,6 +135,26 @@ public class MotionClientBuild : EditorWindow, IBuildable
         EditorGUILayout.BeginHorizontal();
 
         BuildPath = EditorGUILayout.TextField("Path", BuildPath);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         GUIStyle selectButtonStyle = new GUIStyle(GUI.skin.button);
         selectButtonStyle.fixedWidth = 70;
@@ -177,74 +236,173 @@ public class MotionClientBuild : EditorWindow, IBuildable
 
     private void BuildMotionClient()
     {
+        if (SceneManager.GetActiveScene().name != _clientSceneName)
+        {
+            EditorSceneManager.OpenScene(_clientScenePath, OpenSceneMode.Single);
+        }
+
+        var app = GameObject.Find("AppInstaller").GetComponent<AppInstaller>();
+        app.SelectedBehaviorType = BehaviorType.MotionClient;
+        Undo.RegisterCreatedObjectUndo(app.gameObject, "ChangeBehaviorType");
+        EditorSceneManager.SaveScene(SceneManager.GetActiveScene());
+
+        EditorUtility.DisplayProgressBar("Building Motion Client", "Preparing build...", 0f);
+
+        string path = AssetDatabase.GetAssetPath(Actor);
+        PlayerPrefs.SetString("MotionClientPath", BuildPath);
+
+        EditorUtility.DisplayProgressBar("Building Motion Client", "Removing scene from build settings...", 0.2f);
+        ClientBuild.RemoveSceneFromBuildSettings();
+
+        var scenePath = path.Replace(Path.GetFileName(path), "") + Actor.name + ".unity";
+
+        EditorUtility.DisplayProgressBar("Building Motion Client", "Creating scene copy...", 0.4f);
+        AssetDatabase.CopyAsset(_clientScenePath, scenePath);
+
+        EditorUtility.DisplayProgressBar("Building Motion Client", "Setting up actor...", 0.6f);
+        EditorSceneManager.OpenScene(scenePath, OpenSceneMode.Single);
+
+        //ここ
+        SetUPCaptureSystem();
+
+        EditorSceneManager.SaveOpenScenes();
+
+        EditorUtility.DisplayProgressBar("Building Motion Client", "Adding scene to build settings...", 0.8f);
+        ClientBuild.AddSceneToBuildSettings(scenePath);
+
+        EditorUtility.DisplayProgressBar("Building Motion Client", "Building executable...", 0.9f);
+        ClientBuild.Build(BuildPath + Actor.name + "MotionClient.exe");
+
+        EditorSceneManager.OpenScene(_clientScenePath, OpenSceneMode.Single);
+
+        EditorUtility.ClearProgressBar();
+        EditorUtility.DisplayDialog("Build Complete", $"Motion Client built successfully!\nOutput: {BuildPath}{Actor.name}MotionClient.exe", "OK");
         try
         {
-            if (SceneManager.GetActiveScene().name != _clientSceneName)
-            {
-                EditorSceneManager.OpenScene(_clientScenePath, OpenSceneMode.Single);
-            }
 
-            var app = GameObject.Find("AppInstaller").GetComponent<AppInstaller>();
-            app.SelectedBehaviorType = BehaviorType.MotionClient;
-            Undo.RegisterCreatedObjectUndo(app.gameObject, "ChangeBehaviorType");
-            EditorSceneManager.SaveScene(SceneManager.GetActiveScene());
-
-            EditorUtility.DisplayProgressBar("Building Motion Client", "Preparing build...", 0f);
-
-            string path = AssetDatabase.GetAssetPath(Actor);
-            PlayerPrefs.SetString("MotionClientPath", BuildPath);
-
-            EditorUtility.DisplayProgressBar("Building Motion Client", "Removing scene from build settings...", 0.2f);
-            ClientBuild.RemoveSceneFromBuildSettings();
-
-            var scenePath = path.Replace(Path.GetFileName(path), "") + Actor.name + ".unity";
-
-            EditorUtility.DisplayProgressBar("Building Motion Client", "Creating scene copy...", 0.4f);
-            AssetDatabase.CopyAsset(_clientScenePath, scenePath);
-
-            EditorUtility.DisplayProgressBar("Building Motion Client", "Setting up actor...", 0.6f);
-            EditorSceneManager.OpenScene(scenePath, OpenSceneMode.Single);
-
-            //ここ
-            var opti = PrefabUtility.LoadPrefabContents(Application.dataPath + "/ManagerAsset/App/MotionCapture/MotionClient/Client - OptiTrack.prefab");
-            var vicon = PrefabUtility.LoadPrefabContents(Application.dataPath + "/ManagerAsset/App/MotionCapture/MotionClient/ViconDataStreamPrefab.prefab");
-            var optitrackStreamingClient = Instantiate(opti).GetComponent<OptitrackStreamingClient>();
-            Instantiate(vicon);
-
-            var actor = Instantiate(Actor).gameObject.AddComponent<MotionSender>();
-            var optitrackSA= actor.AddComponent<OptitrackSkeletonAnimator>();
-            optitrackSA.StreamingClient = optitrackStreamingClient;
-            foreach (var item in actor.gameObject.GetComponentsInChildren<Transform>())
-            {
-                if (item.gameObject.TryGetComponent<Animator>(out Animator animator))
-                {
-                    optitrackSA.DestinationAvatar = animator.avatar;
-                }
-            }
-            optitrackSA.SkeletonAssetName = ManagerHub.Instance.DataManager.Config.TagName;
-
-
-            actor.gameObject.AddComponent<ModelGroundingAdjuster>();
-            Undo.RegisterCreatedObjectUndo(actor.gameObject, "CreateActor");
-
-            EditorSceneManager.SaveOpenScenes();
-
-            EditorUtility.DisplayProgressBar("Building Motion Client", "Adding scene to build settings...", 0.8f);
-            ClientBuild.AddSceneToBuildSettings(scenePath);
-
-            EditorUtility.DisplayProgressBar("Building Motion Client", "Building executable...", 0.9f);
-            ClientBuild.Build(BuildPath + Actor.name + "MotionClient.exe");
-
-            EditorSceneManager.OpenScene(_clientScenePath, OpenSceneMode.Single);
-
-            EditorUtility.ClearProgressBar();
-            EditorUtility.DisplayDialog("Build Complete", $"Motion Client built successfully!\nOutput: {BuildPath}{Actor.name}MotionClient.exe", "OK");
         }
         catch (System.Exception e)
         {
             EditorUtility.ClearProgressBar();
             EditorUtility.DisplayDialog("Build Error", $"Build failed with error:\n{e.Message}", "OK");
             Debug.LogError($"Motion Client Build Error: {e}");
+        }
+
+
+
+
+
+
+
+
+    }
+
+    private void SetUPCaptureSystem()
+    {
+        CaptureSystemType captureSystemType = CaptureSystemType.OptiTrack;
+        CaptureType captureType = CaptureType.Motion;
+
+        string configJsonPath = Application.dataPath + "/StreamingAssets/Config_json/config.json";
+        string captureSystemConfigJsonPath = Application.dataPath + "/StreamingAssets/Config_json/capture_system_config.json";
+        string optiConfigJsonPath = Application.dataPath + "/StreamingAssets/Config_json/opti_config.json";
+        string viconConfigJsonPath = Application.dataPath + "/StreamingAssets/Config_json/vicon_config.json";
+
+        ManagerHub.Instance.DataManager.Config = ManagerHub.Instance.DataManager.JsonToSBParser<Config>(ManagerHub.Instance.DataManager.Config, configJsonPath);
+        ManagerHub.Instance.DataManager.Config.CaptureSystemConfig = ManagerHub.Instance.DataManager.JsonToSBParser<CaptureSystemConfig>(ManagerHub.Instance.DataManager.Config.CaptureSystemConfig, captureSystemConfigJsonPath);
+        ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.OptiConfig = ManagerHub.Instance.DataManager.JsonToSBParser<OptiConfig>(ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.OptiConfig, optiConfigJsonPath);
+        ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.ViconConfig = ManagerHub.Instance.DataManager.JsonToSBParser<ViconConfig>(ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.ViconConfig, viconConfigJsonPath);
+
+
+        foreach (var item in Enum.GetValues(typeof(CaptureSystemType)))
+        {
+            if (item.ToString() == _captureSystemContent[_captureSystemTypeIndex].text)
+            {
+                captureSystemType = (CaptureSystemType)item;
+                ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.CaputureSystemType = item.ToString();
+            }
+        }
+
+        foreach (var item in Enum.GetValues(typeof(CaptureType)))
+        {
+            if (item.ToString() == _captureTypeContent[_captureTypeIndex].text)
+            {
+                captureType = (CaptureType)item;
+                ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.CaputureType= item.ToString();
+            }
+        }
+        ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.TagName = "Skeleton 001";
+
+
+        ManagerHub.Instance.DataManager.SBtoJsonParser<Config>(ManagerHub.Instance.DataManager.Config, configJsonPath);
+        ManagerHub.Instance.DataManager.Config.CaptureSystemConfig = ManagerHub.Instance.DataManager.SBtoJsonParser<CaptureSystemConfig>(ManagerHub.Instance.DataManager.Config.CaptureSystemConfig, captureSystemConfigJsonPath);
+        ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.OptiConfig = ManagerHub.Instance.DataManager.SBtoJsonParser<OptiConfig>(ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.OptiConfig, optiConfigJsonPath);
+        ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.ViconConfig = ManagerHub.Instance.DataManager.SBtoJsonParser<ViconConfig>(ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.ViconConfig, viconConfigJsonPath);
+
+        switch (captureSystemType)
+        {
+            case CaptureSystemType.None:
+                break;
+            case CaptureSystemType.OptiTrack:
+                SettingOptiCaptureType(captureType);
+                break;
+            case CaptureSystemType.Vicon1_12:
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void SettingOptiCaptureType(CaptureType captureType)
+    {
+        switch (captureType)
+        {
+            case CaptureType.Motion:
+
+                var opti = PrefabUtility.LoadPrefabContents(Application.dataPath + "/ManagerAsset/App/MotionCapture/MotionClient/Client - OptiTrack.prefab");
+                var optitrackStreamingClient = Instantiate(opti).GetComponent<OptitrackStreamingClient>();
+
+                var actor = Instantiate(Actor).gameObject.AddComponent<MotionSender>();
+                var optitrackSA = actor.AddComponent<OptitrackSkeletonAnimator>();
+                optitrackSA.StreamingClient = optitrackStreamingClient;
+                foreach (var item in actor.gameObject.GetComponentsInChildren<Transform>())
+                {
+                    if (item.gameObject.TryGetComponent<Animator>(out Animator animator))
+                    {
+                        optitrackSA.DestinationAvatar = animator.avatar;
+                    }
+                }
+                optitrackSA.SkeletonAssetName = ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.TagName;
+
+
+                actor.gameObject.AddComponent<ModelGroundingAdjuster>();
+                Undo.RegisterCreatedObjectUndo(actor.gameObject, "CreateActor");
+
+                break;
+            case CaptureType.Prop:
+                break;
+            default:
+                break;
+        }
+    }
+    private void SettingViconCaptureType(CaptureType captureType)
+    {
+        switch (captureType)
+        {
+            case CaptureType.Motion:
+
+                var vicon = PrefabUtility.LoadPrefabContents(Application.dataPath + "/ManagerAsset/App/MotionCapture/MotionClient/ViconDataStreamPrefab.prefab");
+
+
+                var actor = Instantiate(Actor).gameObject.AddComponent<MotionSender>();
+
+                actor.gameObject.AddComponent<ModelGroundingAdjuster>();
+                Undo.RegisterCreatedObjectUndo(actor.gameObject, "CreateActor");
+
+                break;
+            case CaptureType.Prop:
+                break;
+            default:
+                break;
         }
     }
 

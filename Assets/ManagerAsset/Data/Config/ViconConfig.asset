@@ -9,25 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 318cde6f0df2c254396e540af9294f0c, type: 3}
-  m_Name: Config
+  m_Script: {fileID: 11500000, guid: 4b43a7fff98626048b1d97901f0d84ee, type: 3}
+  m_Name: ViconConfig
   m_EditorClassIdentifier: 
-  LocalIP: 192.168.1.6
-  SendlPort: 6547
-  MultiCastIP: 224.0.0.224
-  EquipmentType: 
-  HostName: 
-  Port: 0
+  HostName: 192.168.1.6
+  Port: 801
   SubjectFilter: 
   UsePreFetch: 0
   IsRetimed: 0
   Offset: 0
   Log: 0
   ConfigureWireless: 0
-  ConnectionType: 
-  LocalAddress: 
-  ServerAddress: 
-  ServerCommandPort: 0
-  ServerDataPort: 0
-  DrawMarkers: 0
-  BoneNamingConvention: 

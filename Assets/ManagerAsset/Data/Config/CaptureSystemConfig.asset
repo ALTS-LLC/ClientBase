@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c33e1e23199f40c4eb2de8e813a19993, type: 3}
+  m_Name: CaptureSystemConfig
+  m_EditorClassIdentifier: 
+  CaputureSystemType: Vicon 1.12
+  CaputureType: 
+  TagName: Skeleton 001
+  ViconConfig: {fileID: 11400000, guid: 3c5e4940721d97e4f97acda520e7b3d2, type: 2}
+  OptiConfig: {fileID: 11400000, guid: b2c61caa932cb8942924067dd0bf3cc6, type: 2}

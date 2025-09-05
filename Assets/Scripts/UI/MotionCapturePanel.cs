@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Evila_MotionCapture;
 public class MotionCapturePanel : UIBase, IUseIinterface
 {
 	[SerializeField]
@@ -21,24 +22,24 @@ public class MotionCapturePanel : UIBase, IUseIinterface
 
 		_selectMotionCpatureDropDown.onValueChanged.AddListener((value) => 
 		{
-			ManagerHub.Instance.DataManager.Config.EquipmentType = _selectMotionCpatureDropDown.options[_selectMotionCpatureDropDown.value].text;
+			ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.CaputureSystemType = _selectMotionCpatureDropDown.options[_selectMotionCpatureDropDown.value].text;
 			if (value == 0)
 			{
 				_optiPanel.gameObject.SetActive(true);
 				_viconPanel.gameObject.SetActive(false);
-				MotionCaptureStream.CurrentCaptureType = MotionCaptureStream.MotionCaptureType.OptiTrack;
+				MotionCaptureStream.CurrentCaptureType = CaptureSystemType.OptiTrack;
 			}
 			if (value == 1)
 			{
 				_optiPanel.gameObject.SetActive(false);
 				_viconPanel.gameObject.SetActive(true);
-				MotionCaptureStream.CurrentCaptureType = MotionCaptureStream.MotionCaptureType.Vicon1_12;
+				MotionCaptureStream.CurrentCaptureType = CaptureSystemType.Vicon1_12;
 			}
 		});
 
 		for (int i = 0; i < _selectMotionCpatureDropDown.options.Count; i++)
 		{
-			if (_selectMotionCpatureDropDown.options[i].text == ManagerHub.Instance.DataManager.Config.EquipmentType)
+			if (_selectMotionCpatureDropDown.options[i].text == ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.CaputureSystemType)
 			{
 				_selectMotionCpatureDropDown.value = i;
 			}

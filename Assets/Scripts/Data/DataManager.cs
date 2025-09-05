@@ -25,7 +25,6 @@ public class DataManager : ManagerBase
 	public T SBtoJsonParser<T>(T scriptableObject,string path)
 	{
 		string json = JsonUtility.ToJson(scriptableObject);
-		Debug.Log(json);
 		File.WriteAllText(path, json);
 		return scriptableObject;
 	}

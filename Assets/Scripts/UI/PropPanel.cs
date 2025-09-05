@@ -15,11 +15,11 @@ public class PropPanel : UIBase, IUseIinterface
 	{
 		Register();
 
-		_tagNameField.text = ManagerHub.Instance.DataManager.Config.TagName;
+		_tagNameField.text = ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.TagName;
 
 		_tagNameField.onEndEdit.AddListener(delegate
 		{
-			ManagerHub.Instance.DataManager.Config.TagName = _tagNameField.text;
+			ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.TagName = _tagNameField.text;
 			ManagerHub.Instance.AppManager.PropClientDirector.TagName = _tagNameField.text;
 		});
 	}

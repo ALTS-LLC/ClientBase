@@ -17,7 +17,8 @@ public class AppInstaller : MonoInstaller
                      switch (SelectedBehaviorType) 
                      {
                          case BehaviorType.MotionClient:
-                             Instantiate(GetBehaviorDirector<MotionClientDirector>()).transform.parent = gameObject.transform;
+                             MotionClientDirector motionClientDirector = Instantiate(GetBehaviorDirector<MotionClientDirector>());
+                             motionClientDirector.transform.parent = gameObject.transform;
                              return context.Container.Instantiate<MotionClientBehavior>();
                          case BehaviorType.PropClient:
                              Instantiate(GetBehaviorDirector<PropClientDirector>()).transform.parent = gameObject.transform;

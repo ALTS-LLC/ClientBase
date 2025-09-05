@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Evila_MotionCapture;
 
 public class MotionCaptureStream : MonoBehaviour
 {
@@ -10,8 +11,8 @@ public class MotionCaptureStream : MonoBehaviour
 
 	public static Transform TargetModel = null;
 
-	private static MotionCaptureType _currentCaptureType = MotionCaptureType.None;
-	public static MotionCaptureType CurrentCaptureType
+	private static CaptureSystemType _currentCaptureType = CaptureSystemType.None;
+	public static CaptureSystemType CurrentCaptureType
 	{
 		get
 		{
@@ -23,7 +24,7 @@ public class MotionCaptureStream : MonoBehaviour
 			{
 				switch (value)
 				{
-					case MotionCaptureType.OptiTrack:
+					case CaptureSystemType.OptiTrack:
 						//if (OptitrackStreamingClient != null)
 						//{
 						//	Destroy(OptitrackStreamingClient.gameObject);
@@ -32,39 +33,39 @@ public class MotionCaptureStream : MonoBehaviour
 
 						foreach (object item in Enum.GetValues(typeof(OptitrackStreamingClient.ClientConnectionType)))
 						{
-							if (item.ToString() == ManagerHub.Instance.DataManager.Config.EquipmentType)
+							if (item.ToString() == ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.CaputureSystemType)
 							{
 								OptitrackStreamingClient.ConnectionType = (OptitrackStreamingClient.ClientConnectionType)item;
 							}
 						}
-						OptitrackStreamingClient.LocalAddress = ManagerHub.Instance.DataManager.Config.LocalAddress;
-						OptitrackStreamingClient.ServerAddress = ManagerHub.Instance.DataManager.Config.ServerAddress;
-						OptitrackStreamingClient.ServerCommandPort = (ushort)ManagerHub.Instance.DataManager.Config.ServerCommandPort;
-						OptitrackStreamingClient.ServerDataPort = (ushort)ManagerHub.Instance.DataManager.Config.ServerDataPort;
-						OptitrackStreamingClient.DrawMarkers = ManagerHub.Instance.DataManager.Config.DrawMarkers;
+						OptitrackStreamingClient.LocalAddress = ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.OptiConfig.LocalAddress;
+						OptitrackStreamingClient.ServerAddress = ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.OptiConfig.ServerAddress;
+						OptitrackStreamingClient.ServerCommandPort = (ushort)ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.OptiConfig.ServerCommandPort;
+						OptitrackStreamingClient.ServerDataPort = (ushort)ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.OptiConfig.ServerDataPort;
+						OptitrackStreamingClient.DrawMarkers = ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.OptiConfig.DrawMarkers;
 						foreach (object item in Enum.GetValues(typeof(OptitrackBoneNameConvention)))
 						{
-							if (item.ToString() == ManagerHub.Instance.DataManager.Config.BoneNamingConvention)
+							if (item.ToString() == ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.OptiConfig.BoneNamingConvention)
 							{
 								OptitrackStreamingClient.BoneNamingConvention = (OptitrackBoneNameConvention)item;
 							}
 						}
 
 						break;
-					case MotionCaptureType.Vicon1_12:
+					case CaptureSystemType.Vicon1_12:
 						//if (ViconDataStreamClient != null)
 						//{
 						//	Destroy(ViconDataStreamClient.gameObject);
 						//}
 
-						ViconDataStreamClient.HostName = ManagerHub.Instance.DataManager.Config.HostName;
-						ViconDataStreamClient.Port = ManagerHub.Instance.DataManager.Config.Port.ToString();
-						ViconDataStreamClient.SubjectFilter = ManagerHub.Instance.DataManager.Config.SubjectFilter;
-						ViconDataStreamClient.UsePreFetch = ManagerHub.Instance.DataManager.Config.UsePreFetch;
-						ViconDataStreamClient.IsRetimed = ManagerHub.Instance.DataManager.Config.IsRetimed;
-						ViconDataStreamClient.Offset = ManagerHub.Instance.DataManager.Config.Offset;
-						ViconDataStreamClient.Log = ManagerHub.Instance.DataManager.Config.Log;
-						ViconDataStreamClient.ConfigureWireless = ManagerHub.Instance.DataManager.Config.ConfigureWireless;
+						ViconDataStreamClient.HostName = ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.ViconConfig.HostName;
+						ViconDataStreamClient.Port = ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.ViconConfig.Port.ToString();
+						ViconDataStreamClient.SubjectFilter = ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.ViconConfig.SubjectFilter;
+						ViconDataStreamClient.UsePreFetch = ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.ViconConfig.UsePreFetch;
+						ViconDataStreamClient.IsRetimed = ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.ViconConfig.IsRetimed;
+						ViconDataStreamClient.Offset = ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.ViconConfig.Offset;
+						ViconDataStreamClient.Log = ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.ViconConfig.Log;
+						ViconDataStreamClient.ConfigureWireless = ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.ViconConfig.ConfigureWireless;
 						break;
 					default:
 						break;
@@ -73,13 +74,6 @@ public class MotionCaptureStream : MonoBehaviour
 			_currentCaptureType = value;
 		}
 	}
-	public enum MotionCaptureType
-	{
-		None,
-		OptiTrack,
-		Vicon1_12,
-	}
-
     private void Awake()
     {
 		OptitrackStreamingClient = GameObject.FindAnyObjectByType<OptitrackStreamingClient>();
@@ -88,12 +82,12 @@ public class MotionCaptureStream : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-		_currentCaptureType = MotionCaptureType.None;
+		_currentCaptureType = CaptureSystemType.None;
 		TargetModel = null;
     }
     private void OnDestroy()
     {
-        _currentCaptureType = MotionCaptureType.None;
+        _currentCaptureType = CaptureSystemType.None;
 		TargetModel = null;
 	}
 }
