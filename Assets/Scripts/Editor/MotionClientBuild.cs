@@ -400,6 +400,7 @@ public class MotionClientBuild : EditorWindow, IBuildable
                 var referenceActor = Instantiate(viconActor).GetComponent<SubjectScript_for12>();
                 referenceActor.Client = MotionCaptureStream.ViconDataStreamClient;
                 referenceActor.SubjectName = ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.TagName;
+                referenceActor.Client = viconDataStreamClient;
                 var boneTracer = actor.gameObject.AddComponent<BoneTracer>();
                 boneTracer.TargetAnimator = referenceActor.gameObject.GetComponent<Animator>();
 

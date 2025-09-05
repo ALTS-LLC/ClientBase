@@ -15,6 +15,8 @@ public class MotionCaptureStream : MonoBehaviour
     {
 		OptitrackStreamingClient = GameObject.FindAnyObjectByType<OptitrackStreamingClient>();
 		ViconDataStreamClient = GameObject.FindAnyObjectByType<ViconDataStreamClient>();
+
+        ViconDataStreamClient.HostName = ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.ViconConfig.HostName;
     }
 
     private void OnApplicationQuit()
