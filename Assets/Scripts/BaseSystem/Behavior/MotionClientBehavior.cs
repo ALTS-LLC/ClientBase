@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[DefaultExecutionOrder(-99)]
 public class MotionClientBehavior : IBehavior
 {
     private string _configJsonPath = null;
@@ -21,6 +22,7 @@ public class MotionClientBehavior : IBehavior
 
         if (ManagerHub.Instance.DataManager.Config.CaptureSystemConfig == null)
         {
+            Debug.Log("aaaaaaaaa");
             ManagerHub.Instance.DataManager.ConfigObjectSerialize();
         }
         else
@@ -32,8 +34,6 @@ public class MotionClientBehavior : IBehavior
         ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.OptiConfig = ManagerHub.Instance.DataManager.JsonToSBParser<OptiConfig>(ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.OptiConfig, _optiConfigJsonPath);
 
         ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.ViconConfig = ManagerHub.Instance.DataManager.JsonToSBParser<ViconConfig>(ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.ViconConfig, _viconConfigJsonPath);
-
-
     }
     public void OnQuit()
     {

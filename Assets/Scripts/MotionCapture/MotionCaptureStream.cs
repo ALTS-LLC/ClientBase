@@ -4,25 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using ClientBase_MotionCapture;
 
-public class MotionCaptureStream : MonoBehaviour
+public static class MotionCaptureStream
 {
-    public static ViconDataStreamClient ViconDataStreamClient { get; private set; } = null;
-	public static OptitrackStreamingClient OptitrackStreamingClient { get; private set; } = null;
+    public static ViconDataStreamClient ViconDataStreamClient { get; set; } = null;
+	public static OptitrackStreamingClient OptitrackStreamingClient { get;set; } = null;
 
 	public static Transform TargetModel = null;
-
-    private void Awake()
-    {
-		OptitrackStreamingClient = GameObject.FindAnyObjectByType<OptitrackStreamingClient>();
-		ViconDataStreamClient = GameObject.FindAnyObjectByType<ViconDataStreamClient>();
-    }
-
-    private void OnApplicationQuit()
-    {
-		TargetModel = null;
-    }
-    private void OnDestroy()
-    {
-		TargetModel = null;
-	}
 }
