@@ -6,7 +6,7 @@ using UnityEditor.SceneManagement;
 using System.Linq;
 using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
-using Evila_MotionCapture;
+using ClientBase_MotionCapture;
 using System;
 using UnityVicon;
 
@@ -18,7 +18,7 @@ using UnityEditor;
 
 public class MotionClientBuild : EditorWindow, IBuildable
 {
-    public static GameObject Actor = null;
+    public static GameObject Target = null;
     private string BuildPath = "";
 
     private CaptureSystemType _captureSystemType = CaptureSystemType.OptiTrack;
@@ -102,21 +102,21 @@ public class MotionClientBuild : EditorWindow, IBuildable
         EditorGUILayout.LabelField("Select Actor GameObject:", EditorStyles.boldLabel);
         EditorGUILayout.Space(5);
 
-        GameObject newActor = EditorGUILayout.ObjectField("Actor", Actor, typeof(GameObject), true) as GameObject;
-        if (newActor != Actor)
+        GameObject newActor = EditorGUILayout.ObjectField("Actor", Target, typeof(GameObject), true) as GameObject;
+        if (newActor != Target)
         {
-            Actor = newActor;
+            Target = newActor;
         }
 
         // Actor情報表示
-        if (Actor != null)
+        if (Target != null)
         {
             EditorGUILayout.Space(5);
             EditorGUILayout.BeginVertical(EditorStyles.helpBox);
 
             EditorGUILayout.LabelField("Actor Info:", EditorStyles.miniLabel);
-            EditorGUILayout.LabelField($"Name: {Actor.name}", EditorStyles.miniLabel);
-            EditorGUILayout.LabelField($"Path: {AssetDatabase.GetAssetPath(Actor)}", EditorStyles.miniLabel);
+            EditorGUILayout.LabelField($"Name: {Target.name}", EditorStyles.miniLabel);
+            EditorGUILayout.LabelField($"Path: {AssetDatabase.GetAssetPath(Target)}", EditorStyles.miniLabel);
 
             EditorGUILayout.EndVertical();
         }
@@ -178,9 +178,9 @@ public class MotionClientBuild : EditorWindow, IBuildable
             EditorGUILayout.BeginVertical(EditorStyles.helpBox);
 
             EditorGUILayout.LabelField("Output File:", EditorStyles.miniLabel);
-            if (Actor != null)
+            if (Target != null)
             {
-                EditorGUILayout.LabelField($"{BuildPath}{Actor.name}MotionClient.exe", EditorStyles.miniLabel);
+                EditorGUILayout.LabelField($"{BuildPath}{Target.name}MotionClient.exe", EditorStyles.miniLabel);
             }
             else
             {
@@ -198,7 +198,7 @@ public class MotionClientBuild : EditorWindow, IBuildable
         EditorGUILayout.BeginVertical(sectionStyle);
 
         // ビルド条件チェック
-        bool canBuild = Actor != null && !string.IsNullOrEmpty(BuildPath);
+        bool canBuild = Target != null && !string.IsNullOrEmpty(BuildPath);
 
         if (!canBuild)
         {
@@ -250,13 +250,13 @@ public class MotionClientBuild : EditorWindow, IBuildable
 
         EditorUtility.DisplayProgressBar("Building Motion Client", "Preparing build...", 0f);
 
-        string path = AssetDatabase.GetAssetPath(Actor);
+        string path = AssetDatabase.GetAssetPath(Target);
         PlayerPrefs.SetString("MotionClientPath", BuildPath);
 
         EditorUtility.DisplayProgressBar("Building Motion Client", "Removing scene from build settings...", 0.2f);
         ClientBuild.RemoveSceneFromBuildSettings();
 
-        var scenePath = path.Replace(Path.GetFileName(path), "") + Actor.name + ".unity";
+        var scenePath = path.Replace(Path.GetFileName(path), "") + Target.name + ".unity";
 
         EditorUtility.DisplayProgressBar("Building Motion Client", "Creating scene copy...", 0.4f);
         AssetDatabase.CopyAsset(_clientScenePath, scenePath);
@@ -273,12 +273,12 @@ public class MotionClientBuild : EditorWindow, IBuildable
         ClientBuild.AddSceneToBuildSettings(scenePath);
 
         EditorUtility.DisplayProgressBar("Building Motion Client", "Building executable...", 0.9f);
-        ClientBuild.Build(BuildPath + Actor.name + "MotionClient.exe");
+        ClientBuild.Build(BuildPath + Target.name + "MotionClient.exe");
 
         EditorSceneManager.OpenScene(_clientScenePath, OpenSceneMode.Single);
 
         EditorUtility.ClearProgressBar();
-        EditorUtility.DisplayDialog("Build Complete", $"Motion Client built successfully!\nOutput: {BuildPath}{Actor.name}MotionClient.exe", "OK");
+        EditorUtility.DisplayDialog("Build Complete", $"Motion Client built successfully!\nOutput: {BuildPath}{Target.name}MotionClient.exe", "OK");
         try
         {
 
@@ -329,7 +329,7 @@ public class MotionClientBuild : EditorWindow, IBuildable
             if (item.ToString() == _captureTypeContent[_captureTypeIndex].text)
             {
                 captureType = (CaptureType)item;
-                ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.CaputureType= item.ToString();
+                ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.CaputureType = item.ToString();
             }
         }
         ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.TagName = "Skeleton 001";
@@ -355,14 +355,13 @@ public class MotionClientBuild : EditorWindow, IBuildable
 
     private void SettingOptiCaptureType(CaptureType captureType)
     {
+        var opti = PrefabUtility.LoadPrefabContents(Application.dataPath + "/ManagerAsset/App/MotionCapture/MotionClient/Client - OptiTrack.prefab");
+        var optitrackStreamingClient = Instantiate(opti).GetComponent<OptitrackStreamingClient>();
+
         switch (captureType)
         {
             case CaptureType.Motion:
-
-                var opti = PrefabUtility.LoadPrefabContents(Application.dataPath + "/ManagerAsset/App/MotionCapture/MotionClient/Client - OptiTrack.prefab");
-                var optitrackStreamingClient = Instantiate(opti).GetComponent<OptitrackStreamingClient>();
-
-                var actor = Instantiate(Actor).gameObject.AddComponent<MotionSender>();
+                var actor = Instantiate(Target).gameObject.AddComponent<MotionSender>();
                 var optitrackSA = actor.AddComponent<OptitrackSkeletonAnimator>();
                 optitrackSA.StreamingClient = optitrackStreamingClient;
                 foreach (var item in actor.gameObject.GetComponentsInChildren<Transform>())
@@ -380,6 +379,12 @@ public class MotionClientBuild : EditorWindow, IBuildable
 
                 break;
             case CaptureType.Prop:
+                var prop = Instantiate(Target).gameObject.AddComponent<PropSender>();
+                var optitrackRB = prop.AddComponent<OptitrackRigidBody>();
+                optitrackRB.StreamingClient = optitrackStreamingClient;
+                optitrackRB.RigidBodyId = 0;
+
+                Undo.RegisterCreatedObjectUndo(prop.gameObject, "CreateProp");
                 break;
             default:
                 break;
@@ -387,14 +392,14 @@ public class MotionClientBuild : EditorWindow, IBuildable
     }
     private void SettingViconCaptureType(CaptureType captureType)
     {
+        var vicon = PrefabUtility.LoadPrefabContents(Application.dataPath + "/ManagerAsset/App/MotionCapture/MotionClient/ViconDataStreamPrefab.prefab");
+        var viconDataStreamClient = Instantiate(vicon).GetComponent<ViconDataStreamClient>();
         switch (captureType)
         {
             case CaptureType.Motion:
 
-                var vicon = PrefabUtility.LoadPrefabContents(Application.dataPath + "/ManagerAsset/App/MotionCapture/MotionClient/ViconDataStreamPrefab.prefab");
-                var viconDataStreamClient = Instantiate(vicon).GetComponent<ViconDataStreamClient>();
 
-                var actor = Instantiate(Actor).gameObject.AddComponent<MotionSender>();
+                var actor = Instantiate(Target).gameObject.AddComponent<MotionSender>();
                 var viconActor = PrefabUtility.LoadPrefabContents(Application.dataPath + "/ManagerAsset/App/MotionCapture/MotionClient/ViconActor.prefab");
 
                 var referenceActor = Instantiate(viconActor).GetComponent<SubjectScript_for12>();
@@ -410,6 +415,11 @@ public class MotionClientBuild : EditorWindow, IBuildable
 
                 break;
             case CaptureType.Prop:
+                var prop = Instantiate(Target).gameObject.AddComponent<PropSender>();
+                var rbScript_For12 = prop.AddComponent<RBScript_for12>();
+                rbScript_For12.Client = viconDataStreamClient;
+                rbScript_For12.ObjectName = ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.TagName;
+                Undo.RegisterCreatedObjectUndo(prop.gameObject, "CreateProp");
                 break;
             default:
                 break;

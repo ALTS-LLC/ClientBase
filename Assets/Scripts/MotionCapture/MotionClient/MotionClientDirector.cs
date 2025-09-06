@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityVicon;
-using Evila_MotionCapture;
+using ClientBase_MotionCapture;
 using static OptitrackStreamingClient;
 
 public class MotionClientDirector : DirectorBase
@@ -15,8 +15,11 @@ public class MotionClientDirector : DirectorBase
     [SerializeField]
     private SubjectScript_for12 _viconActor = null;
 
-    private SubjectScript_for12 _referenceActor = null;
     private OptitrackSkeletonAnimator _optitrackSkeletonAnimator = null;
+    private SubjectScript_for12 _referenceActor = null;
+
+    private OptitrackRigidBody _optitrackRigidBody  = null;
+    private RBScript_for12 _rbScript_For12 = null;
 
 
     private string _tagName = null;
@@ -71,6 +74,11 @@ public class MotionClientDirector : DirectorBase
                         _optitrackSkeletonAnimator.SkeletonAssetName = ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.TagName;
                         break;
                     case CaptureType.Prop:
+                        _optitrackRigidBody = GameObject.FindAnyObjectByType<OptitrackRigidBody>();
+                        if (int.TryParse(ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.TagName, out int id))
+                        {
+                            _optitrackRigidBody.RigidBodyId = id;
+                        }                       
                         break;
                     default:
                         break;
@@ -84,6 +92,8 @@ public class MotionClientDirector : DirectorBase
                         _referenceActor.SubjectName = ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.TagName;
                         break;
                     case CaptureType.Prop:
+                        _rbScript_For12 = GameObject.FindAnyObjectByType<RBScript_for12>();
+                        _rbScript_For12.ObjectName = ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.TagName;
                         break;
                     default:
                         break;
@@ -117,7 +127,7 @@ public class MotionClientDirector : DirectorBase
     }
 }
 
-namespace Evila_MotionCapture
+namespace ClientBase_MotionCapture
 {
     public enum CaptureSystemType
     {

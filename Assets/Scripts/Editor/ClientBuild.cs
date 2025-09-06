@@ -39,7 +39,7 @@ public class ClientBuild : EditorWindow
 				}
 				if (SelectionObj() != null)
 				{
-					MotionClientBuild.Actor = SelectionObj();
+					MotionClientBuild.Target = SelectionObj();
 				}
 				_motionClientBuild.GUIWindow();
 				break;

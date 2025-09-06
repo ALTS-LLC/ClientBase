@@ -8,6 +8,7 @@ public class MotionClientBehavior : IBehavior
 	private string _captureSystemConfigJsonPath = null;
 	private string _optiConfigJsonPath = null;
 	private string _viconConfigJsonPath = null;
+
 	public void OnStart()
 	{
 		_configJsonPath = Application.dataPath + "/StreamingAssets/Config_json/config.json";

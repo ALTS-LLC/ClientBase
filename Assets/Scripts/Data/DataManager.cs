@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using System.IO;
 
+[DefaultExecutionOrder(-100)]
 public class DataManager : ManagerBase
 {
 	[SerializeField]
@@ -19,6 +20,7 @@ public class DataManager : ManagerBase
 
 	private void Awake()
 	{
+		
 		RegisterManager();
 	}
 

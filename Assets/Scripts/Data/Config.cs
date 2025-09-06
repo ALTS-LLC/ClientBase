@@ -8,5 +8,6 @@ public class Config : ScriptableObject
     public string SendlPort = null;
     public string MultiCastIP = null;
 
+    [SerializeField]
     public CaptureSystemConfig CaptureSystemConfig;
 }
