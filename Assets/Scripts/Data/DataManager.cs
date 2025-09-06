@@ -18,10 +18,16 @@ public class DataManager : ManagerBase
 		}
 	}
 
+	[SerializeField]
+	private CaptureSystemConfig _captureSystemConfig = null;
+	[SerializeField]
+	private OptiConfig _optiConfig = null;
+	[SerializeField]
+	private ViconConfig _viconConfig = null;
+
 	private void Awake()
 	{
-		
-		RegisterManager();
+		RegisterManager();		
 	}
 
 	public T SBtoJsonParser<T>(T scriptableObject,string path)
@@ -39,6 +45,14 @@ public class DataManager : ManagerBase
 			JsonUtility.FromJsonOverwrite(json, scriptableObject);
 		}
 		return scriptableObject;
+	}
+
+	public void ConfigObjectSerialize()
+	{
+		_config.CaptureSystemConfig = _captureSystemConfig;
+		_config.CaptureSystemConfig.OptiConfig = _optiConfig;
+		_config.CaptureSystemConfig.ViconConfig = _viconConfig;
+		_config.SetDirty();
 	}
 
 	protected override void RegisterManager()

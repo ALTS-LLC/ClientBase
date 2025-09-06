@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "ViconConfig", menuName = "ScriptableObjects/Create ViconConfig")]
 public class ViconConfig : ScriptableObject
 {
     public string HostName;
