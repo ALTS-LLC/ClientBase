@@ -10,9 +10,6 @@ using ClientBase_MotionCapture;
 using System;
 using UnityVicon;
 
-
-
-
 #if UNITY_EDITOR
 using UnityEditor;
 
@@ -25,7 +22,6 @@ public class MotionClientBuild : EditorWindow, IBuildable
     private List<GUIContent> _captureSystemContent = new();
     private int _captureSystemTypeIndex = 0;
 
-
     private CaptureType _captureType = CaptureType.Motion;
     private List<GUIContent> _captureTypeContent = new();
     private int _captureTypeIndex = 0;
@@ -36,43 +32,40 @@ public class MotionClientBuild : EditorWindow, IBuildable
     // UI用の変数
     private Vector2 scrollPosition = Vector2.zero;
     private GUIStyle headerStyle;
+    private GUIStyle subHeaderStyle;
     private GUIStyle sectionStyle;
+    private GUIStyle infoBoxStyle;
+    private GUIStyle warningBoxStyle;
     private GUIStyle buttonStyle;
+    private GUIStyle buildButtonStyle;
+    private GUIStyle boldLabelStyle;
+    private GUIStyle centeredLabelStyle;
     private bool isInitialized = false;
+
+    // カラーパレット
+    private static readonly Color primaryColor = new Color(0.2f, 0.6f, 1f, 1f);
+    private static readonly Color successColor = new Color(0.3f, 0.8f, 0.3f, 1f);
+    private static readonly Color warningColor = new Color(1f, 0.6f, 0.2f, 1f);
+    private static readonly Color sectionBgColor = new Color(0.9f, 0.9f, 0.9f, 0.3f);
 
     public void GUIWindow()
     {
         InitializeStyles();
 
+        // メインコンテナ
+        EditorGUILayout.BeginVertical(GUILayout.ExpandHeight(true));
+
+        // ヘッダーセクション
+        DrawHeader();
+
         scrollPosition = EditorGUILayout.BeginScrollView(scrollPosition);
 
-        // ヘッダー
-        EditorGUILayout.LabelField("Motion Client Builder", headerStyle);
+        EditorGUILayout.Space(5);
+
+        // キャプチャシステム設定セクション
+        DrawCaptureSystemSection();
+
         EditorGUILayout.Space(10);
-
-        if (_captureSystemContent.Count == 0)
-        {
-            foreach (var item in Enum.GetValues(typeof(CaptureSystemType)))
-            {
-                _captureSystemContent.Add(new GUIContent(item.ToString()));
-            }
-        }
-        _captureSystemTypeIndex = EditorGUILayout.Popup(label: new GUIContent("使用するモーションキャプチャー機材"), selectedIndex: _captureSystemTypeIndex, displayedOptions: _captureSystemContent.ToArray());
-
-        if (_captureTypeContent.Count == 0)
-        {
-            foreach (var item in Enum.GetValues(typeof(CaptureType)))
-            {
-                _captureTypeContent.Add(new GUIContent(item.ToString()));
-            }
-        }
-        _captureTypeIndex = EditorGUILayout.Popup(label: new GUIContent("Capture Type"), selectedIndex: _captureTypeIndex, displayedOptions: _captureTypeContent.ToArray());
-
-
-        if (GUILayout.Button("aaa"))
-        {
-            SetUPCaptureSystem();
-        }
 
         // Actor選択セクション
         DrawActorSection();
@@ -82,42 +75,124 @@ public class MotionClientBuild : EditorWindow, IBuildable
         // ビルドパス選択セクション
         DrawBuildPathSection();
 
-        EditorGUILayout.Space(15);
+        EditorGUILayout.Space(10);
 
         // ビルドボタンセクション
         DrawBuildSection();
 
+        EditorGUILayout.Space(20);
+
         EditorGUILayout.EndScrollView();
+        EditorGUILayout.EndVertical();
+    }
 
+    private void DrawHeader()
+    {
+        EditorGUILayout.BeginVertical();
 
+        // タイトル
+        EditorGUILayout.LabelField("🎬 Motion Client Builder", headerStyle);
+
+        // 区切り線
+        DrawSeparatorLine();
+
+        EditorGUILayout.EndVertical();
+    }
+
+    private void DrawCaptureSystemSection()
+    {
+        EditorGUILayout.BeginVertical(sectionStyle);
+
+        // セクションヘッダー
+        EditorGUILayout.BeginHorizontal();
+        EditorGUILayout.LabelField("⚙️", GUILayout.Width(20));
+        EditorGUILayout.LabelField("Capture System Settings", boldLabelStyle);
+        EditorGUILayout.EndHorizontal();
+
+        EditorGUILayout.Space(8);
+
+        // キャプチャシステム選択
+        if (_captureSystemContent.Count == 0)
+        {
+            foreach (var item in Enum.GetValues(typeof(CaptureSystemType)))
+            {
+                _captureSystemContent.Add(new GUIContent(item.ToString()));
+            }
+        }
+
+        EditorGUILayout.BeginVertical(infoBoxStyle);
+        EditorGUILayout.LabelField("モーションキャプチャー機材", EditorStyles.boldLabel);
+        _captureSystemTypeIndex = EditorGUILayout.Popup(_captureSystemTypeIndex, _captureSystemContent.ToArray(), GUILayout.Height(25));
+        EditorGUILayout.EndVertical();
+
+        EditorGUILayout.Space(5);
+
+        // キャプチャタイプ選択
+        if (_captureTypeContent.Count == 0)
+        {
+            foreach (var item in Enum.GetValues(typeof(CaptureType)))
+            {
+                _captureTypeContent.Add(new GUIContent(item.ToString()));
+            }
+        }
+
+        EditorGUILayout.BeginVertical(infoBoxStyle);
+        EditorGUILayout.LabelField("Capture Type", EditorStyles.boldLabel);
+        _captureTypeIndex = EditorGUILayout.Popup(_captureTypeIndex, _captureTypeContent.ToArray(), GUILayout.Height(25));
+        EditorGUILayout.EndVertical();
+
+        EditorGUILayout.EndVertical();
     }
 
     private void DrawActorSection()
     {
         EditorGUILayout.BeginVertical(sectionStyle);
 
-        EditorGUILayout.LabelField("Actor Settings", EditorStyles.boldLabel);
-        EditorGUILayout.Space(5);
+        // セクションヘッダー
+        EditorGUILayout.BeginHorizontal();
+        EditorGUILayout.LabelField("🎭", GUILayout.Width(20));
+        EditorGUILayout.LabelField("Actor Settings", boldLabelStyle);
+        EditorGUILayout.EndHorizontal();
 
-        EditorGUILayout.LabelField("Select Actor GameObject:", EditorStyles.boldLabel);
-        EditorGUILayout.Space(5);
+        EditorGUILayout.Space(8);
 
-        GameObject newActor = EditorGUILayout.ObjectField("Actor", Target, typeof(GameObject), true) as GameObject;
+        // Actor選択
+        EditorGUILayout.BeginVertical(infoBoxStyle);
+        EditorGUILayout.LabelField("Select Actor GameObject", EditorStyles.boldLabel);
+        EditorGUILayout.Space(3);
+
+        GameObject newActor = EditorGUILayout.ObjectField(Target, typeof(GameObject), true, GUILayout.Height(25)) as GameObject;
         if (newActor != Target)
         {
             Target = newActor;
         }
+        EditorGUILayout.EndVertical();
 
         // Actor情報表示
         if (Target != null)
         {
-            EditorGUILayout.Space(5);
-            EditorGUILayout.BeginVertical(EditorStyles.helpBox);
+            EditorGUILayout.Space(8);
+            EditorGUILayout.BeginVertical(CreateInfoStyle(successColor));
 
-            EditorGUILayout.LabelField("Actor Info:", EditorStyles.miniLabel);
-            EditorGUILayout.LabelField($"Name: {Target.name}", EditorStyles.miniLabel);
-            EditorGUILayout.LabelField($"Path: {AssetDatabase.GetAssetPath(Target)}", EditorStyles.miniLabel);
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.LabelField("✅", GUILayout.Width(20));
+            EditorGUILayout.LabelField("Actor Information", EditorStyles.boldLabel);
+            EditorGUILayout.EndHorizontal();
 
+            EditorGUILayout.Space(3);
+            EditorGUILayout.LabelField($"Name: {Target.name}", EditorStyles.label);
+            EditorGUILayout.LabelField($"Path: {AssetDatabase.GetAssetPath(Target)}", EditorStyles.wordWrappedMiniLabel);
+
+            EditorGUILayout.EndVertical();
+        }
+        else
+        {
+            EditorGUILayout.Space(8);
+            EditorGUILayout.BeginVertical(warningBoxStyle);
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.LabelField("⚠️", GUILayout.Width(20));
+            EditorGUILayout.LabelField("Please select an Actor GameObject", EditorStyles.boldLabel);
+            EditorGUILayout.EndHorizontal();
             EditorGUILayout.EndVertical();
         }
 
@@ -128,39 +203,28 @@ public class MotionClientBuild : EditorWindow, IBuildable
     {
         EditorGUILayout.BeginVertical(sectionStyle);
 
-        EditorGUILayout.LabelField("Build Settings", EditorStyles.boldLabel);
-        EditorGUILayout.Space(5);
+        // セクションヘッダー
+        EditorGUILayout.BeginHorizontal();
+        EditorGUILayout.LabelField("📁", GUILayout.Width(20));
+        EditorGUILayout.LabelField("Build Settings", boldLabelStyle);
+        EditorGUILayout.EndHorizontal();
 
-        EditorGUILayout.LabelField("Build Output Path:", EditorStyles.boldLabel);
-        EditorGUILayout.Space(5);
+        EditorGUILayout.Space(8);
+
+        // ビルドパス選択
+        EditorGUILayout.BeginVertical(infoBoxStyle);
+        EditorGUILayout.LabelField("Build Output Path", EditorStyles.boldLabel);
+        EditorGUILayout.Space(3);
 
         EditorGUILayout.BeginHorizontal();
+        BuildPath = EditorGUILayout.TextField(BuildPath, GUILayout.Height(25));
 
-        BuildPath = EditorGUILayout.TextField("Path", BuildPath);
+        GUIStyle browseButtonStyle = new GUIStyle(GUI.skin.button);
+        browseButtonStyle.fixedWidth = 80;
+        browseButtonStyle.fixedHeight = 25;
+        browseButtonStyle.fontStyle = FontStyle.Bold;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        GUIStyle selectButtonStyle = new GUIStyle(GUI.skin.button);
-        selectButtonStyle.fixedWidth = 70;
-        if (GUILayout.Button("Browse", selectButtonStyle))
+        if (GUILayout.Button("📂 Browse", browseButtonStyle))
         {
             string selectedPath = EditorUtility.OpenFolderPanel("Select Build Folder", "", "");
             if (!string.IsNullOrEmpty(selectedPath))
@@ -168,23 +232,30 @@ public class MotionClientBuild : EditorWindow, IBuildable
                 BuildPath = selectedPath + "/";
             }
         }
-
         EditorGUILayout.EndHorizontal();
+        EditorGUILayout.EndVertical();
 
         // パス情報表示
         if (!string.IsNullOrEmpty(BuildPath))
         {
-            EditorGUILayout.Space(5);
-            EditorGUILayout.BeginVertical(EditorStyles.helpBox);
+            EditorGUILayout.Space(8);
+            EditorGUILayout.BeginVertical(CreateInfoStyle(successColor));
 
-            EditorGUILayout.LabelField("Output File:", EditorStyles.miniLabel);
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.LabelField("📄", GUILayout.Width(20));
+            EditorGUILayout.LabelField("Output File Information", EditorStyles.boldLabel);
+            EditorGUILayout.EndHorizontal();
+
+            EditorGUILayout.Space(3);
             if (Target != null)
             {
-                EditorGUILayout.LabelField($"{BuildPath}{Target.name}MotionClient.exe", EditorStyles.miniLabel);
+                string outputPath = $"{BuildPath}{Target.name}MotionClient.exe";
+                EditorGUILayout.LabelField("Output:", EditorStyles.boldLabel);
+                EditorGUILayout.SelectableLabel(outputPath, EditorStyles.wordWrappedLabel, GUILayout.Height(30));
             }
             else
             {
-                EditorGUILayout.LabelField("Please select an Actor first", EditorStyles.miniLabel);
+                EditorGUILayout.LabelField("Please select an Actor first", EditorStyles.centeredGreyMiniLabel);
             }
 
             EditorGUILayout.EndVertical();
@@ -197,26 +268,54 @@ public class MotionClientBuild : EditorWindow, IBuildable
     {
         EditorGUILayout.BeginVertical(sectionStyle);
 
+        // セクションヘッダー
+        EditorGUILayout.BeginHorizontal();
+        EditorGUILayout.LabelField("🚀", GUILayout.Width(20));
+        EditorGUILayout.LabelField("Build Process", boldLabelStyle);
+        EditorGUILayout.EndHorizontal();
+
+        EditorGUILayout.Space(8);
+
         // ビルド条件チェック
         bool canBuild = Target != null && !string.IsNullOrEmpty(BuildPath);
 
         if (!canBuild)
         {
-            EditorGUILayout.HelpBox("Please select an Actor and specify a build path before building.", MessageType.Warning);
-            EditorGUILayout.Space(5);
+            EditorGUILayout.BeginVertical(warningBoxStyle);
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.LabelField("⚠️", GUILayout.Width(20));
+            EditorGUILayout.LabelField("Build Requirements", EditorStyles.boldLabel);
+            EditorGUILayout.EndHorizontal();
+            EditorGUILayout.Space(3);
+
+            if (Target == null)
+                EditorGUILayout.LabelField("• Select an Actor GameObject", EditorStyles.label);
+            if (string.IsNullOrEmpty(BuildPath))
+                EditorGUILayout.LabelField("• Specify a build output path", EditorStyles.label);
+
+            EditorGUILayout.EndVertical();
+            EditorGUILayout.Space(8);
         }
+
+        // ビルドプロセス説明
+        EditorGUILayout.BeginVertical(infoBoxStyle);
+        EditorGUILayout.LabelField("Build Process Overview", EditorStyles.boldLabel);
+        EditorGUILayout.Space(3);
+        EditorGUILayout.LabelField("1. Creates scene copy with MotionSender component", EditorStyles.label);
+        EditorGUILayout.LabelField("2. Adds ModelGroundingAdjuster component", EditorStyles.label);
+        EditorGUILayout.LabelField("3. Configures capture system settings", EditorStyles.label);
+        EditorGUILayout.LabelField("4. Builds executable client", EditorStyles.label);
+        EditorGUILayout.EndVertical();
+
+        EditorGUILayout.Space(10);
 
         // ビルドボタン
         GUI.enabled = canBuild;
 
-        GUIStyle buildButtonStyle = new GUIStyle(GUI.skin.button);
-        buildButtonStyle.fixedHeight = 40;
-        buildButtonStyle.fontSize = 14;
-        buildButtonStyle.fontStyle = FontStyle.Bold;
-
+        Color originalBgColor = GUI.backgroundColor;
         if (canBuild)
         {
-            buildButtonStyle.normal.textColor = Color.white;
+            GUI.backgroundColor = successColor;
         }
 
         if (GUILayout.Button("🚀 Build Motion Client", buildButtonStyle))
@@ -225,15 +324,32 @@ public class MotionClientBuild : EditorWindow, IBuildable
             GUIUtility.ExitGUI();
         }
 
+        GUI.backgroundColor = originalBgColor;
         GUI.enabled = true;
 
-        EditorGUILayout.Space(5);
-        EditorGUILayout.LabelField("Build Process:", EditorStyles.miniLabel);
-        EditorGUILayout.LabelField("• Creates scene copy with MotionSender component", EditorStyles.miniLabel);
-        EditorGUILayout.LabelField("• Adds ModelGroundingAdjuster component", EditorStyles.miniLabel);
-        EditorGUILayout.LabelField("• Builds executable client", EditorStyles.miniLabel);
-
         EditorGUILayout.EndVertical();
+    }
+
+    private void DrawSeparatorLine()
+    {
+        EditorGUILayout.Space(5);
+        Rect rect = EditorGUILayout.GetControlRect(false, 2);
+        EditorGUI.DrawRect(rect, new Color(0.5f, 0.5f, 0.5f, 0.5f));
+        EditorGUILayout.Space(5);
+    }
+
+    private GUIStyle CreateInfoStyle(Color backgroundColor)
+    {
+        GUIStyle style = new GUIStyle(EditorStyles.helpBox);
+        style.padding = new RectOffset(10, 10, 8, 8);
+        style.margin = new RectOffset(0, 0, 0, 0);
+
+        Texture2D bgTexture = new Texture2D(1, 1);
+        bgTexture.SetPixel(0, 0, backgroundColor * 0.3f);
+        bgTexture.Apply();
+        style.normal.background = bgTexture;
+
+        return style;
     }
 
     private void BuildMotionClient()
@@ -289,14 +405,6 @@ public class MotionClientBuild : EditorWindow, IBuildable
             EditorUtility.DisplayDialog("Build Error", $"Build failed with error:\n{e.Message}", "OK");
             Debug.LogError($"Motion Client Build Error: {e}");
         }
-
-
-
-
-
-
-
-
     }
 
     private void SetUPCaptureSystem()
@@ -333,7 +441,6 @@ public class MotionClientBuild : EditorWindow, IBuildable
             }
         }
         ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.TagName = "Skeleton 001";
-
 
         ManagerHub.Instance.DataManager.SBtoJsonParser<Config>(ManagerHub.Instance.DataManager.Config, configJsonPath);
         ManagerHub.Instance.DataManager.Config.CaptureSystemConfig = ManagerHub.Instance.DataManager.SBtoJsonParser<CaptureSystemConfig>(ManagerHub.Instance.DataManager.Config.CaptureSystemConfig, captureSystemConfigJsonPath);
@@ -373,7 +480,6 @@ public class MotionClientBuild : EditorWindow, IBuildable
                 }
                 optitrackSA.SkeletonAssetName = ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.TagName;
 
-
                 actor.gameObject.AddComponent<ModelGroundingAdjuster>();
                 Undo.RegisterCreatedObjectUndo(actor.gameObject, "CreateActor");
 
@@ -390,6 +496,7 @@ public class MotionClientBuild : EditorWindow, IBuildable
                 break;
         }
     }
+
     private void SettingViconCaptureType(CaptureType captureType)
     {
         var vicon = PrefabUtility.LoadPrefabContents(Application.dataPath + "/ManagerAsset/App/MotionCapture/MotionClient/ViconDataStreamPrefab.prefab");
@@ -397,8 +504,6 @@ public class MotionClientBuild : EditorWindow, IBuildable
         switch (captureType)
         {
             case CaptureType.Motion:
-
-
                 var actor = Instantiate(Target).gameObject.AddComponent<MotionSender>();
                 var viconActor = PrefabUtility.LoadPrefabContents(Application.dataPath + "/ManagerAsset/App/MotionCapture/MotionClient/ViconActor.prefab");
 
@@ -408,7 +513,6 @@ public class MotionClientBuild : EditorWindow, IBuildable
                 referenceActor.Client = viconDataStreamClient;
                 var boneTracer = actor.gameObject.AddComponent<BoneTracer>();
                 boneTracer.TargetAnimator = referenceActor.gameObject.GetComponent<Animator>();
-
 
                 actor.gameObject.AddComponent<ModelGroundingAdjuster>();
                 Undo.RegisterCreatedObjectUndo(actor.gameObject, "CreateActor");
@@ -432,19 +536,61 @@ public class MotionClientBuild : EditorWindow, IBuildable
 
         // ヘッダースタイル
         headerStyle = new GUIStyle(EditorStyles.largeLabel);
-        headerStyle.fontSize = 18;
+        headerStyle.fontSize = 20;
         headerStyle.fontStyle = FontStyle.Bold;
         headerStyle.alignment = TextAnchor.MiddleCenter;
+        headerStyle.normal.textColor = primaryColor;
+
+        // サブヘッダースタイル
+        subHeaderStyle = new GUIStyle(EditorStyles.centeredGreyMiniLabel);
+        subHeaderStyle.fontSize = 11;
+        subHeaderStyle.alignment = TextAnchor.MiddleCenter;
 
         // セクションスタイル
-        sectionStyle = new GUIStyle(EditorStyles.helpBox);
-        sectionStyle.padding = new RectOffset(10, 10, 10, 10);
+        sectionStyle = new GUIStyle();
+        sectionStyle.padding = new RectOffset(15, 15, 12, 12);
         sectionStyle.margin = new RectOffset(5, 5, 5, 5);
+
+        Texture2D sectionBg = new Texture2D(1, 1);
+        sectionBg.SetPixel(0, 0, sectionBgColor);
+        sectionBg.Apply();
+        sectionStyle.normal.background = sectionBg;
+
+        // 情報ボックススタイル
+        infoBoxStyle = new GUIStyle(EditorStyles.helpBox);
+        infoBoxStyle.padding = new RectOffset(10, 10, 8, 8);
+        infoBoxStyle.margin = new RectOffset(0, 0, 0, 0);
+
+        // 警告ボックススタイル
+        warningBoxStyle = new GUIStyle(EditorStyles.helpBox);
+        warningBoxStyle.padding = new RectOffset(10, 10, 8, 8);
+        warningBoxStyle.margin = new RectOffset(0, 0, 0, 0);
+
+        Texture2D warningBg = new Texture2D(1, 1);
+        warningBg.SetPixel(0, 0, warningColor * 0.3f);
+        warningBg.Apply();
+        warningBoxStyle.normal.background = warningBg;
 
         // ボタンスタイル
         buttonStyle = new GUIStyle(GUI.skin.button);
         buttonStyle.fixedHeight = 30;
         buttonStyle.fontSize = 12;
+        buttonStyle.fontStyle = FontStyle.Bold;
+
+        // ビルドボタンスタイル
+        buildButtonStyle = new GUIStyle(GUI.skin.button);
+        buildButtonStyle.fixedHeight = 45;
+        buildButtonStyle.fontSize = 16;
+        buildButtonStyle.fontStyle = FontStyle.Bold;
+        buildButtonStyle.normal.textColor = Color.white;
+
+        // 太字ラベルスタイル
+        boldLabelStyle = new GUIStyle(EditorStyles.boldLabel);
+        boldLabelStyle.fontSize = 13;
+
+        // 中央揃えラベルスタイル
+        centeredLabelStyle = new GUIStyle(EditorStyles.label);
+        centeredLabelStyle.alignment = TextAnchor.MiddleCenter;
 
         isInitialized = true;
     }
