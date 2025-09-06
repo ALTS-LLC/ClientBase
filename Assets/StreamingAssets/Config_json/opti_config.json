@@ -1,1 +1,1 @@
-{"ConnectionType":"Multicast","LocalAddress":"127.0.0.1","ServerAddress":"127.0.0.1","ServerCommandPort":1510,"ServerDataPort":1511,"DrawMarkers":false,"BoneNamingConvention":"FBX"}
+{"ConnectionType":"Unicast","LocalAddress":"127.0.0.1","ServerAddress":"127.0.0.1","ServerCommandPort":1510,"ServerDataPort":1511,"DrawMarkers":false,"BoneNamingConvention":"FBX"}

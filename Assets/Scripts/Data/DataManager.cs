@@ -49,7 +49,7 @@ public class DataManager : ManagerBase
 
 	public void ConfigObjectSerialize()
 	{
-		_config.CaptureSystemConfig = _captureSystemConfig;
+        _config.CaptureSystemConfig = _captureSystemConfig;
 		_config.CaptureSystemConfig.OptiConfig = _optiConfig;
 		_config.CaptureSystemConfig.ViconConfig = _viconConfig;
 		_config.SetDirty();
