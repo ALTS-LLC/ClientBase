@@ -419,7 +419,6 @@ public class MotionClientBuild : EditorWindow, IBuildable
 
         ManagerHub.Instance.DataManager.Config = ManagerHub.Instance.DataManager.JsonToSBParser<Config>(ManagerHub.Instance.DataManager.Config, configJsonPath);
         ManagerHub.Instance.DataManager.Config.CaptureSystemConfig = ManagerHub.Instance.DataManager.JsonToSBParser<CaptureSystemConfig>(ManagerHub.Instance.DataManager.Config.CaptureSystemConfig, captureSystemConfigJsonPath);
-        ManagerHub.Instance.DataManager.ConfigObjectSerialize();
         ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.OptiConfig = ManagerHub.Instance.DataManager.JsonToSBParser<OptiConfig>(ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.OptiConfig, optiConfigJsonPath);
         ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.ViconConfig = ManagerHub.Instance.DataManager.JsonToSBParser<ViconConfig>(ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.ViconConfig, viconConfigJsonPath);
 

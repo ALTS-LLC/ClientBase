@@ -49,7 +49,6 @@ public class MotionClientDirector : DirectorBase
 
     private void Awake()
     {      
-        Initialize();
     }
 
     private void Start()
