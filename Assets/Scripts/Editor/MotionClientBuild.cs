@@ -420,6 +420,7 @@ public class MotionClientBuild : EditorWindow, IBuildable
         string viconConfigJsonPath = Application.dataPath + "/StreamingAssets/Config_json/vicon_config.json";
 
         ConfigUtility.Config = ConfigUtility.JsonToSBParser<Config>(ConfigUtility.Config, configJsonPath);
+        Debug.Log(ConfigUtility.Config);
         ConfigUtility.Config.CaptureSystemConfig = ConfigUtility.JsonToSBParser<CaptureSystemConfig>(ConfigUtility.Config.CaptureSystemConfig, captureSystemConfigJsonPath);
         ConfigUtility.Config.CaptureSystemConfig.OptiConfig = ConfigUtility.JsonToSBParser<OptiConfig>(ConfigUtility.Config.CaptureSystemConfig.OptiConfig, optiConfigJsonPath);
         ConfigUtility.Config.CaptureSystemConfig.ViconConfig = ConfigUtility.JsonToSBParser<ViconConfig>(ConfigUtility.Config.CaptureSystemConfig.ViconConfig, viconConfigJsonPath);

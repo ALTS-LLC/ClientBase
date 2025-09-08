@@ -12,7 +12,6 @@ using UnityEditor;
 public class ClientBuild : EditorWindow
 {
 	private static MotionClientBuild _motionClientBuild = null;
-	private static PropClientBuild _propClientBuild= null;
 
 	private static int _optionsIndex = 0;
 	private static BehaviorType _currentBehaviorType = BehaviorType.MotionClient;
@@ -42,18 +41,7 @@ public class ClientBuild : EditorWindow
 					MotionClientBuild.Target = SelectionObj();
 				}
 				_motionClientBuild.GUIWindow();
-				break;
-			case BehaviorType.PropClient:
-				if (_propClientBuild == null)
-				{
-					_propClientBuild = new PropClientBuild();
-				}
-				if (SelectionObj() != null)
-				{
-					PropClientBuild.Prop= SelectionObj();
-				}
-				_propClientBuild.GUIWindow();
-				break;
+				break;		
 			default:
 				break;
 		}

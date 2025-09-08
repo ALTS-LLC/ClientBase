@@ -22,9 +22,6 @@ public class AppInstaller : MonoInstaller
                              MotionClientDirector motionClientDirector = Instantiate(GetBehaviorDirector<MotionClientDirector>());
                              motionClientDirector.transform.parent = gameObject.transform;
                              return context.Container.Instantiate<MotionClientBehavior>();
-                         case BehaviorType.PropClient:
-                             Instantiate(GetBehaviorDirector<PropClientDirector>()).transform.parent = gameObject.transform;
-                             return context.Container.Instantiate<PropClientBehavior>();
                          default:
                              return null;
                      }
@@ -56,5 +53,4 @@ public enum BehaviorType
 {
     None,
     MotionClient,
-    PropClient,
 }
