@@ -135,6 +135,10 @@ PrefabInstance:
       value: ManagerHub
       objectReference: {fileID: 0}
     - target: {fileID: 2001995269103051692, guid: 7140e631032ce8a4f8773dcb0903c0c5, type: 3}
+      propertyPath: SelectedBehaviorType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2001995269103051692, guid: 7140e631032ce8a4f8773dcb0903c0c5, type: 3}
       propertyPath: _selectedBehaviorType
       value: 1
       objectReference: {fileID: 0}

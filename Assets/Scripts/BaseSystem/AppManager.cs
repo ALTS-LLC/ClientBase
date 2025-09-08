@@ -43,6 +43,10 @@ public class AppManager : ManagerBase
 
 	private void Start()
 	{
+		if (_currentBehavior == null)
+		{
+			return;
+		}
 		_currentBehavior.OnStart();
 	}
 
@@ -53,16 +57,28 @@ public class AppManager : ManagerBase
 
 	public void Dispose()
 	{
-		_currentBehavior.OnQuit();
+        if (_currentBehavior == null)
+        {
+            return;
+        }
+        _currentBehavior.OnQuit();
 	}
 
 	private void OnApplicationQuit()
 	{
-		_currentBehavior.OnQuit();
+        if (_currentBehavior == null)
+        {
+            return;
+        }
+        _currentBehavior.OnQuit();
 	}
 
 	private void OnDestroy()
 	{
-		_currentBehavior.OnQuit();
+        if (_currentBehavior == null)
+        {
+            return;
+        }
+        _currentBehavior.OnQuit();
 	}
 }
