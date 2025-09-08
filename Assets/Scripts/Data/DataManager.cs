@@ -1,3 +1,4 @@
+using ClientBaseUtility;
 using ModestTree;
 using System;
 using System.Collections;
@@ -26,6 +27,7 @@ public class DataManager : ManagerBase
     private void Awake()
     {
         RegisterManager();
+        Debug.Log(ConfigUtility.Config);
     }
 
     public void FactorialConfig<T>(T target)
