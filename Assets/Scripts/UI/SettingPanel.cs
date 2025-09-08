@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using ClientBaseUtility;
 
 public class SettingPanel : UIBase, IUseIinterface
 {
@@ -26,15 +27,15 @@ public class SettingPanel : UIBase, IUseIinterface
 	{
 		_sendPortField.onEndEdit.AddListener(delegate
 		{
-			ManagerHub.Instance.DataManager.Config.SendlPort = _sendPortField.text;
+			ConfigUtility.Config.SendlPort = _sendPortField.text;
 		});
 		_sendIPField.onEndEdit.AddListener(delegate
 		{
-			ManagerHub.Instance.DataManager.Config.MultiCastIP = _sendIPField.text;
+			ConfigUtility.Config.MultiCastIP = _sendIPField.text;
 		});
 		_ipDropDown.onValueChanged.AddListener((value) =>
 		{
-			ManagerHub.Instance.DataManager.Config.LocalIP = _ipDropDown.options[value].text;
+			ConfigUtility.Config.LocalIP = _ipDropDown.options[value].text;
 		});
 		_reconnectButton.onClick.AddListener(() => 
 		{
@@ -56,15 +57,15 @@ public class SettingPanel : UIBase, IUseIinterface
 
 			_ipDropDown.options.Add(new TMP_Dropdown.OptionData { text = item });
 
-			if (ManagerHub.Instance.DataManager.Config.LocalIP == item)
+			if (ConfigUtility.Config.LocalIP == item)
 			{
 				index = _ipDropDown.options.Count - 1;
 			}
 		}
 		_ipDropDown.value = index;
 
-		_sendPortField.text = ManagerHub.Instance.DataManager.Config.SendlPort;
-		_sendIPField.text = ManagerHub.Instance.DataManager.Config.MultiCastIP;
+		_sendPortField.text = ConfigUtility.Config.SendlPort;
+		_sendIPField.text = ConfigUtility.Config.MultiCastIP;
 	}
 
 	private void Update()

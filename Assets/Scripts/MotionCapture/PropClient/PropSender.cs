@@ -1,3 +1,4 @@
+using ClientBaseUtility;
 using System;
 using System.IO;
 using System.Net;
@@ -14,12 +15,12 @@ public class PropSender : MonoBehaviour
 
 	private void Start()
 	{
-		IPAddress interfaceAddress = IPAddress.Parse(ManagerHub.Instance.DataManager.Config.LocalIP);
-		IPAddress multicastAddress = IPAddress.Parse(ManagerHub.Instance.DataManager.Config.MultiCastIP);		
-		IPEndPoint localEndPoint = new IPEndPoint(interfaceAddress, int.Parse(ManagerHub.Instance.DataManager.Config.SendlPort));
+		IPAddress interfaceAddress = IPAddress.Parse(ConfigUtility.Config.LocalIP);
+		IPAddress multicastAddress = IPAddress.Parse(ConfigUtility.Config.MultiCastIP);		
+		IPEndPoint localEndPoint = new IPEndPoint(interfaceAddress, int.Parse(ConfigUtility.Config.SendlPort));
 
 		_udpClient = new UdpClient(localEndPoint);
-		_multicastEndpoint = new IPEndPoint(multicastAddress, int.Parse(ManagerHub.Instance.DataManager.Config.SendlPort));
+		_multicastEndpoint = new IPEndPoint(multicastAddress, int.Parse(ConfigUtility.Config.SendlPort));
         MotionCaptureStream.TargetModel = gameObject.transform;
 	}
 

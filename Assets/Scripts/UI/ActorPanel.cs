@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using ClientBaseUtility;
 
 public class ActorPanel : UIBase, IUseIinterface
 {
@@ -16,11 +17,11 @@ public class ActorPanel : UIBase, IUseIinterface
 	{
 		Register();
 
-		_tagNameField.text = ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.TagName;
+		_tagNameField.text = ConfigUtility.Config.CaptureSystemConfig.TagName;
 
 		_tagNameField.onEndEdit.AddListener(delegate
 		{
-			ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.TagName = _tagNameField.text;
+			ConfigUtility.Config.CaptureSystemConfig.TagName = _tagNameField.text;
 			ManagerHub.Instance.AppManager.MotionClientDirector.TagName = _tagNameField.text;
 		});
 	}

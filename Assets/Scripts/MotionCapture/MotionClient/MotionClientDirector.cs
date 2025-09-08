@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityVicon;
 using ClientBase_MotionCapture;
 using static OptitrackStreamingClient;
+using ClientBaseUtility;
 
 [DefaultExecutionOrder(-98)]
 public class MotionClientDirector : DirectorBase
@@ -71,7 +72,7 @@ public class MotionClientDirector : DirectorBase
     {
         foreach (object item in Enum.GetValues(typeof(CaptureSystemType)))
         {
-            if (item.ToString() == ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.CaputureSystemType)
+            if (item.ToString() == ConfigUtility.Config.CaptureSystemConfig.CaputureSystemType)
             {
                 _captureSystemType = (CaptureSystemType)item;
             }
@@ -79,7 +80,7 @@ public class MotionClientDirector : DirectorBase
 
         foreach (object item in Enum.GetValues(typeof(CaptureType)))
         {
-            if (item.ToString() == ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.CaputureType)
+            if (item.ToString() == ConfigUtility.Config.CaptureSystemConfig.CaputureType)
             {
                 _captureType = (CaptureType)item;
             }
@@ -92,22 +93,22 @@ public class MotionClientDirector : DirectorBase
 
                 foreach (var item in Enum.GetValues(typeof(OptitrackStreamingClient.ClientConnectionType)))
                 {
-                    if (item.ToString() == ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.OptiConfig.ConnectionType)
+                    if (item.ToString() == ConfigUtility.Config.CaptureSystemConfig.OptiConfig.ConnectionType)
                     {
                         MotionCaptureStream.OptitrackStreamingClient.ConnectionType = (OptitrackStreamingClient.ClientConnectionType)item;
                     }
                 }
 
-                MotionCaptureStream.OptitrackStreamingClient.LocalAddress = ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.OptiConfig.LocalAddress;
-                MotionCaptureStream.OptitrackStreamingClient.ServerAddress = ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.OptiConfig.ServerAddress;
-                MotionCaptureStream.OptitrackStreamingClient.ServerCommandPort = (UInt16)ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.OptiConfig.ServerCommandPort;
-                MotionCaptureStream.OptitrackStreamingClient.ServerDataPort = (UInt16)ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.OptiConfig.ServerDataPort;
-                MotionCaptureStream.OptitrackStreamingClient.DrawMarkers = ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.OptiConfig.DrawMarkers;
+                MotionCaptureStream.OptitrackStreamingClient.LocalAddress = ConfigUtility.Config.CaptureSystemConfig.OptiConfig.LocalAddress;
+                MotionCaptureStream.OptitrackStreamingClient.ServerAddress = ConfigUtility.Config.CaptureSystemConfig.OptiConfig.ServerAddress;
+                MotionCaptureStream.OptitrackStreamingClient.ServerCommandPort = (UInt16)ConfigUtility.Config.CaptureSystemConfig.OptiConfig.ServerCommandPort;
+                MotionCaptureStream.OptitrackStreamingClient.ServerDataPort = (UInt16)ConfigUtility.Config.CaptureSystemConfig.OptiConfig.ServerDataPort;
+                MotionCaptureStream.OptitrackStreamingClient.DrawMarkers = ConfigUtility.Config.CaptureSystemConfig.OptiConfig.DrawMarkers;
 
 
                 foreach (object item in Enum.GetValues(typeof(OptitrackBoneNameConvention)))
                 {
-                    if (item.ToString() == ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.OptiConfig.BoneNamingConvention)
+                    if (item.ToString() == ConfigUtility.Config.CaptureSystemConfig.OptiConfig.BoneNamingConvention)
                     {
                         MotionCaptureStream.OptitrackStreamingClient.BoneNamingConvention = (OptitrackBoneNameConvention)item;
                     }
@@ -119,11 +120,11 @@ public class MotionClientDirector : DirectorBase
                 {
                     case CaptureType.Motion:
                         _optitrackSkeletonAnimator = GameObject.FindAnyObjectByType<OptitrackSkeletonAnimator>();
-                        _optitrackSkeletonAnimator.SkeletonAssetName = ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.TagName;
+                        _optitrackSkeletonAnimator.SkeletonAssetName = ConfigUtility.Config.CaptureSystemConfig.TagName;
                         break;
                     case CaptureType.Prop:
                         _optitrackRigidBody = GameObject.FindAnyObjectByType<OptitrackRigidBody>();
-                        if (int.TryParse(ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.TagName, out int id))
+                        if (int.TryParse(ConfigUtility.Config.CaptureSystemConfig.TagName, out int id))
                         {
                             _optitrackRigidBody.RigidBodyId = id;
                         }
@@ -135,13 +136,13 @@ public class MotionClientDirector : DirectorBase
             case CaptureSystemType.Vicon1_12:
 
                 MotionCaptureStream.ViconDataStreamClient = GameObject.FindAnyObjectByType<ViconDataStreamClient>();
-                MotionCaptureStream.ViconDataStreamClient.HostName = ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.ViconConfig.HostName;
-                MotionCaptureStream.ViconDataStreamClient.Port = ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.ViconConfig.Port.ToString();
-                MotionCaptureStream.ViconDataStreamClient.SubjectFilter = ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.ViconConfig.SubjectFilter;
-                MotionCaptureStream.ViconDataStreamClient.UsePreFetch = ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.ViconConfig.UsePreFetch;
-                MotionCaptureStream.ViconDataStreamClient.IsRetimed = ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.ViconConfig.IsRetimed;
-                MotionCaptureStream.ViconDataStreamClient.Offset = ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.ViconConfig.Offset;
-                MotionCaptureStream.ViconDataStreamClient.ConfigureWireless = ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.ViconConfig.ConfigureWireless;
+                MotionCaptureStream.ViconDataStreamClient.HostName = ConfigUtility.Config.CaptureSystemConfig.ViconConfig.HostName;
+                MotionCaptureStream.ViconDataStreamClient.Port = ConfigUtility.Config.CaptureSystemConfig.ViconConfig.Port.ToString();
+                MotionCaptureStream.ViconDataStreamClient.SubjectFilter = ConfigUtility.Config.CaptureSystemConfig.ViconConfig.SubjectFilter;
+                MotionCaptureStream.ViconDataStreamClient.UsePreFetch = ConfigUtility.Config.CaptureSystemConfig.ViconConfig.UsePreFetch;
+                MotionCaptureStream.ViconDataStreamClient.IsRetimed = ConfigUtility.Config.CaptureSystemConfig.ViconConfig.IsRetimed;
+                MotionCaptureStream.ViconDataStreamClient.Offset = ConfigUtility.Config.CaptureSystemConfig.ViconConfig.Offset;
+                MotionCaptureStream.ViconDataStreamClient.ConfigureWireless = ConfigUtility.Config.CaptureSystemConfig.ViconConfig.ConfigureWireless;
 
 
 
@@ -149,11 +150,11 @@ public class MotionClientDirector : DirectorBase
                 {
                     case CaptureType.Motion:
                         _referenceActor = GameObject.FindAnyObjectByType<SubjectScript_for12>();
-                        _referenceActor.SubjectName = ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.TagName;
+                        _referenceActor.SubjectName = ConfigUtility.Config.CaptureSystemConfig.TagName;
                         break;
                     case CaptureType.Prop:
                         _rbScript_For12 = GameObject.FindAnyObjectByType<RBScript_for12>();
-                        _rbScript_For12.ObjectName = ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.TagName;
+                        _rbScript_For12.ObjectName = ConfigUtility.Config.CaptureSystemConfig.TagName;
                         break;
                     default:
                         break;

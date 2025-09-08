@@ -9,6 +9,8 @@ using Unity.VisualScripting;
 using ClientBase_MotionCapture;
 using System;
 using UnityVicon;
+using ClientBaseUtility;
+
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -417,17 +419,17 @@ public class MotionClientBuild : EditorWindow, IBuildable
         string optiConfigJsonPath = Application.dataPath + "/StreamingAssets/Config_json/opti_config.json";
         string viconConfigJsonPath = Application.dataPath + "/StreamingAssets/Config_json/vicon_config.json";
 
-        ManagerHub.Instance.DataManager.Config = ManagerHub.Instance.DataManager.JsonToSBParser<Config>(ManagerHub.Instance.DataManager.Config, configJsonPath);
-        ManagerHub.Instance.DataManager.Config.CaptureSystemConfig = ManagerHub.Instance.DataManager.JsonToSBParser<CaptureSystemConfig>(ManagerHub.Instance.DataManager.Config.CaptureSystemConfig, captureSystemConfigJsonPath);
-        ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.OptiConfig = ManagerHub.Instance.DataManager.JsonToSBParser<OptiConfig>(ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.OptiConfig, optiConfigJsonPath);
-        ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.ViconConfig = ManagerHub.Instance.DataManager.JsonToSBParser<ViconConfig>(ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.ViconConfig, viconConfigJsonPath);
+        ConfigUtility.Config = ConfigUtility.JsonToSBParser<Config>(ConfigUtility.Config, configJsonPath);
+        ConfigUtility.Config.CaptureSystemConfig = ConfigUtility.JsonToSBParser<CaptureSystemConfig>(ConfigUtility.Config.CaptureSystemConfig, captureSystemConfigJsonPath);
+        ConfigUtility.Config.CaptureSystemConfig.OptiConfig = ConfigUtility.JsonToSBParser<OptiConfig>(ConfigUtility.Config.CaptureSystemConfig.OptiConfig, optiConfigJsonPath);
+        ConfigUtility.Config.CaptureSystemConfig.ViconConfig = ConfigUtility.JsonToSBParser<ViconConfig>(ConfigUtility.Config.CaptureSystemConfig.ViconConfig, viconConfigJsonPath);
 
         foreach (var item in Enum.GetValues(typeof(CaptureSystemType)))
         {
             if (item.ToString() == _captureSystemContent[_captureSystemTypeIndex].text)
             {
                 captureSystemType = (CaptureSystemType)item;
-                ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.CaputureSystemType = item.ToString();
+                ConfigUtility.Config.CaptureSystemConfig.CaputureSystemType = item.ToString();
             }
         }
 
@@ -436,15 +438,15 @@ public class MotionClientBuild : EditorWindow, IBuildable
             if (item.ToString() == _captureTypeContent[_captureTypeIndex].text)
             {
                 captureType = (CaptureType)item;
-                ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.CaputureType = item.ToString();
+                ConfigUtility.Config.CaptureSystemConfig.CaputureType = item.ToString();
             }
         }
-        ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.TagName = "Skeleton 001";
+        ConfigUtility.Config.CaptureSystemConfig.TagName = "Skeleton 001";
 
-        ManagerHub.Instance.DataManager.SBtoJsonParser<Config>(ManagerHub.Instance.DataManager.Config, configJsonPath);
-        ManagerHub.Instance.DataManager.Config.CaptureSystemConfig = ManagerHub.Instance.DataManager.SBtoJsonParser<CaptureSystemConfig>(ManagerHub.Instance.DataManager.Config.CaptureSystemConfig, captureSystemConfigJsonPath);
-        ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.OptiConfig = ManagerHub.Instance.DataManager.SBtoJsonParser<OptiConfig>(ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.OptiConfig, optiConfigJsonPath);
-        ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.ViconConfig = ManagerHub.Instance.DataManager.SBtoJsonParser<ViconConfig>(ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.ViconConfig, viconConfigJsonPath);
+        ConfigUtility.SBtoJsonParser<Config>(ConfigUtility.Config, configJsonPath);
+        ConfigUtility.Config.CaptureSystemConfig = ConfigUtility.SBtoJsonParser<CaptureSystemConfig>(ConfigUtility.Config.CaptureSystemConfig, captureSystemConfigJsonPath);
+        ConfigUtility.Config.CaptureSystemConfig.OptiConfig = ConfigUtility.SBtoJsonParser<OptiConfig>(ConfigUtility.Config.CaptureSystemConfig.OptiConfig, optiConfigJsonPath);
+        ConfigUtility.Config.CaptureSystemConfig.ViconConfig = ConfigUtility.SBtoJsonParser<ViconConfig>(ConfigUtility.Config.CaptureSystemConfig.ViconConfig, viconConfigJsonPath);
 
         switch (captureSystemType)
         {
@@ -477,7 +479,7 @@ public class MotionClientBuild : EditorWindow, IBuildable
                         optitrackSA.DestinationAvatar = animator.avatar;
                     }
                 }
-                optitrackSA.SkeletonAssetName = ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.TagName;
+                optitrackSA.SkeletonAssetName = ConfigUtility.Config.CaptureSystemConfig.TagName;
 
                 actor.gameObject.AddComponent<ModelGroundingAdjuster>();
                 Undo.RegisterCreatedObjectUndo(actor.gameObject, "CreateActor");
@@ -508,7 +510,7 @@ public class MotionClientBuild : EditorWindow, IBuildable
 
                 var referenceActor = Instantiate(viconActor).GetComponent<SubjectScript_for12>();
                 referenceActor.Client = MotionCaptureStream.ViconDataStreamClient;
-                referenceActor.SubjectName = ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.TagName;
+                referenceActor.SubjectName = ConfigUtility.Config.CaptureSystemConfig.TagName;
                 referenceActor.Client = viconDataStreamClient;
                 var boneTracer = actor.gameObject.AddComponent<BoneTracer>();
                 boneTracer.TargetAnimator = referenceActor.gameObject.GetComponent<Animator>();
@@ -521,7 +523,7 @@ public class MotionClientBuild : EditorWindow, IBuildable
                 var prop = Instantiate(Target).gameObject.AddComponent<PropSender>();
                 var rbScript_For12 = prop.AddComponent<RBScript_for12>();
                 rbScript_For12.Client = viconDataStreamClient;
-                rbScript_For12.ObjectName = ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.TagName;
+                rbScript_For12.ObjectName = ConfigUtility.Config.CaptureSystemConfig.TagName;
                 Undo.RegisterCreatedObjectUndo(prop.gameObject, "CreateProp");
                 break;
             default:

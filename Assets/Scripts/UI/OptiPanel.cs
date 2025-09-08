@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using ClientBaseUtility;
 
 public class OptiPanel : UIBase, IUseIinterface
 {
@@ -40,17 +41,17 @@ public class OptiPanel : UIBase, IUseIinterface
 	{
 		Register();
 
-		_localAddressField.text = ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.OptiConfig.LocalAddress;
-		_serverAddressField.text = ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.OptiConfig.ServerAddress;
-		_serverCommandPortField.text = ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.OptiConfig.ServerCommandPort.ToString();
-		_serverDataPortField.text = ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.OptiConfig.ServerCommandPort.ToString();
-		_drawMakerToggle.isOn = ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.OptiConfig.DrawMarkers;
+		_localAddressField.text = ConfigUtility.Config.CaptureSystemConfig.OptiConfig.LocalAddress;
+		_serverAddressField.text = ConfigUtility.Config.CaptureSystemConfig.OptiConfig.ServerAddress;
+		_serverCommandPortField.text = ConfigUtility.Config.CaptureSystemConfig.OptiConfig.ServerCommandPort.ToString();
+		_serverDataPortField.text = ConfigUtility.Config.CaptureSystemConfig.OptiConfig.ServerCommandPort.ToString();
+		_drawMakerToggle.isOn = ConfigUtility.Config.CaptureSystemConfig.OptiConfig.DrawMarkers;
 
 		int i = 0;
 		foreach (var item in Enum.GetValues(typeof(OptitrackStreamingClient.ClientConnectionType)))
 		{
 			_connectionTypeDropdown.options.Add(new TMP_Dropdown.OptionData { text = item.ToString() });
-			if (item.ToString() == ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.CaputureSystemType)
+			if (item.ToString() == ConfigUtility.Config.CaptureSystemConfig.CaputureSystemType)
 			{
 				_connectionTypeDropdown.value = i;
 			}
@@ -66,19 +67,19 @@ public class OptiPanel : UIBase, IUseIinterface
 			{
 				MotionCaptureStream.OptitrackStreamingClient.ConnectionType = OptitrackStreamingClient.ClientConnectionType.Unicast;
 			}
-			ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.OptiConfig.ConnectionType = _connectionTypeDropdown.options[_connectionTypeDropdown.value].text;
+			ConfigUtility.Config.CaptureSystemConfig.OptiConfig.ConnectionType = _connectionTypeDropdown.options[_connectionTypeDropdown.value].text;
 		});
 
 		_localAddressField.onEndEdit.AddListener(delegate
 		{
 			MotionCaptureStream.OptitrackStreamingClient.LocalAddress = _localAddressField.text;
-			ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.OptiConfig.LocalAddress = _localAddressField.text;
+			ConfigUtility.Config.CaptureSystemConfig.OptiConfig.LocalAddress = _localAddressField.text;
 		});
 
 		_serverAddressField.onEndEdit.AddListener(delegate
 		{
 			MotionCaptureStream.OptitrackStreamingClient.ServerAddress = _serverAddressField.text;
-			ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.OptiConfig.ServerAddress = _serverAddressField.text;
+			ConfigUtility.Config.CaptureSystemConfig.OptiConfig.ServerAddress = _serverAddressField.text;
 		});
 
 		_serverCommandPortField.onEndEdit.AddListener(delegate
@@ -86,7 +87,7 @@ public class OptiPanel : UIBase, IUseIinterface
 			try
 			{
 				MotionCaptureStream.OptitrackStreamingClient.ServerCommandPort = ushort.Parse(_serverCommandPortField.text);
-				ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.OptiConfig.ServerCommandPort = ushort.Parse(_serverCommandPortField.text);
+				ConfigUtility.Config.CaptureSystemConfig.OptiConfig.ServerCommandPort = ushort.Parse(_serverCommandPortField.text);
 			}
 			catch { }
 		});
@@ -96,7 +97,7 @@ public class OptiPanel : UIBase, IUseIinterface
 			try
 			{
 				MotionCaptureStream.OptitrackStreamingClient.ServerDataPort = ushort.Parse(_serverDataPortField.text);
-				ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.OptiConfig.ServerCommandPort = ushort.Parse(_serverDataPortField.text);
+				ConfigUtility.Config.CaptureSystemConfig.OptiConfig.ServerCommandPort = ushort.Parse(_serverDataPortField.text);
 			}
 			catch { }
 		});
@@ -104,14 +105,14 @@ public class OptiPanel : UIBase, IUseIinterface
 		_drawMakerToggle.onValueChanged.AddListener((value) =>
 		{
 			MotionCaptureStream.OptitrackStreamingClient.DrawMarkers = value;
-			ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.OptiConfig.DrawMarkers = _drawMakerToggle.isOn;
+			ConfigUtility.Config.CaptureSystemConfig.OptiConfig.DrawMarkers = _drawMakerToggle.isOn;
 		});
 
 		i = 0;
 		foreach (object item in Enum.GetValues(typeof(OptitrackBoneNameConvention)))
 		{
 			_boneNamingConventionDropdown.options.Add(new TMP_Dropdown.OptionData { text = item.ToString() });
-			if (item.ToString() == ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.OptiConfig.BoneNamingConvention)
+			if (item.ToString() == ConfigUtility.Config.CaptureSystemConfig.OptiConfig.BoneNamingConvention)
 			{
 				_boneNamingConventionDropdown.value = i;
 			}
@@ -131,7 +132,7 @@ public class OptiPanel : UIBase, IUseIinterface
 			{
 				MotionCaptureStream.OptitrackStreamingClient.BoneNamingConvention = OptitrackBoneNameConvention.BVH;
 			}
-			ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.OptiConfig.BoneNamingConvention = _boneNamingConventionDropdown.options[_boneNamingConventionDropdown.value].text;
+			ConfigUtility.Config.CaptureSystemConfig.OptiConfig.BoneNamingConvention = _boneNamingConventionDropdown.options[_boneNamingConventionDropdown.value].text;
 		});
 	}
 

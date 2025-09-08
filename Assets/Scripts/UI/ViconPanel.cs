@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using ClientBaseUtility;
 
 public class ViconPanel : UIBase, IUseIinterface
 {
@@ -45,20 +46,20 @@ public class ViconPanel : UIBase, IUseIinterface
     {
         Register();
 
-        _hostNameField.text = ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.ViconConfig.HostName;
-        _portField.text = ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.ViconConfig.Port.ToString();
-        _subjectFilterField.text = ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.ViconConfig.SubjectFilter;
-        _usePreFetchToggle.isOn = ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.ViconConfig.UsePreFetch;
-        _isRetimedToggle.isOn = ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.ViconConfig.IsRetimed;
-        _offsetField.text = ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.ViconConfig.Offset.ToString();
-        _logToggle.isOn = ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.ViconConfig.Log;
-        _configureWirelessToggle.isOn = ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.ViconConfig.ConfigureWireless;
+        _hostNameField.text = ConfigUtility.Config.CaptureSystemConfig.ViconConfig.HostName;
+        _portField.text = ConfigUtility.Config.CaptureSystemConfig.ViconConfig.Port.ToString();
+        _subjectFilterField.text = ConfigUtility.Config.CaptureSystemConfig.ViconConfig.SubjectFilter;
+        _usePreFetchToggle.isOn = ConfigUtility.Config.CaptureSystemConfig.ViconConfig.UsePreFetch;
+        _isRetimedToggle.isOn = ConfigUtility.Config.CaptureSystemConfig.ViconConfig.IsRetimed;
+        _offsetField.text = ConfigUtility.Config.CaptureSystemConfig.ViconConfig.Offset.ToString();
+        _logToggle.isOn = ConfigUtility.Config.CaptureSystemConfig.ViconConfig.Log;
+        _configureWirelessToggle.isOn = ConfigUtility.Config.CaptureSystemConfig.ViconConfig.ConfigureWireless;
 
         _hostNameField.onEndEdit.AddListener(delegate
         {
             try
             {
-                ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.ViconConfig.HostName = _hostNameField.text;
+                ConfigUtility.Config.CaptureSystemConfig.ViconConfig.HostName = _hostNameField.text;
                 MotionCaptureStream.ViconDataStreamClient.HostName = _hostNameField.text;
             }
             catch { }
@@ -68,7 +69,7 @@ public class ViconPanel : UIBase, IUseIinterface
         {
             try
             {
-                ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.ViconConfig.Port = int.Parse(_portField.text);
+                ConfigUtility.Config.CaptureSystemConfig.ViconConfig.Port = int.Parse(_portField.text);
                 MotionCaptureStream.ViconDataStreamClient.Port = _portField.text;
             }
             catch { }
@@ -78,7 +79,7 @@ public class ViconPanel : UIBase, IUseIinterface
         {
             try
             {
-                ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.ViconConfig.SubjectFilter = _subjectFilterField.text;
+                ConfigUtility.Config.CaptureSystemConfig.ViconConfig.SubjectFilter = _subjectFilterField.text;
                 MotionCaptureStream.ViconDataStreamClient.SubjectFilter = _subjectFilterField.text;
             }
             catch { }
@@ -86,13 +87,13 @@ public class ViconPanel : UIBase, IUseIinterface
 
         _usePreFetchToggle.onValueChanged.AddListener((value) =>
         {
-            ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.ViconConfig.UsePreFetch = _usePreFetchToggle.isOn;
+            ConfigUtility.Config.CaptureSystemConfig.ViconConfig.UsePreFetch = _usePreFetchToggle.isOn;
             MotionCaptureStream.ViconDataStreamClient.ConfigureWireless = _usePreFetchToggle.isOn;
         });
 
         _isRetimedToggle.onValueChanged.AddListener((value) =>
         {
-            ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.ViconConfig.IsRetimed = _isRetimedToggle.isOn;
+            ConfigUtility.Config.CaptureSystemConfig.ViconConfig.IsRetimed = _isRetimedToggle.isOn;
             MotionCaptureStream.ViconDataStreamClient.IsRetimed = _isRetimedToggle.isOn;
         });
 
@@ -100,7 +101,7 @@ public class ViconPanel : UIBase, IUseIinterface
         {
             try
             {
-                ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.ViconConfig.Offset = float.Parse(_offsetField.text);
+                ConfigUtility.Config.CaptureSystemConfig.ViconConfig.Offset = float.Parse(_offsetField.text);
                 MotionCaptureStream.ViconDataStreamClient.Offset = float.Parse(_offsetField.text);
             }
             catch { }
@@ -108,13 +109,13 @@ public class ViconPanel : UIBase, IUseIinterface
 
         _logToggle.onValueChanged.AddListener((value) =>
         {
-            ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.ViconConfig.Log = _logToggle.isOn;
+            ConfigUtility.Config.CaptureSystemConfig.ViconConfig.Log = _logToggle.isOn;
             MotionCaptureStream.ViconDataStreamClient.Log = _logToggle.isOn;
         });
 
         _configureWirelessToggle.onValueChanged.AddListener((value) =>
         {
-            ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.ViconConfig.ConfigureWireless = _configureWirelessToggle.isOn;
+            ConfigUtility.Config.CaptureSystemConfig.ViconConfig.ConfigureWireless = _configureWirelessToggle.isOn;
             MotionCaptureStream.ViconDataStreamClient.ConfigureWireless = _configureWirelessToggle.isOn;
         });
     }

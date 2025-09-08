@@ -1,4 +1,5 @@
 using ClientBase_MotionCapture;
+using ClientBaseUtility;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -20,22 +21,22 @@ public class PropClientDirector : DirectorBase
         set
 		{
             _propSender = value;
-            if (ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.CaputureSystemType == "Vicon 1.12")
+            if (ConfigUtility.Config.CaptureSystemConfig.CaputureSystemType == "Vicon 1.12")
 			{
                 //MotionCaptureStream.CurrentCaptureType = CaptureSystemType.Vicon1_12;
 
                 _rbScript = _propSender.gameObject.AddComponent<RBScript_for12>();
                 _rbScript.Client = MotionCaptureStream.ViconDataStreamClient;
-                _rbScript.ObjectName = ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.TagName;
+                _rbScript.ObjectName = ConfigUtility.Config.CaptureSystemConfig.TagName;
             }
-            if (ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.CaputureSystemType== "OptiTrack")
+            if (ConfigUtility.Config.CaptureSystemConfig.CaputureSystemType== "OptiTrack")
 			{
                 //MotionCaptureStream.CurrentCaptureType = CaptureSystemType.OptiTrack;
 
                 _optitrackRigidBody = _propSender.gameObject.AddComponent<OptitrackRigidBody>();
                 _optitrackRigidBody.StreamingClient = MotionCaptureStream.OptitrackStreamingClient;
 
-				if (int.TryParse(ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.TagName,out  int id))
+				if (int.TryParse(ConfigUtility.Config.CaptureSystemConfig.TagName,out  int id))
 				{
                     _optitrackRigidBody.RigidBodyId =id;
                 }

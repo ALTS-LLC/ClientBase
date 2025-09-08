@@ -44,24 +44,4 @@ public class ManagerHub : SingletonMonoBehaviour<ManagerHub>
 			}
 		}
 	}
-
-	private DataManager _dataManager = null;
-	public DataManager DataManager
-	{
-		get 
-		{
-			if (_dataManager == null)
-			{
-				_dataManager = GameObject.FindAnyObjectByType<DataManager>();
-			}
-			return _dataManager; 
-		}
-		set
-		{
-			if (value is ManagerBase && value is DataManager)
-			{
-				_dataManager = value;
-			}
-		}
-	}
 }
