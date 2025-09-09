@@ -22,19 +22,6 @@ public class AppManager : ManagerBase
 		}
 	}
 
-	private PropClientDirector _propClientDirector = null;
-	public PropClientDirector PropClientDirector
-	{
-        get { return _propClientDirector; }
-        set
-        {
-            if (value is DirectorBase && value is PropClientDirector)
-            {
-                _propClientDirector = value;
-            }
-        }
-    }
-
 	private void Awake()
 	{
 		RegisterManager();		
@@ -43,6 +30,7 @@ public class AppManager : ManagerBase
 
 	private void Start()
 	{
+		if (_currentBehavior == null) {return;}
 		_currentBehavior.OnStart();
 	}
 
@@ -53,16 +41,19 @@ public class AppManager : ManagerBase
 
 	public void Dispose()
 	{
-		_currentBehavior.OnQuit();
+        if (_currentBehavior == null) { return; }
+        _currentBehavior.OnQuit();
 	}
 
 	private void OnApplicationQuit()
 	{
-		_currentBehavior.OnQuit();
+        if (_currentBehavior == null) { return; }
+        _currentBehavior.OnQuit();
 	}
 
 	private void OnDestroy()
 	{
-		_currentBehavior.OnQuit();
+        if (_currentBehavior == null) { return; }
+        _currentBehavior.OnQuit();
 	}
 }

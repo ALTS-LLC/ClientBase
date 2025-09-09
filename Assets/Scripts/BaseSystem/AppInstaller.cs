@@ -16,13 +16,12 @@ public class AppInstaller : MonoInstaller
                  .FromMethod(context => {
                      switch (SelectedBehaviorType) 
                      {
+                         case BehaviorType.None:
+                             return null;
                          case BehaviorType.MotionClient:
                              MotionClientDirector motionClientDirector = Instantiate(GetBehaviorDirector<MotionClientDirector>());
                              motionClientDirector.transform.parent = gameObject.transform;
                              return context.Container.Instantiate<MotionClientBehavior>();
-                         case BehaviorType.PropClient:
-                             Instantiate(GetBehaviorDirector<PropClientDirector>()).transform.parent = gameObject.transform;
-                             return context.Container.Instantiate<PropClientBehavior>();
                          default:
                              return null;
                      }
@@ -52,6 +51,6 @@ public interface IBehavior
 
 public enum BehaviorType
 {
+    None,
     MotionClient,
-    PropClient,
 }
