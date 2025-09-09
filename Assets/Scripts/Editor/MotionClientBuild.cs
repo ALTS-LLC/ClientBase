@@ -392,6 +392,10 @@ public class MotionClientBuild : EditorWindow, IBuildable
         ClientBuild.Build(BuildPath + Target.name + "MotionClient.exe");
 
         EditorSceneManager.OpenScene(_clientScenePath, OpenSceneMode.Single);
+        var lasrSceneApp = GameObject.Find("AppInstaller").GetComponent<AppInstaller>();
+        lasrSceneApp.SelectedBehaviorType = BehaviorType.None;
+        Undo.RegisterCreatedObjectUndo(lasrSceneApp.gameObject, "ChangeBehaviorType");
+        EditorSceneManager.SaveScene(SceneManager.GetActiveScene());
 
         EditorUtility.ClearProgressBar();
         EditorUtility.DisplayDialog("Build Complete", $"Motion Client built successfully!\nOutput: {BuildPath}{Target.name}MotionClient.exe", "OK");
