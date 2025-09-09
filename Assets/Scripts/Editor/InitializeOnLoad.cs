@@ -10,7 +10,7 @@ public class InitializeOnLoad
 {
     static InitializeOnLoad()
     {
-        ConfigUtility.Config = AssetDatabase.LoadAssetAtPath<Config>("Assets/ManagerAsset/Data/Config/Config.asset");
+        
     }
 }
 #endif
