@@ -43,7 +43,7 @@ public class OptiPanel : UIBase, IUseIinterface
 		_localAddressField.text = ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.OptiConfig.LocalAddress;
 		_serverAddressField.text = ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.OptiConfig.ServerAddress;
 		_serverCommandPortField.text = ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.OptiConfig.ServerCommandPort.ToString();
-		_serverDataPortField.text = ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.OptiConfig.ServerCommandPort.ToString();
+		_serverDataPortField.text = ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.OptiConfig.ServerDataPort.ToString();
 		_drawMakerToggle.isOn = ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.OptiConfig.DrawMarkers;
 
 		int i = 0;
@@ -96,7 +96,7 @@ public class OptiPanel : UIBase, IUseIinterface
 			try
 			{
 				MotionCaptureStream.OptitrackStreamingClient.ServerDataPort = ushort.Parse(_serverDataPortField.text);
-				ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.OptiConfig.ServerCommandPort = ushort.Parse(_serverDataPortField.text);
+				ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.OptiConfig.ServerDataPort = ushort.Parse(_serverDataPortField.text);
 			}
 			catch { }
 		});

@@ -57,6 +57,29 @@ public class MotionClientDirector : DirectorBase
         InstanceDirectorAsset();
     }
 
+    private void Update()
+    {
+        if (!MotionCaptureStream.OptitrackStreamingClient.enabled)
+        {
+            if (_optitrackSkeletonAnimator == null)
+            {
+                return;
+            }
+            MotionCaptureStream.OptitrackStreamingClient.enabled = true;
+            var streamingClient =_optitrackSkeletonAnimator.StreamingClient;
+            var skeletonName = _optitrackSkeletonAnimator.SkeletonAssetName;
+            var avator = _optitrackSkeletonAnimator.DestinationAvatar;
+            GameObject targetActor = _optitrackSkeletonAnimator.gameObject;
+            Destroy(_optitrackSkeletonAnimator);
+            var newSkeletonAnimator= targetActor.AddComponent<OptitrackSkeletonAnimator>();
+            newSkeletonAnimator.SkeletonAssetName = skeletonName;
+            newSkeletonAnimator.DestinationAvatar = avator;
+            newSkeletonAnimator.StreamingClient = streamingClient;
+            
+
+        }
+    }
+
     protected override void RegisterDirector()
     {
         ManagerHub.Instance.AppManager.MotionClientDirector = this;
