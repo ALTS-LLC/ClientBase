@@ -22,6 +22,8 @@ public class MotionClientDirector : DirectorBase
     private OptitrackRigidBody _optitrackRigidBody = null;
     private RBScript_for12 _rbScript_For12 = null;
 
+    private bool _optiClientOnceCall = false;
+
 
     private string _tagName = null;
     public string TagName
@@ -59,9 +61,9 @@ public class MotionClientDirector : DirectorBase
 
     private void Update()
     {
-        if (!MotionCaptureStream.OptitrackStreamingClient.enabled)
+        if (!_optiClientOnceCall)
         {
-            try
+            if (!MotionCaptureStream.OptitrackStreamingClient.enabled)
             {
                 MotionCaptureStream.OptitrackStreamingClient.enabled = true;
                 _optitrackSkeletonAnimator.enabled = true;
@@ -75,11 +77,9 @@ public class MotionClientDirector : DirectorBase
                 newSkeletonAnimator.DestinationAvatar = avator;
                 newSkeletonAnimator.StreamingClient = streamingClient;
             }
-            catch { }
-
-
-
+            _optiClientOnceCall = true;
         }
+       
     }
 
     protected override void RegisterDirector()

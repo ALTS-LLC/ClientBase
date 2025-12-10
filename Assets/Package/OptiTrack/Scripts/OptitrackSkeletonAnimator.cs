@@ -83,7 +83,7 @@ public class OptitrackSkeletonAnimator : MonoBehaviour
         if ( m_skeletonDef == null )
         {
             //Debug.LogError( GetType().FullName + ": Could not find skeleton definition with the name \"" + this.SkeletonAssetName + "\"", this );
-            this.enabled = false;
+           // this.enabled = false;
             return;
         }
 
