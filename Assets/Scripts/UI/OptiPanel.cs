@@ -50,12 +50,13 @@ public class OptiPanel : UIBase, IUseIinterface
 		foreach (var item in Enum.GetValues(typeof(OptitrackStreamingClient.ClientConnectionType)))
 		{
 			_connectionTypeDropdown.options.Add(new TMP_Dropdown.OptionData { text = item.ToString() });
-			if (item.ToString() == ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.CaputureSystemType)
+			if (item.ToString() == ManagerHub.Instance.DataManager.Config.CaptureSystemConfig.OptiConfig.ConnectionType)
 			{
 				_connectionTypeDropdown.value = i;
 			}
 			i++;
 		}
+
 		_connectionTypeDropdown.onValueChanged.AddListener((value) =>
 		{
 			if (value == 0)

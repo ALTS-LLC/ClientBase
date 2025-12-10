@@ -19,7 +19,7 @@ public class MotionClientDirector : DirectorBase
     private OptitrackSkeletonAnimator _optitrackSkeletonAnimator = null;
     private SubjectScript_for12 _referenceActor = null;
 
-    private OptitrackRigidBody _optitrackRigidBody  = null;
+    private OptitrackRigidBody _optitrackRigidBody = null;
     private RBScript_for12 _rbScript_For12 = null;
 
 
@@ -48,7 +48,7 @@ public class MotionClientDirector : DirectorBase
 
 
     private void Awake()
-    {      
+    {
     }
 
     private void Start()
@@ -61,21 +61,23 @@ public class MotionClientDirector : DirectorBase
     {
         if (!MotionCaptureStream.OptitrackStreamingClient.enabled)
         {
-            if (_optitrackSkeletonAnimator == null)
+            try
             {
-                return;
+                MotionCaptureStream.OptitrackStreamingClient.enabled = true;
+                _optitrackSkeletonAnimator.enabled = true;
+                var streamingClient = _optitrackSkeletonAnimator.StreamingClient;
+                var skeletonName = _optitrackSkeletonAnimator.SkeletonAssetName;
+                var avator = _optitrackSkeletonAnimator.DestinationAvatar;
+                GameObject targetActor = _optitrackSkeletonAnimator.gameObject;
+                Destroy(_optitrackSkeletonAnimator);
+                var newSkeletonAnimator = targetActor.AddComponent<OptitrackSkeletonAnimator>();
+                newSkeletonAnimator.SkeletonAssetName = skeletonName;
+                newSkeletonAnimator.DestinationAvatar = avator;
+                newSkeletonAnimator.StreamingClient = streamingClient;
             }
-            MotionCaptureStream.OptitrackStreamingClient.enabled = true;
-            var streamingClient =_optitrackSkeletonAnimator.StreamingClient;
-            var skeletonName = _optitrackSkeletonAnimator.SkeletonAssetName;
-            var avator = _optitrackSkeletonAnimator.DestinationAvatar;
-            GameObject targetActor = _optitrackSkeletonAnimator.gameObject;
-            Destroy(_optitrackSkeletonAnimator);
-            var newSkeletonAnimator= targetActor.AddComponent<OptitrackSkeletonAnimator>();
-            newSkeletonAnimator.SkeletonAssetName = skeletonName;
-            newSkeletonAnimator.DestinationAvatar = avator;
-            newSkeletonAnimator.StreamingClient = streamingClient;
-            
+            catch { }
+
+
 
         }
     }
