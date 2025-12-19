@@ -37,7 +37,10 @@ public class PropSender : MonoBehaviour
 		var message = SendCamera();
 		var messageByte = GetMessageByte(message);
 		//ameObject.transform.rotation = new Quaternion(gameObject.transform.rotation.x,_hip.transform.rotation.y,gameObject.transform.rotation.z,gameObject.transform.rotation.w);
-
+		if (_udpClient==null)
+		{
+			return;
+		}
 		_udpClient.Send(messageByte, messageByte.Length, _multicastEndpoint);
 	}
 
