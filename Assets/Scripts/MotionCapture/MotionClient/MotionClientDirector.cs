@@ -65,17 +65,44 @@ public class MotionClientDirector : DirectorBase
         {
             if (!MotionCaptureStream.OptitrackStreamingClient.enabled)
             {
-                MotionCaptureStream.OptitrackStreamingClient.enabled = true;
-                _optitrackSkeletonAnimator.enabled = true;
-                var streamingClient = _optitrackSkeletonAnimator.StreamingClient;
-                var skeletonName = _optitrackSkeletonAnimator.SkeletonAssetName;
-                var avator = _optitrackSkeletonAnimator.DestinationAvatar;
-                GameObject targetActor = _optitrackSkeletonAnimator.gameObject;
-                Destroy(_optitrackSkeletonAnimator);
-                var newSkeletonAnimator = targetActor.AddComponent<OptitrackSkeletonAnimator>();
-                newSkeletonAnimator.SkeletonAssetName = skeletonName;
-                newSkeletonAnimator.DestinationAvatar = avator;
-                newSkeletonAnimator.StreamingClient = streamingClient;
+                OptitrackStreamingClient streamingClient = null;
+                string skeletonName = null;
+                Avatar avator = null;
+
+				switch (_captureType)
+                {
+                    case CaptureType.Motion:
+						MotionCaptureStream.OptitrackStreamingClient.enabled = true;
+						_optitrackSkeletonAnimator.enabled = true;
+					     streamingClient = _optitrackSkeletonAnimator.StreamingClient;
+					     skeletonName = _optitrackSkeletonAnimator.SkeletonAssetName;
+					     avator = _optitrackSkeletonAnimator.DestinationAvatar;
+						GameObject targetActor = _optitrackSkeletonAnimator.gameObject;
+						Destroy(_optitrackSkeletonAnimator);
+						var newSkeletonAnimator = targetActor.AddComponent<OptitrackSkeletonAnimator>();
+						newSkeletonAnimator.SkeletonAssetName = skeletonName;
+						newSkeletonAnimator.DestinationAvatar = avator;
+						newSkeletonAnimator.StreamingClient = streamingClient;
+						break;
+                    case CaptureType.Prop:
+
+						MotionCaptureStream.OptitrackStreamingClient.enabled = true;
+                        _optitrackRigidBody.enabled = true;
+						streamingClient = _optitrackRigidBody.StreamingClient;
+						skeletonName = _optitrackRigidBody.RigidBodyId.ToString();
+
+
+						GameObject targetProp = _optitrackRigidBody.gameObject;
+						Destroy(_optitrackRigidBody);
+						var newProp = targetProp.AddComponent<OptitrackRigidBody>();
+						newProp.RigidBodyId = int.Parse(skeletonName);
+						newProp.StreamingClient = streamingClient;
+						break;
+                    default:
+                        break;
+                }
+
+
             }
             _optiClientOnceCall = true;
         }
